@@ -1,2 +1,24 @@
 # mycollege-vue
-Vue front-end service for the MyCollege application, implemented for the Spring 2021 CIS4900 Independent Study project with Dr. Anderson.
+
+## Project setup
+```
+npm install
+```
+
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
+
+### Compiles and minifies for production
+```
+npm run build
+```
+
+### Lints and fixes files
+```
+npm run lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
