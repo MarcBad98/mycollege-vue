@@ -2,12 +2,10 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
-
 import Bulma from "bulma/bulma.sass";
 import Buefy from "buefy";
-
 import VueKeyCloak from "@dsb-norge/vue-keycloak-js";
-import axios from "axios";
+import Axios from "axios";
 import { createProvider } from "./vue-apollo";
 
 Vue.config.productionTip = false;
@@ -16,7 +14,7 @@ Vue.use(Bulma);
 Vue.use(Buefy);
 
 function tokenInterceptor() {
-  axios.interceptors.request.use(
+  Axios.interceptors.request.use(
     config => {
       config.headers.Authorization = `Bearer ${Vue.prototype.$keycloak.token}`;
       return config;
@@ -33,13 +31,17 @@ Vue.use(VueKeyCloak, {
     realm: process.env.VUE_APP_SSO_REALM,
     clientId: process.env.VUE_APP_SSO_CLIENT_ID
   },
+  init: {
+    onLoad: "check-sso"
+  },
   onReady: () => {
     tokenInterceptor();
-    new Vue({
-      router,
-      store,
-      apolloProvider: createProvider(),
-      render: h => h(App)
-    }).$mount("#app");
   }
 });
+
+new Vue({
+  router,
+  store,
+  apolloProvider: createProvider(),
+  render: h => h(App)
+}).$mount("#app");
