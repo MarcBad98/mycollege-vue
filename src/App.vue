@@ -12,7 +12,7 @@
         </b-navbar-item>
       </template>
       <template #end>
-        <b-navbar-item>
+        <b-navbar-item tag="div" v-if="!$keycloak.keycloak.authenticated">
           <div class="buttons">
             <b-button
               type="is-primary"
@@ -24,6 +24,11 @@
               Log In
             </b-button>
           </div>
+        </b-navbar-item>
+        <b-navbar-item tag="div" v-else>
+          <b-button type="is-light" v-on:click="$keycloak.keycloak.logout()">
+            Log Out
+          </b-button>
         </b-navbar-item>
       </template>
     </b-navbar>
