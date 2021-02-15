@@ -109,7 +109,7 @@ export default {
       .then(response => {
         this.$store.state.user = response.data.createRetrieveUser.user;
         this.$buefy.snackbar.open("Login successful. Welcome to MyCollege!");
-        EventBus.$emit("retrieved-user-data", this.$store.state.user);
+        EventBus.$emit("retrieved-user-data");
       });
   },
   data() {

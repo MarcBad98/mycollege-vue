@@ -34,13 +34,9 @@ import { EventBus } from "@/EventBus";
 export default {
   name: "UserSettings",
   mounted() {
-    EventBus.$on("retrieved-user-data", user => {
-      this.settings = {
-        subscriptionEmail: user.settings.subscriptionEmail,
-        subscriptionSms: user.settings.subscriptionSms,
-        targetedAdvertising: user.settings.targetedAdvertising,
-        language: user.settings.language
-      };
+    this.updateSettings();
+    EventBus.$on("retrieved-user-data", () => {
+      this.updateSettings();
     });
   },
   destroyed() {
@@ -52,6 +48,15 @@ export default {
     };
   },
   methods: {
+    updateSettings() {
+      this.settings = {
+        subscriptionEmail: this.$store.state.user.settings.subscriptionEmail,
+        subscriptionSms: this.$store.state.user.settings.subscriptionSms,
+        targetedAdvertising: this.$store.state.user.settings
+          .targetedAdvertising,
+        language: this.$store.state.user.settings.language
+      };
+    },
     save() {
       this.$apollo
         .mutate({
@@ -64,7 +69,7 @@ export default {
         .then(response => {
           this.$store.state.user = response.data.updateUser.user;
           this.$buefy.snackbar.open("Your settings was successfully saved!");
-          EventBus.$emit("retrieved-user-data", this.$store.state.user);
+          EventBus.$emit("retrieved-user-data");
         });
     }
   }

@@ -5,7 +5,15 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    user: {}
+    user: {
+      keycloakUserId: "",
+      settings: {
+        subscriptionsEmail: null,
+        subscriptionsSms: null,
+        targetedAdvertising: null,
+        language: ""
+      }
+    }
   },
   mutations: {},
   actions: {},
