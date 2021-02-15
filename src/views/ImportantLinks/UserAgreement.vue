@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>User Agreement</h1>
+    <hr />
     <UnderConstruction feature="Web Page: User Agreement" />
   </div>
 </template>

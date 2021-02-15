@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>Welcome to MyCollege!</h1>
+    <hr />
     <p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec et eros
       purus. Sed vestibulum sagittis sem, eu porttitor quam pretium et. Nulla
@@ -49,6 +50,7 @@
       </p>
     </div>
     <h2>Why Use MyCollege?</h2>
+    <hr />
     <UnderConstruction feature="Video: Why Use MyCollege?" />
   </div>
 </template>

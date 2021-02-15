@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>Browse MyCollege</h1>
+    <hr />
     <UnderConstruction feature="Web Page: Browse MyCollege" />
   </div>
 </template>

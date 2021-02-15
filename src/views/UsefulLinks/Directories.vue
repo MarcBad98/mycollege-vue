@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>Directories</h1>
+    <hr />
     <UnderConstruction feature="Web Page: Directories" />
   </div>
 </template>

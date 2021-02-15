@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>Cookie Policy</h1>
+    <hr />
     <UnderConstruction feature="Web Page: Cookie Policy" />
   </div>
 </template>

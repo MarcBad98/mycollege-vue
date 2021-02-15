@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>Developers</h1>
+    <hr />
     <UnderConstruction feature="Web Page: Developers" />
   </div>
 </template>

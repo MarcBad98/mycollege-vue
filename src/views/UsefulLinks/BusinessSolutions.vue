@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>Business Solutions</h1>
+    <hr />
     <UnderConstruction feature="Web Page: Business Solutions" />
   </div>
 </template>

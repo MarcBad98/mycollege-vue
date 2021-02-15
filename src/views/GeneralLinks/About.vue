@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>About</h1>
+    <hr />
     <div class="box has-background-light">
       <strong>
         MyCollege: Welcome to MyCollege, the world's largest college student

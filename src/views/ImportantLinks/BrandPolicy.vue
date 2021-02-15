@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>Brand Policy</h1>
+    <hr />
     <UnderConstruction feature="Web Page: Brand Policy" />
   </div>
 </template>

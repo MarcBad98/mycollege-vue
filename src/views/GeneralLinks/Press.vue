@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>Press</h1>
+    <hr />
     <div class="box has-background-light">
       <strong>
         MyCollege Pressroom: Stay on top of the latest news, updates, and

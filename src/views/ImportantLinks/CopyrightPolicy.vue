@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>Copyright Policy</h1>
+    <hr />
     <UnderConstruction feature="Web Page: Copyright Policy" />
   </div>
 </template>

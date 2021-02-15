@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>Accessibility</h1>
+    <hr />
     <UnderConstruction feature="Web Page: Accessibility" />
   </div>
 </template>
