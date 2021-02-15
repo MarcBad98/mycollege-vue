@@ -5,7 +5,13 @@ import Home from "../views/Home.vue";
 import Jobs from "../views/Jobs.vue";
 import Skills from "../views/Skills.vue";
 
-import GeneralInformation from "../views/UsefulLinks/GeneralInformation.vue";
+import About from "../views/GeneralLinks/About.vue";
+import HelpCenter from "../views/GeneralLinks/HelpCenter.vue";
+import Press from "../views/GeneralLinks/Press.vue";
+import Blog from "../views/GeneralLinks/Blog.vue";
+import Careers from "../views/GeneralLinks/Careers.vue";
+import Developers from "../views/GeneralLinks/Developers.vue";
+
 import Browse from "../views/UsefulLinks/Browse.vue";
 import BusinessSolutions from "../views/UsefulLinks/BusinessSolutions.vue";
 import Directories from "../views/UsefulLinks/Directories.vue";
@@ -37,9 +43,34 @@ const routes = [
     component: Skills
   },
   {
-    path: "/general-information",
-    name: "GeneralInformation",
-    component: GeneralInformation
+    path: "/about",
+    name: "About",
+    component: About
+  },
+  {
+    path: "/help-center",
+    name: "HelpCenter",
+    component: HelpCenter
+  },
+  {
+    path: "/press",
+    name: "Press",
+    component: Press
+  },
+  {
+    path: "/blog",
+    name: "Blog",
+    component: Blog
+  },
+  {
+    path: "/careers",
+    name: "Careers",
+    component: Careers
+  },
+  {
+    path: "/developers",
+    name: "Developers",
+    component: Developers
   },
   {
     path: "/browse",

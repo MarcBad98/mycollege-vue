@@ -101,12 +101,38 @@ export default {
         },
         {
           type: "dropdown",
-          label: "Useful Links",
+          label: "General Links",
           items: [
             {
-              label: "General Information",
-              route: { name: "GeneralInformation" }
+              label: "About",
+              route: { name: "About" }
             },
+            {
+              label: "Help Center",
+              route: { name: "HelpCenter" }
+            },
+            {
+              label: "Press",
+              route: { name: "Press" }
+            },
+            {
+              label: "Blog",
+              route: { name: "Blog" }
+            },
+            {
+              label: "Careers",
+              route: { name: "Careers" }
+            },
+            {
+              label: "Developers",
+              route: { name: "Developers" }
+            }
+          ]
+        },
+        {
+          type: "dropdown",
+          label: "Useful Links",
+          items: [
             {
               label: "Browse MyCollege",
               route: { name: "Browse" }
