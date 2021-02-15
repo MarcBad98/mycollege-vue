@@ -71,6 +71,26 @@
             Directories
           </b-navbar-item>
         </b-navbar-dropdown>
+        <b-navbar-dropdown label="Important Links">
+          <b-navbar-item tag="router-link" :to="{ name: 'Accessibility' }">
+            Accessibility
+          </b-navbar-item>
+          <b-navbar-item tag="router-link" :to="{ name: 'UserAgreement' }">
+            User Agreement
+          </b-navbar-item>
+          <b-navbar-item tag="router-link" :to="{ name: 'PrivacyPolicy' }">
+            Privacy Policy
+          </b-navbar-item>
+          <b-navbar-item tag="router-link" :to="{ name: 'CookiePolicy' }">
+            Cookie Policy
+          </b-navbar-item>
+          <b-navbar-item tag="router-link" :to="{ name: 'CopyrightPolicy' }">
+            Copyright Policy
+          </b-navbar-item>
+          <b-navbar-item tag="router-link" :to="{ name: 'BrandPolicy' }">
+            Brand Policy
+          </b-navbar-item>
+        </b-navbar-dropdown>
       </template>
       <template #end>
         <b-navbar-item tag="div">
