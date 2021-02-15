@@ -94,8 +94,25 @@
 </template>
 
 <script>
+import { CreateRetrieveUser } from "@/graphql/User.gql";
+import { EventBus } from "@/EventBus";
+
 export default {
-  data: () => {
+  mounted() {
+    this.$apollo
+      .mutate({
+        mutation: CreateRetrieveUser,
+        variables: {
+          keycloakUserId: this.$keycloak.subject
+        }
+      })
+      .then(response => {
+        this.$store.state.user = response.data.createRetrieveUser.user;
+        this.$buefy.snackbar.open("Login successful. Welcome to MyCollege!");
+        EventBus.$emit("retrieved-user-data", this.$store.state.user);
+      });
+  },
+  data() {
     return {
       links: [
         {

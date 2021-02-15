@@ -1,0 +1,36 @@
+mutation CreateRetrieveUser ($keycloakUserId:String!) {
+  createRetrieveUser (inputs:{
+		keycloakUserId:$keycloakUserId
+    settings:{
+      subscriptionEmail:false
+      subscriptionSms:false
+      targetedAdvertising:false
+      language:"English"
+    }
+  }) {
+    user {
+			...UserData
+    }
+  }
+}
+
+mutation UpdateUser ($keycloakUserId:String!, $settings:UserSettingsInputType) {
+  updateUser (inputs:{
+		keycloakUserId:$keycloakUserId
+    settings:$settings
+  }) {
+    user {
+      ...UserData
+    }
+  }
+}
+
+fragment UserData on UserType {
+  keycloakUserId
+  settings {
+    subscriptionEmail
+    subscriptionSms
+    targetedAdvertising
+    language
+  }
+}

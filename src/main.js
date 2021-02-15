@@ -5,6 +5,7 @@ import store from "./store";
 import "@mdi/font/css/materialdesignicons.css";
 import Bulma from "bulma/bulma.sass";
 import Buefy from "buefy";
+import "buefy/dist/buefy.css";
 import VueKeyCloak from "@dsb-norge/vue-keycloak-js";
 import Axios from "axios";
 import { createProvider } from "./vue-apollo";
@@ -37,12 +38,11 @@ Vue.use(VueKeyCloak, {
   },
   onReady: () => {
     tokenInterceptor();
+    new Vue({
+      router,
+      store,
+      apolloProvider: createProvider(),
+      render: h => h(App)
+    }).$mount("#app");
   }
 });
-
-new Vue({
-  router,
-  store,
-  apolloProvider: createProvider(),
-  render: h => h(App)
-}).$mount("#app");

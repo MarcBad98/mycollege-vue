@@ -22,7 +22,8 @@ import PrivacyPolicy from "../views/ImportantLinks/PrivacyPolicy.vue";
 import CookiePolicy from "../views/ImportantLinks/CookiePolicy.vue";
 import CopyrightPolicy from "../views/ImportantLinks/CopyrightPolicy.vue";
 import BrandPolicy from "../views/ImportantLinks/BrandPolicy.vue";
-import GuestControls from "../views/ImportantLinks/GuestControls.vue";
+
+import UserSettings from "../views/UserSettings.vue";
 
 Vue.use(VueRouter);
 
@@ -118,9 +119,9 @@ const routes = [
     component: BrandPolicy
   },
   {
-    path: "/guest-controls",
-    name: "GuestControls",
-    component: GuestControls
+    path: "/settings",
+    name: "UserSettings",
+    component: UserSettings
   }
 ];
 
