@@ -42,24 +42,47 @@
             rounded
           ></b-input>
         </b-navbar-item>
-        <b-navbar-item tag="div" v-if="!$keycloak.authenticated">
-          <div class="buttons">
-            <b-button
-              type="is-primary"
-              v-on:click="$keycloak.keycloak.register()"
-            >
-              Sign Up
-            </b-button>
-            <b-button type="is-light" v-on:click="$keycloak.keycloak.login()">
-              Log In
-            </b-button>
-          </div>
-        </b-navbar-item>
-        <b-navbar-item tag="div" v-else>
-          <b-button type="is-light" v-on:click="$keycloak.keycloak.logout()">
-            Log Out
-          </b-button>
-        </b-navbar-item>
+        <template v-if="!$keycloak.authenticated">
+          <b-navbar-dropdown label="Anonymous User">
+            <b-navbar-item tag="div" v-if="!$keycloak.authenticated">
+              <div class="buttons">
+                <b-button
+                  type="is-primary"
+                  expanded
+                  v-on:click="$keycloak.keycloak.register()"
+                >
+                  Sign Up
+                </b-button>
+                <b-button
+                  type="is-light"
+                  expanded
+                  v-on:click="$keycloak.keycloak.login()"
+                >
+                  Log In
+                </b-button>
+              </div>
+            </b-navbar-item>
+          </b-navbar-dropdown>
+        </template>
+        <template v-else>
+          <b-navbar-dropdown :label="$keycloak.userName">
+            <b-navbar-item tag="router-link" :to="{ name: 'UserProfile' }">
+              Profile
+            </b-navbar-item>
+            <b-navbar-item tag="router-link" :to="{ name: 'UserSettings' }">
+              Settings
+            </b-navbar-item>
+            <b-navbar-item tag="div">
+              <b-button
+                type="is-light"
+                expanded
+                v-on:click="$keycloak.keycloak.logout()"
+              >
+                Log Out
+              </b-button>
+            </b-navbar-item>
+          </b-navbar-dropdown>
+        </template>
       </template>
     </b-navbar>
     <div class="section container">

@@ -63,3 +63,9 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.author-name {
+  text-align: right;
+}
+</style>
