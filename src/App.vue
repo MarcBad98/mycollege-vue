@@ -57,6 +57,20 @@
             Productivity while Working from Home
           </b-navbar-item>
         </b-navbar-dropdown>
+        <b-navbar-dropdown label="Useful Links">
+          <b-navbar-item tag="router-link" :to="{ name: 'GeneralInformation' }">
+            General Information
+          </b-navbar-item>
+          <b-navbar-item tag="router-link" :to="{ name: 'Browse' }">
+            Browse MyCollege
+          </b-navbar-item>
+          <b-navbar-item tag="router-link" :to="{ name: 'BusinessSolutions' }">
+            Business Solutions
+          </b-navbar-item>
+          <b-navbar-item tag="router-link" :to="{ name: 'Directories' }">
+            Directories
+          </b-navbar-item>
+        </b-navbar-dropdown>
       </template>
       <template #end>
         <b-navbar-item tag="div">
