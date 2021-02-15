@@ -7,90 +7,30 @@
         </b-navbar-item>
       </template>
       <template #start>
-        <b-navbar-item tag="router-link" :to="{ name: 'Jobs' }">
-          Jobs
-        </b-navbar-item>
-        <b-navbar-dropdown label="Skills">
-          <b-navbar-item
-            tag="router-link"
-            :to="{
-              name: 'Skills',
-              query: { skill: 'Beginner\'s Guide to Web Development' }
-            }"
-          >
-            Beginner's Guide to Web Development
-          </b-navbar-item>
-          <b-navbar-item
-            tag="router-link"
-            :to="{
-              name: 'Skills',
-              query: { skill: 'JavaScript' }
-            }"
-          >
-            JavaScript
-          </b-navbar-item>
-          <b-navbar-item
-            tag="router-link"
-            :to="{
-              name: 'Skills',
-              query: { skill: 'Python' }
-            }"
-          >
-            Python
-          </b-navbar-item>
-          <b-navbar-item
-            tag="router-link"
-            :to="{
-              name: 'Skills',
-              query: { skill: 'REST vs GraphQL' }
-            }"
-          >
-            REST vs GraphQL
-          </b-navbar-item>
-          <b-navbar-item
-            tag="router-link"
-            :to="{
-              name: 'Skills',
-              query: { skill: 'Productivity while Working from Home' }
-            }"
-          >
-            Productivity while Working from Home
-          </b-navbar-item>
-        </b-navbar-dropdown>
-        <b-navbar-dropdown label="Useful Links">
-          <b-navbar-item tag="router-link" :to="{ name: 'GeneralInformation' }">
-            General Information
-          </b-navbar-item>
-          <b-navbar-item tag="router-link" :to="{ name: 'Browse' }">
-            Browse MyCollege
-          </b-navbar-item>
-          <b-navbar-item tag="router-link" :to="{ name: 'BusinessSolutions' }">
-            Business Solutions
-          </b-navbar-item>
-          <b-navbar-item tag="router-link" :to="{ name: 'Directories' }">
-            Directories
-          </b-navbar-item>
-        </b-navbar-dropdown>
-        <b-navbar-dropdown label="Important Links">
-          <b-navbar-item tag="router-link" :to="{ name: 'Accessibility' }">
-            Accessibility
-          </b-navbar-item>
-          <b-navbar-item tag="router-link" :to="{ name: 'UserAgreement' }">
-            User Agreement
-          </b-navbar-item>
-          <b-navbar-item tag="router-link" :to="{ name: 'PrivacyPolicy' }">
-            Privacy Policy
-          </b-navbar-item>
-          <b-navbar-item tag="router-link" :to="{ name: 'CookiePolicy' }">
-            Cookie Policy
-          </b-navbar-item>
-          <b-navbar-item tag="router-link" :to="{ name: 'CopyrightPolicy' }">
-            Copyright Policy
-          </b-navbar-item>
-          <b-navbar-item tag="router-link" :to="{ name: 'BrandPolicy' }">
-            Brand Policy
-          </b-navbar-item>
-        </b-navbar-dropdown>
+        <template v-for="link in links">
+          <template v-if="link.type === 'item'">
+            <b-navbar-item
+              v-bind:key="link.label"
+              tag="router-link"
+              :to="link.route"
+            >
+              {{ link.label }}
+            </b-navbar-item>
+          </template>
+          <template v-if="link.type === 'dropdown'">
+            <b-navbar-dropdown v-bind:key="link.label" :label="link.label">
+              <template v-for="item in link.items">
+                <b-navbar-item
+                  v-bind:key="item.label"
+                  tag="router-link"
+                  :to="item.route"
+                >
+                  {{ item.label }}
+                </b-navbar-item>
+              </template>
+            </b-navbar-dropdown>
+          </template>
+        </template>
       </template>
       <template #end>
         <b-navbar-item tag="div">
@@ -129,3 +69,90 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  data: () => {
+    return {
+      links: [
+        {
+          type: "item",
+          label: "Jobs",
+          route: { name: "Jobs" }
+        },
+        {
+          type: "dropdown",
+          label: "Skills",
+          items: [
+            "Beginner's Guide to Web Development",
+            "JavaScript",
+            "Python",
+            "REST vs GraphQL",
+            "Productivity while Working from Home"
+          ].map(skill => {
+            return {
+              label: skill,
+              route: {
+                name: "Skills",
+                query: { skill }
+              }
+            };
+          })
+        },
+        {
+          type: "dropdown",
+          label: "Useful Links",
+          items: [
+            {
+              label: "General Information",
+              route: { name: "GeneralInformation" }
+            },
+            {
+              label: "Browse MyCollege",
+              route: { name: "Browse" }
+            },
+            {
+              label: "Business Solutions",
+              route: { name: "BusinessSolutions" }
+            },
+            {
+              label: "Directories",
+              route: { name: "Directories" }
+            }
+          ]
+        },
+        {
+          type: "dropdown",
+          label: "Important Links",
+          items: [
+            {
+              label: "Accessibility",
+              route: { name: "Accessibility" }
+            },
+            {
+              label: "User Agreement",
+              route: { name: "UserAgreement" }
+            },
+            {
+              label: "Privacy Policy",
+              route: { name: "PrivacyPolicy" }
+            },
+            {
+              label: "Cookie Policy",
+              route: { name: "CookiePolicy" }
+            },
+            {
+              label: "Copyright Policy",
+              route: { name: "CopyrightPolicy" }
+            },
+            {
+              label: "Brand Policy",
+              route: { name: "BrandPolicy" }
+            }
+          ]
+        }
+      ]
+    };
+  }
+};
+</script>
