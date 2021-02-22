@@ -29,7 +29,7 @@
         <option value="Arabic">Arabic</option>
       </b-select>
     </b-field>
-    <b-button type="is-primary" v-on:click="save()">Save</b-button>
+    <b-button label="Save" type="is-primary" v-on:click="save()" />
   </div>
 </template>
 

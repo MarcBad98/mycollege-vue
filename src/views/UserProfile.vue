@@ -5,19 +5,17 @@
       <b-button
         tag="router-link"
         :to="{ name: 'ProfileView' }"
+        label="View"
         type="is-primary"
         icon-left="eye"
-      >
-        View
-      </b-button>
+      />
       <b-button
         tag="router-link"
         :to="{ name: 'ProfileEdit' }"
+        label="Edit"
         type="is-warning"
         icon-left="pencil"
-      >
-        Edit
-      </b-button>
+      />
     </div>
     <hr />
     <router-view />
