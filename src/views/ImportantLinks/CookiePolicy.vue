@@ -3,21 +3,20 @@
     <h1>Cookie Policy</h1>
     <hr />
     <p>
-      This cookie policy (&quot;Policy&quot;) describes what cookies are and how
-      and they&#039;re being used by the
+      This cookie policy ("Policy") describes what cookies are and how and
+      they're being used by the
       <a target="_blank" rel="nofollow" href="https://my-college.com">
         my-college.com
       </a>
-      website (&quot;Website&quot; or &quot;Service&quot;) and any of its
-      related products and services (collectively, &quot;Services&quot;). This
-      Policy is a legally binding agreement between you (&quot;User&quot;,
-      &quot;you&quot; or &quot;your&quot;) and this Website operator
-      (&quot;Operator&quot;, &quot;we&quot;, &quot;us&quot; or &quot;our&quot;).
-      You should read this Policy so you can understand the types of cookies we
-      use, the information we collect using cookies and how that information is
-      used. It also describes the choices available to you regarding accepting
-      or declining the use of cookies. For further information on how we use,
-      store and keep your personal data secure, see our
+      website ("Website" or "Service") and any of its related products and
+      services (collectively, "Services"). This Policy is a legally binding
+      agreement between you ("User", "you" or "your") and this Website operator
+      ("Operator", "we", "us" or "our"). You should read this Policy so you can
+      understand the types of cookies we use, the information we collect using
+      cookies and how that information is used. It also describes the choices
+      available to you regarding accepting or declining the use of cookies. For
+      further information on how we use, store and keep your personal data
+      secure, see our
       <a
         target="_blank"
         rel="nofollow"
@@ -32,8 +31,8 @@
       Cookies are small pieces of data stored in text files that are saved on
       your computer or other devices when websites are loaded in a browser. They
       are widely used to remember you and your preferences, either for a single
-      visit (through a &quot;session cookie&quot;) or for multiple repeat visits
-      (using a &quot;persistent cookie&quot;).
+      visit (through a "session cookie") or for multiple repeat visits (using a
+      "persistent cookie").
     </p>
     <p>
       Session cookies are temporary cookies that are used during the course of
@@ -46,11 +45,11 @@
       efficient experience for you while visiting the Website and Services.
     </p>
     <p>
-      Cookies may be set by the Website (&quot;first-party cookies&quot;), or by
-      third parties, such as those who serve content or provide advertising or
-      analytics services on the Website (&quot;third party cookies&quot;). These
-      third parties can recognize you when you visit our website and also when
-      you visit certain other websites.
+      Cookies may be set by the Website ("first-party cookies"), or by third
+      parties, such as those who serve content or provide advertising or
+      analytics services on the Website ("third party cookies"). These third
+      parties can recognize you when you visit our website and also when you
+      visit certain other websites.
     </p>
     <h2>What type of cookies do we use?</h2>
     <h3>Necessary cookies</h3>
