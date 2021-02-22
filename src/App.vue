@@ -66,10 +66,10 @@
         </template>
         <template v-else>
           <b-navbar-dropdown :label="$keycloak.userName">
-            <b-navbar-item tag="router-link" :to="{ name: 'UserProfile' }">
+            <b-navbar-item tag="router-link" :to="{ path: '/profile' }">
               Profile
             </b-navbar-item>
-            <b-navbar-item tag="router-link" :to="{ name: 'UserSettings' }">
+            <b-navbar-item tag="router-link" :to="{ path: '/settings' }">
               Settings
             </b-navbar-item>
             <b-navbar-item tag="div">

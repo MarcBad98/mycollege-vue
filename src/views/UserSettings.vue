@@ -20,7 +20,13 @@
     <b-field label="Language">
       <b-select v-model="settings.language">
         <option value="English">English</option>
+        <option value="French">French</option>
         <option value="Spanish">Spanish</option>
+        <option value="Russian">Russian</option>
+        <option value="Chinese">Chinese</option>
+        <option value="Korean">Korean</option>
+        <option value="Japanese">Japanese</option>
+        <option value="Arabic">Arabic</option>
       </b-select>
     </b-field>
     <b-button type="is-primary" v-on:click="save()">Save</b-button>
@@ -28,7 +34,7 @@
 </template>
 
 <script>
-import { UpdateUser } from "@/graphql/User.gql";
+import { UpdateUserSettings } from "@/graphql/User.gql";
 import { EventBus } from "@/EventBus";
 
 export default {
@@ -60,7 +66,7 @@ export default {
     save() {
       this.$apollo
         .mutate({
-          mutation: UpdateUser,
+          mutation: UpdateUserSettings,
           variables: {
             keycloakUserId: this.$keycloak.subject,
             settings: this.settings

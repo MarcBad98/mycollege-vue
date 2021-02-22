@@ -23,6 +23,9 @@ import CookiePolicy from "../views/ImportantLinks/CookiePolicy.vue";
 import CopyrightPolicy from "../views/ImportantLinks/CopyrightPolicy.vue";
 import BrandPolicy from "../views/ImportantLinks/BrandPolicy.vue";
 
+import UserProfile from "../views/UserProfile.vue";
+import ProfileView from "../components/forms/ProfileView.vue";
+import ProfileEdit from "../components/forms/ProfileEdit.vue";
 import UserSettings from "../views/UserSettings.vue";
 
 Vue.use(VueRouter);
@@ -117,6 +120,23 @@ const routes = [
     path: "/brand-policy",
     name: "BrandPolicy",
     component: BrandPolicy
+  },
+  {
+    path: "/profile",
+    name: "UserProfile",
+    component: UserProfile,
+    children: [
+      {
+        path: "",
+        name: "ProfileView",
+        component: ProfileView
+      },
+      {
+        path: "edit",
+        name: "ProfileEdit",
+        component: ProfileEdit
+      }
+    ]
   },
   {
     path: "/settings",

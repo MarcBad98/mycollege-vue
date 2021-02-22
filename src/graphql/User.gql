@@ -1,6 +1,14 @@
 mutation CreateRetrieveUser ($keycloakUserId:String!) {
   createRetrieveUser (inputs:{
 		keycloakUserId:$keycloakUserId
+    profile:{
+      title:""
+      major:""
+      currentUniversity:""
+      about:""
+      employment:[]
+      education:[]
+    }
     settings:{
       subscriptionEmail:false
       subscriptionSms:false
@@ -14,7 +22,7 @@ mutation CreateRetrieveUser ($keycloakUserId:String!) {
   }
 }
 
-mutation UpdateUser ($keycloakUserId:String!, $settings:UserSettingsInputType) {
+mutation UpdateUserSettings ($keycloakUserId:String!, $settings:UserSettingsInputType) {
   updateUser (inputs:{
 		keycloakUserId:$keycloakUserId
     settings:$settings
@@ -25,8 +33,43 @@ mutation UpdateUser ($keycloakUserId:String!, $settings:UserSettingsInputType) {
   }
 }
 
+mutation UpdateUserProfile ($keycloakUserId:String!, $fullName:String, $profile:UserProfileInputType) {
+  updateUser (inputs:{
+		keycloakUserId:$keycloakUserId
+    fullName:$fullName
+    profile:$profile
+  }) {
+    user {
+      ...UserData
+    }
+  }
+}
+
 fragment UserData on UserType {
   keycloakUserId
+  fullName
+  profile {
+    title
+    major
+    currentUniversity
+    about
+    employment {
+      title
+      employer
+      dateStarted
+      dateEnded
+      location
+      description
+    }
+    education {
+      degree
+      school
+      dateStarted
+      dateEnded
+      location
+      yearsAttended
+    }
+  }
   settings {
     subscriptionEmail
     subscriptionSms
