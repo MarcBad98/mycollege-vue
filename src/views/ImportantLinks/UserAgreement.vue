@@ -101,8 +101,10 @@
         style="color: inherit"
         target="_blank"
         href="https://www.websitepolicies.com/blog/sample-terms-conditions-template"
-        >WebsitePolicies</a
-      >.
+      >
+        WebsitePolicies
+      </a>
+      .
     </p>
     <h2>Acceptance of these terms</h2>
     <p>

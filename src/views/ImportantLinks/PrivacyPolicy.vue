@@ -297,9 +297,9 @@
       cookies if you prefer. If you choose to decline cookies, you will not be
       able to use and experience the features of the Website and Services. To
       learn more about cookies and how to manage them, visit
-      <a target="_blank" href="https://www.internetcookies.org"
-        >internetcookies.org</a
-      >
+      <a target="_blank" href="https://www.internetcookies.org">
+        internetcookies.org
+      </a>
     </p>
     <h2>Do Not Track signals</h2>
     <p>
@@ -374,8 +374,10 @@
         style="color: inherit"
         target="_blank"
         href="https://www.websitepolicies.com/blog/sample-privacy-policy-template"
-        >WebsitePolicies</a
-      >.
+      >
+        WebsitePolicies
+      </a>
+      .
     </p>
     <h2>Acceptance of this policy</h2>
     <p>
