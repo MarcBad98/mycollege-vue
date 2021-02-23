@@ -69,7 +69,6 @@ fragment UserData on UserType {
       dateStarted
       dateEnded
       location
-      yearsAttended
     }
   }
   settings {
