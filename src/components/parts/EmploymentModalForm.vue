@@ -1,24 +1,30 @@
 <template>
   <div>
-    <b-modal v-model="isActive" has-modal-card trap-focus full-screen>
+    <b-modal :active="isActive" has-modal-card trap-focus>
       <div class="modal-card">
         <header class="modal-card-head">
           <p class="modal-card-title">{{ operation }} Employment</p>
         </header>
         <section class="modal-card-body">
           <b-field label="Title">
-            <b-input v-model="employment.title" :disabled="isDelete"></b-input>
+            <b-input
+              v-model="employment.title"
+              :disabled="isDelete"
+              :readonly="isRead"
+            ></b-input>
           </b-field>
           <b-field label="Employer">
             <b-input
               v-model="employment.employer"
               :disabled="isDelete"
+              :readonly="isRead"
             ></b-input>
           </b-field>
           <b-field label="Location">
             <b-input
               v-model="employment.location"
               :disabled="isDelete"
+              :readonly="isRead"
             ></b-input>
           </b-field>
           <div class="columns">
@@ -28,8 +34,14 @@
                   v-model="employment.dateStarted"
                   icon="calendar-today"
                   :disabled="isDelete"
+                  v-if="!isRead"
                 >
                 </b-datepicker>
+                <b-input
+                  :value="moment(employment.dateStarted).format('YYYY-MM-DD')"
+                  v-if="isRead"
+                  readonly
+                ></b-input>
               </b-field>
             </div>
             <div class="column">
@@ -38,8 +50,14 @@
                   v-model="employment.dateEnded"
                   icon="calendar-today"
                   :disabled="isDelete"
+                  v-if="!isRead"
                 >
                 </b-datepicker>
+                <b-input
+                  :value="moment(employment.dateEnded).format('YYYY-MM-DD')"
+                  v-if="isRead"
+                  readonly
+                ></b-input>
               </b-field>
             </div>
           </div>
@@ -48,11 +66,15 @@
               v-model="employment.description"
               type="textarea"
               :disabled="isDelete"
+              :readonly="isRead"
             ></b-input>
           </b-field>
         </section>
         <footer class="modal-card-foot">
-          <b-button label="Cancel" @click="$emit('cancel')" />
+          <b-button
+            :label="!isRead ? 'Cancel' : 'Close'"
+            @click="$emit('cancel')"
+          />
           <b-button
             label="Submit"
             :type="color"
@@ -60,6 +82,7 @@
               $emit('submit', employment);
               $emit('cancel');
             "
+            v-if="!isRead"
           />
         </footer>
       </div>
@@ -76,6 +99,10 @@ export default {
       default: false
     },
     isCreate: {
+      type: Boolean,
+      default: false
+    },
+    isRead: {
       type: Boolean,
       default: false
     },
@@ -97,6 +124,7 @@ export default {
   computed: {
     operation() {
       if (this.isCreate) return "Create";
+      if (this.isRead) return "View";
       if (this.isUpdate) return "Update";
       if (this.isDelete) return "Delete";
       return "ERROR: Unknown Operation";

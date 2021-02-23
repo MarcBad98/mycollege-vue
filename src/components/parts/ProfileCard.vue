@@ -13,9 +13,7 @@
         said about themself: "{{ profile.about }}"
       </b-field>
       <b-field label="Employment">
-        <template v-if="profile.employment.length === 0">
-          This person does not have any employment listed.
-        </template>
+        <EmploymentTable :employment="profile.employment" readonly />
       </b-field>
       <b-field label="Education">
         <template v-if="profile.education.length === 0">
@@ -27,8 +25,13 @@
 </template>
 
 <script>
+import EmploymentTable from "@/components/parts/EmploymentTable.vue";
+
 export default {
   name: "ProfileCard",
+  components: {
+    EmploymentTable
+  },
   props: {
     profile: {
       type: Object,

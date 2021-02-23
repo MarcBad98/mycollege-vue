@@ -3,19 +3,22 @@
     <EmploymentModalForm
       :isActive="isModalActive"
       :isCreate="isModalCreate"
+      :isRead="isModalRead"
       :isUpdate="isModalUpdate"
       :isDelete="isModalDelete"
       :employment="modalForm"
       @cancel="closeModal()"
       @submit="submitModal($event)"
     />
-    <b-button
-      label="Add"
-      type="is-primary"
-      size="is-small"
-      icon-left="plus"
-      @click="openModal({ isCreate: true, form: {} })"
-    />
+    <div class="buttons" v-if="!readonly">
+      <b-button
+        label="Add"
+        type="is-primary"
+        size="is-small"
+        icon-left="plus"
+        @click="openModal({ isCreate: true, form: {} })"
+      />
+    </div>
     <template v-if="employment.length !== 0">
       <b-table :data="employment" :selected.sync="selected" focusable>
         <b-table-column field="title" label="Title" v-slot="props">
@@ -24,25 +27,33 @@
         <b-table-column field="employer" label="Employer" v-slot="props">
           {{ props.row.employer }}
         </b-table-column>
-        <b-table-column field="dateStarted" label="Date Started" v-slot="props">
-          {{ props.row.dateStarted }}
+        <b-table-column field="location" label="Location" v-slot="props">
+          {{ props.row.location }}
         </b-table-column>
-        <b-table-column field="dateEnded" label="Date Ended" v-slot="props">
-          {{ props.row.dateEnded }}
-        </b-table-column>
-        <b-table-column label="Actions" v-slot="props">
-          <div class="buttons">
+        <b-table-column v-slot="props">
+          <div class="buttons is-right">
             <b-button
+              label="View"
+              type="is-info"
+              size="is-small"
+              icon-left="eye"
+              @click="openModal({ isRead: true, form: props.row })"
+            />
+            <b-button
+              label="Edit"
               type="is-warning"
               size="is-small"
               icon-left="pencil"
               @click="openModal({ isUpdate: true, form: props.row })"
+              v-if="!readonly"
             />
             <b-button
+              label="Delete"
               type="is-danger"
               size="is-small"
               icon-left="delete"
               @click="openModal({ isDelete: true, form: props.row })"
+              v-if="!readonly"
             />
           </div>
         </b-table-column>
@@ -66,12 +77,17 @@ export default {
       default() {
         return [];
       }
+    },
+    readonly: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
     return {
       isModalActive: false,
       isModalCreate: false,
+      isModalRead: false,
       isModalUpdate: false,
       isModalDelete: false,
       modalForm: {},
@@ -82,6 +98,7 @@ export default {
     openModal(options) {
       this.isModalActive = true;
       this.isModalCreate = options.isCreate === true;
+      this.isModalRead = options.isRead === true;
       this.isModalUpdate = options.isUpdate === true;
       this.isModalDelete = options.isDelete === true;
       options.form.id = uuidv4();
