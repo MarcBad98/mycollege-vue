@@ -1,12 +1,12 @@
 <template>
   <div>
-    <EmploymentModalForm
+    <EducationModalForm
       :isActive="isModalActive"
       :isCreate="isModalCreate"
       :isRead="isModalRead"
       :isUpdate="isModalUpdate"
       :isDelete="isModalDelete"
-      :employment="modalForm"
+      :education="modalForm"
       @cancel="closeModal()"
       @submit="submitModal($event)"
     />
@@ -19,13 +19,13 @@
         @click="openModal({ isCreate: true, form: {} })"
       />
     </div>
-    <template v-if="employment.length !== 0">
-      <b-table :data="employment" :selected.sync="selected" focusable>
-        <b-table-column field="title" label="Title" v-slot="props">
-          {{ props.row.title }}
+    <template v-if="education.length !== 0">
+      <b-table :data="education" :selected.sync="selected" focusable>
+        <b-table-column field="degree" label="Degree" v-slot="props">
+          {{ props.row.degree }}
         </b-table-column>
-        <b-table-column field="employer" label="Employer" v-slot="props">
-          {{ props.row.employer }}
+        <b-table-column field="school" label="School" v-slot="props">
+          {{ props.row.school }}
         </b-table-column>
         <b-table-column field="location" label="Location" v-slot="props">
           {{ props.row.location }}
@@ -63,16 +63,16 @@
 </template>
 
 <script>
-import EmploymentModalForm from "@/components/parts/EmploymentModalForm.vue";
+import EducationModalForm from "@/components/parts/EducationModalForm.vue";
 import { v4 as uuidv4 } from "uuid";
 
 export default {
-  name: "EmploymentTable",
+  name: "EducationTable",
   components: {
-    EmploymentModalForm
+    EducationModalForm
   },
   props: {
-    employment: {
+    education: {
       type: Array,
       default() {
         return [];
@@ -112,23 +112,23 @@ export default {
       this.isModalActive = false;
       this.modalForm = {};
     },
-    submitModal(employment) {
-      if (employment.dateStarted)
-        employment.dateStarted = this.moment(employment.dateStarted).format(
+    submitModal(education) {
+      if (education.dateStarted)
+        education.dateStarted = this.moment(education.dateStarted).format(
           "YYYY-MM-DD"
         );
-      if (employment.dateEnded)
-        employment.dateEnded = this.moment(employment.dateEnded).format(
+      if (education.dateEnded)
+        education.dateEnded = this.moment(education.dateEnded).format(
           "YYYY-MM-DD"
         );
       if (this.isModalCreate) {
-        this.employment.push(employment);
+        this.education.push(education);
       } else if (this.isModalUpdate) {
-        const idx = this.employment.findIndex(emp => emp.id === employment.id);
-        this.employment.splice(idx, 1, employment);
+        const idx = this.education.findIndex(edu => edu.id === education.id);
+        this.education.splice(idx, 1, education);
       } else if (this.isModalDelete) {
-        const idx = this.employment.findIndex(emp => emp.id === employment.id);
-        this.employment.splice(idx, 1);
+        const idx = this.education.findIndex(edu => edu.id === education.id);
+        this.education.splice(idx, 1);
       }
     }
   }

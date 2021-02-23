@@ -20,9 +20,7 @@
       <EmploymentTable :employment="profile.employment" />
     </b-field>
     <b-field label="Education">
-      <template v-if="profile.education.length === 0">
-        <p>You have no education listed.</p>
-      </template>
+      <EducationTable :education="profile.education" />
     </b-field>
     <b-button label="Save" type="is-primary" @click="save()" />
   </div>
@@ -30,13 +28,15 @@
 
 <script>
 import EmploymentTable from "@/components/parts/EmploymentTable.vue";
+import EducationTable from "@/components/parts/EducationTable.vue";
 import { UpdateUserProfile } from "@/graphql/User.gql";
 import { EventBus } from "@/EventBus";
 
 export default {
   name: "ProfileEdit",
   components: {
-    EmploymentTable
+    EmploymentTable,
+    EducationTable
   },
   data() {
     return {

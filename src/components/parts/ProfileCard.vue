@@ -13,11 +13,19 @@
         said about themself: "{{ profile.about }}"
       </b-field>
       <b-field label="Employment">
-        <EmploymentTable :employment="profile.employment" readonly />
+        <template v-if="profile.education.length === 0">
+          This person does not have any education listed.
+        </template>
+        <template v-else>
+          <EmploymentTable :employment="profile.employment" readonly />
+        </template>
       </b-field>
       <b-field label="Education">
         <template v-if="profile.education.length === 0">
           This person does not have any education listed.
+        </template>
+        <template v-else>
+          <EducationTable :education="profile.education" readonly />
         </template>
       </b-field>
     </div>
@@ -26,11 +34,13 @@
 
 <script>
 import EmploymentTable from "@/components/parts/EmploymentTable.vue";
+import EducationTable from "@/components/parts/EducationTable.vue";
 
 export default {
   name: "ProfileCard",
   components: {
-    EmploymentTable
+    EmploymentTable,
+    EducationTable
   },
   props: {
     profile: {
