@@ -6,7 +6,7 @@
         tag="router-link"
         :to="{ name: 'ProfileView' }"
         label="View"
-        type="is-primary"
+        type="is-info"
         icon-left="eye"
       />
       <b-button
