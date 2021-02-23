@@ -24,7 +24,7 @@
         <p>You have no education listed.</p>
       </template>
     </b-field>
-    <b-button label="Save" type="is-primary" v-on:click="save()" />
+    <b-button label="Save" type="is-primary" @click="save()" />
   </div>
 </template>
 

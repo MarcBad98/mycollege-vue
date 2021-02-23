@@ -52,11 +52,11 @@
           </b-field>
         </section>
         <footer class="modal-card-foot">
-          <b-button label="Cancel" v-on:click="$emit('cancel')" />
+          <b-button label="Cancel" @click="$emit('cancel')" />
           <b-button
             label="Submit"
             :type="color"
-            v-on:click="
+            @click="
               $emit('submit', employment);
               $emit('cancel');
             "

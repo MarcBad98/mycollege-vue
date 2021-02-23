@@ -6,15 +6,15 @@
       :isUpdate="isModalUpdate"
       :isDelete="isModalDelete"
       :employment="modalForm"
-      v-on:cancel="closeModal()"
-      v-on:submit="submitModal($event)"
+      @cancel="closeModal()"
+      @submit="submitModal($event)"
     />
     <b-button
       label="Add"
       type="is-primary"
       size="is-small"
       icon-left="plus"
-      v-on:click="openModal({ isCreate: true, form: {} })"
+      @click="openModal({ isCreate: true, form: {} })"
     />
     <template v-if="employment.length !== 0">
       <b-table :data="employment" :selected.sync="selected" focusable>
@@ -36,13 +36,13 @@
               type="is-warning"
               size="is-small"
               icon-left="pencil"
-              v-on:click="openModal({ isUpdate: true, form: props.row })"
+              @click="openModal({ isUpdate: true, form: props.row })"
             />
             <b-button
               type="is-danger"
               size="is-small"
               icon-left="delete"
-              v-on:click="openModal({ isDelete: true, form: props.row })"
+              @click="openModal({ isDelete: true, form: props.row })"
             />
           </div>
         </b-table-column>

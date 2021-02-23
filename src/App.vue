@@ -49,14 +49,14 @@
                 <b-button
                   type="is-primary"
                   expanded
-                  v-on:click="$keycloak.keycloak.register()"
+                  @click="$keycloak.keycloak.register()"
                 >
                   Sign Up
                 </b-button>
                 <b-button
                   type="is-light"
                   expanded
-                  v-on:click="$keycloak.keycloak.login()"
+                  @click="$keycloak.keycloak.login()"
                 >
                   Log In
                 </b-button>
@@ -76,7 +76,7 @@
               <b-button
                 type="is-light"
                 expanded
-                v-on:click="$keycloak.keycloak.logout()"
+                @click="$keycloak.keycloak.logout()"
               >
                 Log Out
               </b-button>
