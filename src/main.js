@@ -6,6 +6,7 @@ import "@mdi/font/css/materialdesignicons.css";
 import Bulma from "bulma/bulma.sass";
 import Buefy from "buefy";
 import "buefy/dist/buefy.css";
+import moment from "moment";
 import VueKeyCloak from "@dsb-norge/vue-keycloak-js";
 import Axios from "axios";
 import { createProvider } from "./vue-apollo";
@@ -14,6 +15,7 @@ Vue.config.productionTip = false;
 
 Vue.use(Bulma);
 Vue.use(Buefy);
+Vue.prototype.moment = moment;
 
 function tokenInterceptor() {
   Axios.interceptors.request.use(

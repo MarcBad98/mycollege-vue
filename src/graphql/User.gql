@@ -54,6 +54,7 @@ fragment UserData on UserType {
     currentUniversity
     about
     employment {
+      id
       title
       employer
       dateStarted
@@ -62,6 +63,7 @@ fragment UserData on UserType {
       description
     }
     education {
+      id
       degree
       school
       dateStarted

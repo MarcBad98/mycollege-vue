@@ -55,13 +55,10 @@ export default {
   },
   methods: {
     updateSettings() {
-      this.settings = {
-        subscriptionEmail: this.$store.state.user.settings.subscriptionEmail,
-        subscriptionSms: this.$store.state.user.settings.subscriptionSms,
-        targetedAdvertising: this.$store.state.user.settings
-          .targetedAdvertising,
-        language: this.$store.state.user.settings.language
-      };
+      this.settings = JSON.parse(
+        JSON.stringify(this.$store.state.user.settings)
+      );
+      delete this.settings.__typename;
     },
     save() {
       this.$apollo

@@ -17,25 +17,27 @@
       <b-input v-model="profile.about" type="textarea"></b-input>
     </b-field>
     <b-field label="Employment">
-      <template v-if="profile.employment.length === 0">
-        <p>You have no employment listed.</p>
-      </template>
+      <EmploymentTable :employment="profile.employment" />
     </b-field>
     <b-field label="Education">
       <template v-if="profile.education.length === 0">
         <p>You have no education listed.</p>
       </template>
     </b-field>
-    <b-button type="is-primary" v-on:click="save()">Save</b-button>
+    <b-button label="Save" type="is-primary" v-on:click="save()" />
   </div>
 </template>
 
 <script>
+import EmploymentTable from "@/components/parts/EmploymentTable.vue";
 import { UpdateUserProfile } from "@/graphql/User.gql";
 import { EventBus } from "@/EventBus";
 
 export default {
   name: "ProfileEdit",
+  components: {
+    EmploymentTable
+  },
   data() {
     return {
       fullName: null,
@@ -57,14 +59,8 @@ export default {
   methods: {
     updateProfile() {
       this.fullName = this.$store.state.user.fullName;
-      this.profile = {
-        title: this.$store.state.user.profile.title,
-        major: this.$store.state.user.profile.major,
-        currentUniversity: this.$store.state.user.profile.currentUniversity,
-        about: this.$store.state.user.profile.about,
-        employment: this.$store.state.user.profile.employment,
-        education: this.$store.state.user.profile.education
-      };
+      this.profile = JSON.parse(JSON.stringify(this.$store.state.user.profile));
+      delete this.profile.__typename;
     },
     save() {
       this.$apollo
