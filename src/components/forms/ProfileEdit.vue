@@ -61,6 +61,8 @@ export default {
       this.fullName = this.$store.state.user.fullName;
       this.profile = JSON.parse(JSON.stringify(this.$store.state.user.profile));
       delete this.profile.__typename;
+      this.profile.employment.forEach(emp => delete emp.__typename);
+      this.profile.education.forEach(edu => delete edu.__typename);
     },
     save() {
       this.$apollo
