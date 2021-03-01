@@ -22,7 +22,7 @@
 import UnderConstruction from "@/components/temp/UnderConstruction.vue";
 
 export default {
-  name: "Developers",
+  name: "DevelopersCenter",
   components: {
     UnderConstruction
   }

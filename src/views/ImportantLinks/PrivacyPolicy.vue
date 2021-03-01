@@ -5,7 +5,12 @@
     <p tabindex="0">
       This privacy policy ("Policy") describes how the personally identifiable
       information ("Personal Information") you may provide on the
-      <a role="link" target="_blank" rel="nofollow" href="https://my-college.com">
+      <a
+        role="link"
+        target="_blank"
+        rel="nofollow"
+        href="https://my-college.com"
+      >
         my-college.com
       </a>
       website ("Website" or "Service") and any of its related products and
@@ -42,23 +47,15 @@
       account, publish content, or fill any online forms on the Website. When
       required, this information may include the following:
     </p>
-    <p tabindex="0">
-      <ul role="list">
-        <li role="listitem">
-          Personal details such as name, country of residence, etc.
-        </li>
-        <li role="listitem">
-          Contact information such as email address, address, etc.
-        </li>
-        <li role="listitem">
-          Account details such as user name, unique user ID, password, etc.
-        </li>
-        <li role="listitem">
-          Any other materials you willingly submit to us such as articles,
-          images, feedback, etc.
-        </li>
-      </ul>
-    </p>
+    <ul>
+      <li>Personal details such as name, country of residence, etc.</li>
+      <li>Contact information such as email address, address, etc.</li>
+      <li>Account details such as user name, unique user ID, password, etc.</li>
+      <li>
+        Any other materials you willingly submit to us such as articles, images,
+        feedback, etc.
+      </li>
+    </ul>
     <p tabindex="0">
       Some of the information we collect is directly from you via the Website
       and Services. However, we may also collect Personal Information about you
@@ -76,16 +73,14 @@
       to provide you with the requested products or services. Any of the
       information we collect from you may be used for the following purposes:
     </p>
-    <p tabindex="0">
-      <ul role="list">
-        <li role="listitem">Create and manage user accounts</li>
-        <li role="listitem">Improve user experience</li>
-        <li role="listitem">Enforce terms and conditions and policies</li>
-        <li role="listitem">Protect from abuse and malicious users</li>
-        <li role="listitem">Respond to legal requests and prevent harm</li>
-        <li role="listitem">Run and operate the Website and Services</li>
-      </ul>
-    </p>
+    <ul>
+      <li>Create and manage user accounts</li>
+      <li>Improve user experience</li>
+      <li>Enforce terms and conditions and policies</li>
+      <li>Protect from abuse and malicious users</li>
+      <li>Respond to legal requests and prevent harm</li>
+      <li>Run and operate the Website and Services</li>
+    </ul>
     <p tabindex="0">
       Processing your Personal Information depends on how you interact with the
       Website and Services, where you are located in the world and if one of the
@@ -212,40 +207,38 @@
       please contact us. In certain circumstances, you have the following data
       protection rights:
     </p>
-    <p tabindex="0">
-      <ul role="list">
-        <li role="listitem">
-          You have the right to request access to your Personal Information that
-          we store and have the ability to access your Personal Information.
-        </li>
-        <li role="listitem">
-          You have the right to request that we correct any Personal Information
-          you believe is inaccurate. You also have the right to request us to
-          complete the Personal Information you believe is incomplete.
-        </li>
-        <li role="listitem">
-          You have the right to request the erase your Personal Information under
-          certain conditions of this Policy.
-        </li>
-        <li role="listitem">
-          You have the right to object to our processing of your Personal
-          Information.
-        </li>
-        <li role="listitem">
-          You have the right to seek restrictions on the processing of your
-          Personal Information. When you restrict the processing of your Personal
-          Information, we may store it but will not process it further.
-        </li>
-        <li role="listitem">
-          You have the right to be provided with a copy of the information we have
-          on you in a structured, machine-readable and commonly used format.
-        </li>
-        <li role="listitem">
-          You also have the right to withdraw your consent at any time where the
-          Operator relied on your consent to process your Personal Information.
-        </li>
-      </ul>
-    </p>
+    <ul>
+      <li>
+        You have the right to request access to your Personal Information that
+        we store and have the ability to access your Personal Information.
+      </li>
+      <li>
+        You have the right to request that we correct any Personal Information
+        you believe is inaccurate. You also have the right to request us to
+        complete the Personal Information you believe is incomplete.
+      </li>
+      <li>
+        You have the right to request the erase your Personal Information under
+        certain conditions of this Policy.
+      </li>
+      <li>
+        You have the right to object to our processing of your Personal
+        Information.
+      </li>
+      <li>
+        You have the right to seek restrictions on the processing of your
+        Personal Information. When you restrict the processing of your Personal
+        Information, we may store it but will not process it further.
+      </li>
+      <li>
+        You have the right to be provided with a copy of the information we have
+        on you in a structured, machine-readable and commonly used format.
+      </li>
+      <li>
+        You also have the right to withdraw your consent at any time where the
+        Operator relied on your consent to process your Personal Information.
+      </li>
+    </ul>
     <p tabindex="0">
       You have the right to complain to a Data Protection Authority about our
       collection and use of your Personal Information. For more information,
@@ -408,6 +401,6 @@
 
 <script>
 export default {
-  name: "PrivacyPolicy",
+  name: "PrivacyPolicy"
 };
 </script>
