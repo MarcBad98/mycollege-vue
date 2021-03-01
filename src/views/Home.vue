@@ -1,8 +1,8 @@
 <template>
   <div>
-    <h1>Welcome to MyCollege!</h1>
-    <hr />
-    <p>
+    <h1 tabindex="0">Welcome to MyCollege!</h1>
+    <hr aria-hidden="true" />
+    <p tabindex="0">
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec et eros
       purus. Sed vestibulum sagittis sem, eu porttitor quam pretium et. Nulla
       magna ante, congue pretium convallis nec, condimentum ac libero. Integer
@@ -14,7 +14,12 @@
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean commodo
       lorem scelerisque varius rutrum.
     </p>
-    <div class="box has-background-light">
+    <div
+      tabindex="0"
+      class="box has-background-light"
+      role="region"
+      aria-label="Success Story"
+    >
       <p>
         Nullam odio nunc, viverra in tincidunt tincidunt, molestie dignissim
         lacus. Donec aliquet consectetur sollicitudin. Class aptent taciti
@@ -49,8 +54,8 @@
         </i>
       </p>
     </div>
-    <h2>Why Use MyCollege?</h2>
-    <hr />
+    <h2 tabindex="0">Why Use MyCollege?</h2>
+    <hr aria-hidden="true" />
     <UnderConstruction feature="Video: Why Use MyCollege?" />
   </div>
 </template>

@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h1>Jobs</h1>
-    <hr />
+    <h1 tabindex="0">Jobs</h1>
+    <hr aria-hidden="true" />
     <UnderConstruction feature="Web Page: Jobs" />
   </div>
 </template>

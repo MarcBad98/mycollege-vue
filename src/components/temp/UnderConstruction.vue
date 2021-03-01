@@ -1,6 +1,12 @@
 <template>
-  <b-notification type="is-warning is-light" :closable="false">
-    <p class="announcement">
+  <b-notification
+    role="region"
+    aria-label="Feature Under Construction"
+    tabindex="0"
+    type="is-warning is-light"
+    :closable="false"
+  >
+    <p aria-hidden="true" class="announcement">
       <strong>
         🚧 Feature Under Construction 🚧
         <br />

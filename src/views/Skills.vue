@@ -1,11 +1,11 @@
 <template>
   <div>
     <template v-if="$route.query.skill !== null">
-      <h1>{{ $route.query.skill }}</h1>
-      <hr />
+      <h1 tabindex="0">{{ $route.query.skill }}</h1>
+      <hr aria-hidden="true" />
       <UnderConstruction :feature="`Web Page: ${$route.query.skill}`" />
     </template>
-    <template v-else> Skill could not be found. </template>
+    <template v-else><p tabindex="0">Skill could not be found.</p></template>
   </div>
 </template>
 

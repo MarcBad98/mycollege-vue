@@ -9,8 +9,8 @@ import About from "../views/GeneralLinks/About.vue";
 import HelpCenter from "../views/GeneralLinks/HelpCenter.vue";
 import Press from "../views/GeneralLinks/Press.vue";
 import Blog from "../views/GeneralLinks/Blog.vue";
-import Careers from "../views/GeneralLinks/Careers.vue";
-import Developers from "../views/GeneralLinks/Developers.vue";
+import CareersCenter from "../views/GeneralLinks/CareersCenter.vue";
+import DevelopersCenter from "../views/GeneralLinks/DevelopersCenter.vue";
 
 import Browse from "../views/UsefulLinks/Browse.vue";
 import BusinessSolutions from "../views/UsefulLinks/BusinessSolutions.vue";
@@ -67,14 +67,14 @@ const routes = [
     component: Blog
   },
   {
-    path: "/careers",
-    name: "Careers",
-    component: Careers
+    path: "/careers-center",
+    name: "CareersCenter",
+    component: CareersCenter
   },
   {
-    path: "/developers",
-    name: "Developers",
-    component: Developers
+    path: "/developers-center",
+    name: "DevelopersCenter",
+    component: DevelopersCenter
   },
   {
     path: "/browse",

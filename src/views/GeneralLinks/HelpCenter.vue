@@ -1,9 +1,20 @@
 <template>
   <div>
-    <h1>Help Center</h1>
-    <hr />
-    <div class="box has-background-light">
-      <strong> We are here to help. </strong>
+    <h1 tabindex="0">Help Center</h1>
+    <hr aria-hidden="true" />
+    <div
+      tabindex="0"
+      class="box has-background-light"
+      role="region"
+      aria-label="Page Summary"
+    >
+      <p>
+        Welcome to the MyCollege Help Center! Our support team is available 24/7
+        across the globe to provide assistance at a moment's notice. Don't know
+        how to do something? Having trouble accessing something on our web site?
+        If you are having questions like these, then you are on the right web
+        page! Keep on reading to find our FAQ section.
+      </p>
     </div>
     <UnderConstruction feature="Text Content: Help Center" />
   </div>

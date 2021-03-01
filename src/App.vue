@@ -85,11 +85,11 @@
         </template>
       </template>
     </b-navbar>
-    <div class="section container">
+    <main class="section container">
       <div class="content box">
         <router-view />
       </div>
-    </div>
+    </main>
   </div>
 </template>
 
@@ -160,12 +160,12 @@ export default {
               route: { name: "Blog" }
             },
             {
-              label: "Careers",
-              route: { name: "Careers" }
+              label: "Careers Center",
+              route: { name: "CareersCenter" }
             },
             {
-              label: "Developers",
-              route: { name: "Developers" }
+              label: "Developers Center",
+              route: { name: "DevelopersCenter" }
             }
           ]
         },
