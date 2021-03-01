@@ -1,11 +1,11 @@
 <template>
   <div>
-    <h1>Privacy Policy</h1>
-    <hr />
-    <p>
+    <h1 tabindex="0">Privacy Policy</h1>
+    <hr aria-hidden="true" />
+    <p tabindex="0">
       This privacy policy ("Policy") describes how the personally identifiable
       information ("Personal Information") you may provide on the
-      <a target="_blank" rel="nofollow" href="https://my-college.com">
+      <a role="link" target="_blank" rel="nofollow" href="https://my-college.com">
         my-college.com
       </a>
       website ("Website" or "Service") and any of its related products and
@@ -20,8 +20,8 @@
       we do not own or control, or to individuals that we do not employ or
       manage.
     </p>
-    <h2>Automatic collection of information</h2>
-    <p>
+    <h2 tabindex="0">Automatic collection of information</h2>
+    <p tabindex="0">
       Our top priority is customer data security and, as such, we exercise the
       no logs policy. We may process only minimal user data, only as much as it
       is absolutely necessary to maintain the Website and Services. Information
@@ -31,8 +31,8 @@
       aggregated in such a way that would identify any particular user of the
       system.
     </p>
-    <h2>Collection of personal information</h2>
-    <p>
+    <h2 tabindex="0">Collection of personal information</h2>
+    <p tabindex="0">
       You can access and use the Website and Services without telling us who you
       are or revealing any information by which someone could identify you as a
       specific, identifiable individual. If, however, you wish to use some of
@@ -42,16 +42,24 @@
       account, publish content, or fill any online forms on the Website. When
       required, this information may include the following:
     </p>
-    <ul>
-      <li>Personal details such as name, country of residence, etc.</li>
-      <li>Contact information such as email address, address, etc.</li>
-      <li>Account details such as user name, unique user ID, password, etc.</li>
-      <li>
-        Any other materials you willingly submit to us such as articles, images,
-        feedback, etc.
-      </li>
-    </ul>
-    <p>
+    <p tabindex="0">
+      <ul role="list">
+        <li role="listitem">
+          Personal details such as name, country of residence, etc.
+        </li>
+        <li role="listitem">
+          Contact information such as email address, address, etc.
+        </li>
+        <li role="listitem">
+          Account details such as user name, unique user ID, password, etc.
+        </li>
+        <li role="listitem">
+          Any other materials you willingly submit to us such as articles,
+          images, feedback, etc.
+        </li>
+      </ul>
+    </p>
+    <p tabindex="0">
       Some of the information we collect is directly from you via the Website
       and Services. However, we may also collect Personal Information about you
       from other sources such as public databases and our joint marketing
@@ -60,23 +68,25 @@
       the Website. Users who are uncertain about what information is mandatory
       are welcome to contact us.
     </p>
-    <h2>Use and processing of collected information</h2>
-    <p>
+    <h2 tabindex="0">Use and processing of collected information</h2>
+    <p tabindex="0">
       In order to make the Website and Services available to you, or to meet a
       legal obligation, we need to collect and use certain Personal Information.
       If you do not provide the information that we request, we may not be able
       to provide you with the requested products or services. Any of the
       information we collect from you may be used for the following purposes:
     </p>
-    <ul>
-      <li>Create and manage user accounts</li>
-      <li>Improve user experience</li>
-      <li>Enforce terms and conditions and policies</li>
-      <li>Protect from abuse and malicious users</li>
-      <li>Respond to legal requests and prevent harm</li>
-      <li>Run and operate the Website and Services</li>
-    </ul>
-    <p>
+    <p tabindex="0">
+      <ul role="list">
+        <li role="listitem">Create and manage user accounts</li>
+        <li role="listitem">Improve user experience</li>
+        <li role="listitem">Enforce terms and conditions and policies</li>
+        <li role="listitem">Protect from abuse and malicious users</li>
+        <li role="listitem">Respond to legal requests and prevent harm</li>
+        <li role="listitem">Run and operate the Website and Services</li>
+      </ul>
+    </p>
+    <p tabindex="0">
       Processing your Personal Information depends on how you interact with the
       Website and Services, where you are located in the world and if one of the
       following applies: (i) you have given your consent for one or more
@@ -91,7 +101,7 @@
       necessary for the purposes of the legitimate interests pursued by us or by
       a third party.
     </p>
-    <p>
+    <p tabindex="0">
       Note that under some legislations we may be allowed to process information
       until you object to such processing (by opting out), without having to
       rely on consent or any other of the following legal bases below. In any
@@ -100,8 +110,8 @@
       Information is a statutory or contractual requirement, or a requirement
       necessary to enter into a contract.
     </p>
-    <h2>Managing information</h2>
-    <p>
+    <h2 tabindex="0">Managing information</h2>
+    <p tabindex="0">
       You are able to delete certain Personal Information we have about you. The
       Personal Information you can delete may change as the Website and Services
       change. When you delete Personal Information, however, we may maintain a
@@ -111,8 +121,8 @@
       Personal Information or permanently delete your account, you can do so by
       contacting us.
     </p>
-    <h2>Disclosure of information</h2>
-    <p>
+    <h2 tabindex="0">Disclosure of information</h2>
+    <p tabindex="0">
       Depending on the requested Services or as necessary to complete any
       transaction or provide any service you have requested, we may share your
       information with your consent with our trusted third parties that work
@@ -129,15 +139,15 @@
       or disclose Personal Information for their own marketing or other
       purposes.
     </p>
-    <p>
+    <p tabindex="0">
       We will disclose any Personal Information we collect, use or receive if
       required or permitted by law, such as to comply with a subpoena, or
       similar legal process, and when we believe in good faith that disclosure
       is necessary to protect our rights, protect your safety or the safety of
       others, investigate fraud, or respond to a government request.
     </p>
-    <h2>Retention of information</h2>
-    <p>
+    <h2 tabindex="0">Retention of information</h2>
+    <p tabindex="0">
       We will retain and use your Personal Information for the period necessary
       to comply with our legal obligations, resolve disputes, and enforce our
       agreements unless a longer retention period is required or permitted by
@@ -149,8 +159,8 @@
       portability cannot be enforced after the expiration of the retention
       period.
     </p>
-    <h2>Transfer of information</h2>
-    <p>
+    <h2 tabindex="0">Transfer of information</h2>
+    <p tabindex="0">
       Depending on your location, data transfers may involve transferring and
       storing your information in a country other than your own. You are
       entitled to learn about the legal basis of information transfers to a
@@ -161,8 +171,8 @@
       by checking the relevant sections of this Policy or inquire with us using
       the information provided in the contact section.
     </p>
-    <h2>The rights of users</h2>
-    <p>
+    <h2 tabindex="0">The rights of users</h2>
+    <p tabindex="0">
       You may exercise certain rights regarding your information processed by
       us. In particular, you have the right to do the following: (i) you have
       the right to withdraw consent where you have previously given your consent
@@ -184,16 +194,16 @@
       automated means and that the processing is based on your consent, on a
       contract which you are part of or on pre-contractual obligations thereof.
     </p>
-    <h2>The right to object to processing</h2>
-    <p>
+    <h2 tabindex="0">The right to object to processing</h2>
+    <p tabindex="0">
       Where Personal Information is processed for the public interest, in the
       exercise of an official authority vested in us or for the purposes of the
       legitimate interests pursued by us, you may object to such processing by
       providing a ground related to your particular situation to justify the
       objection.
     </p>
-    <h2>Data protection rights under GDPR</h2>
-    <p>
+    <h2 tabindex="0">Data protection rights under GDPR</h2>
+    <p tabindex="0">
       If you are a resident of the European Economic Area (EEA), you have
       certain data protection rights and the Operator aims to take reasonable
       steps to allow you to correct, amend, delete, or limit the use of your
@@ -202,46 +212,48 @@
       please contact us. In certain circumstances, you have the following data
       protection rights:
     </p>
-    <ul>
-      <li>
-        You have the right to request access to your Personal Information that
-        we store and have the ability to access your Personal Information.
-      </li>
-      <li>
-        You have the right to request that we correct any Personal Information
-        you believe is inaccurate. You also have the right to request us to
-        complete the Personal Information you believe is incomplete.
-      </li>
-      <li>
-        You have the right to request the erase your Personal Information under
-        certain conditions of this Policy.
-      </li>
-      <li>
-        You have the right to object to our processing of your Personal
-        Information.
-      </li>
-      <li>
-        You have the right to seek restrictions on the processing of your
-        Personal Information. When you restrict the processing of your Personal
-        Information, we may store it but will not process it further.
-      </li>
-      <li>
-        You have the right to be provided with a copy of the information we have
-        on you in a structured, machine-readable and commonly used format.
-      </li>
-      <li>
-        You also have the right to withdraw your consent at any time where the
-        Operator relied on your consent to process your Personal Information.
-      </li>
-    </ul>
-    <p>
+    <p tabindex="0">
+      <ul role="list">
+        <li role="listitem">
+          You have the right to request access to your Personal Information that
+          we store and have the ability to access your Personal Information.
+        </li>
+        <li role="listitem">
+          You have the right to request that we correct any Personal Information
+          you believe is inaccurate. You also have the right to request us to
+          complete the Personal Information you believe is incomplete.
+        </li>
+        <li role="listitem">
+          You have the right to request the erase your Personal Information under
+          certain conditions of this Policy.
+        </li>
+        <li role="listitem">
+          You have the right to object to our processing of your Personal
+          Information.
+        </li>
+        <li role="listitem">
+          You have the right to seek restrictions on the processing of your
+          Personal Information. When you restrict the processing of your Personal
+          Information, we may store it but will not process it further.
+        </li>
+        <li role="listitem">
+          You have the right to be provided with a copy of the information we have
+          on you in a structured, machine-readable and commonly used format.
+        </li>
+        <li role="listitem">
+          You also have the right to withdraw your consent at any time where the
+          Operator relied on your consent to process your Personal Information.
+        </li>
+      </ul>
+    </p>
+    <p tabindex="0">
       You have the right to complain to a Data Protection Authority about our
       collection and use of your Personal Information. For more information,
       please contact your local data protection authority in the European
       Economic Area (EEA).
     </p>
-    <h2>California privacy rights</h2>
-    <p>
+    <h2 tabindex="0">California privacy rights</h2>
+    <p tabindex="0">
       In addition to the rights as explained in this Policy, California
       residents who provide Personal Information (as defined in the statute) to
       obtain products or services for personal, family, or household use are
@@ -254,8 +266,8 @@
       will receive information about the prior year). To obtain this information
       please contact us.
     </p>
-    <h2>How to exercise these rights</h2>
-    <p>
+    <h2 tabindex="0">How to exercise these rights</h2>
+    <p tabindex="0">
       Any requests to exercise your rights can be directed to the Operator
       through the contact details provided in this document. Please note that we
       may ask you to verify your identity before responding to such requests.
@@ -267,8 +279,8 @@
       unless we first verify your identity or authority to make such a request
       and confirm that the Personal Information relates to you.
     </p>
-    <h2>Privacy of children</h2>
-    <p>
+    <h2 tabindex="0">Privacy of children</h2>
+    <p tabindex="0">
       We do not knowingly collect any Personal Information from children under
       the age of 18. If you are under the age of 18, please do not submit any
       Personal Information through the Website and Services. We encourage
@@ -281,15 +293,15 @@
       the processing of your Personal Information in your country (in some
       countries we may allow your parent or guardian to do so on your behalf).
     </p>
-    <h2>Cookies</h2>
-    <p>
+    <h2 tabindex="0">Cookies</h2>
+    <p tabindex="0">
       The Website and Services use "cookies" to help personalize your online
       experience. A cookie is a text file that is placed on your hard disk by a
       web page server. Cookies cannot be used to run programs or deliver viruses
       to your computer. Cookies are uniquely assigned to you, and can only be
       read by a web server in the domain that issued the cookie to you.
     </p>
-    <p>
+    <p tabindex="0">
       We may use cookies to collect, store, and track information for
       statistical purposes to operate the Website and Services. You have the
       ability to accept or decline cookies. Most web browsers automatically
@@ -297,12 +309,12 @@
       cookies if you prefer. If you choose to decline cookies, you will not be
       able to use and experience the features of the Website and Services. To
       learn more about cookies and how to manage them, visit
-      <a target="_blank" href="https://www.internetcookies.org">
+      <a role="link" target="_blank" href="https://www.internetcookies.org">
         internetcookies.org
       </a>
     </p>
-    <h2>Do Not Track signals</h2>
-    <p>
+    <h2 tabindex="0">Do Not Track signals</h2>
+    <p tabindex="0">
       Some browsers incorporate a Do Not Track feature that signals to websites
       you visit that you do not want to have your online activity tracked.
       Tracking is not the same as using or collecting information in connection
@@ -315,8 +327,8 @@
       described in more detail throughout this Policy, we limit our use and
       collection of your personal information.
     </p>
-    <h2>Links to other resources</h2>
-    <p>
+    <h2 tabindex="0">Links to other resources</h2>
+    <p tabindex="0">
       The Website and Services contain links to other resources that are not
       owned or controlled by us. Please be aware that we are not responsible for
       the privacy practices of such other resources or third parties. We
@@ -324,8 +336,8 @@
       read the privacy statements of each and every resource that may collect
       Personal Information.
     </p>
-    <h2>Information security</h2>
-    <p>
+    <h2 tabindex="0">Information security</h2>
+    <p tabindex="0">
       We secure information you provide on computer servers in a controlled,
       secure environment, protected from unauthorized access, use, or
       disclosure. We maintain reasonable administrative, technical, and physical
@@ -340,8 +352,8 @@
       and (iii) any such information and data may be viewed or tampered with in
       transit by a third party, despite best efforts.
     </p>
-    <h2>Data breach</h2>
-    <p>
+    <h2 tabindex="0">Data breach</h2>
+    <p tabindex="0">
       In the event we become aware that the security of the Website and Services
       has been compromised or users Personal Information has been disclosed to
       unrelated third parties as a result of external activity, including, but
@@ -354,8 +366,8 @@
       or if notice is otherwise required by law. When we do, we will post a
       notice on the Website, send you an email.
     </p>
-    <h2>Changes and amendments</h2>
-    <p>
+    <h2 tabindex="0">Changes and amendments</h2>
+    <p tabindex="0">
       We reserve the right to modify this Policy or its terms relating to the
       Website and Services from time to time in our discretion and will notify
       you of any material changes to the way in which we treat Personal
@@ -371,30 +383,31 @@
       stated at the time your Personal Information was collected. Policy was
       created with
       <a
-        style="color: inherit"
+        role="link"
         target="_blank"
         href="https://www.websitepolicies.com/blog/sample-privacy-policy-template"
       >
-        WebsitePolicies
-      </a>
-      .
+        WebsitePolicies</a
+      >.
     </p>
-    <h2>Acceptance of this policy</h2>
-    <p>
+    <h2 tabindex="0">Acceptance of this policy</h2>
+    <p tabindex="0">
       You acknowledge that you have read this Policy and agree to all its terms
       and conditions. By accessing and using the Website and Services you agree
       to be bound by this Policy. If you do not agree to abide by the terms of
       this Policy, you are not authorized to access or use the Website and
       Services.
     </p>
-    <h2>Contacting us</h2>
-    <p>If you have any questions about this Policy, please contact us.</p>
-    <p>This document was last updated on February 21, 2021</p>
+    <h2 tabindex="0">Contacting us</h2>
+    <p tabindex="0">
+      If you have any questions about this Policy, please contact us.
+    </p>
+    <p tabindex="0">This document was last updated on February 21, 2021</p>
   </div>
 </template>
 
 <script>
 export default {
-  name: "PrivacyPolicy"
+  name: "PrivacyPolicy",
 };
 </script>

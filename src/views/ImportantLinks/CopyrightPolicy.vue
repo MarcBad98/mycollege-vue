@@ -1,10 +1,15 @@
 <template>
   <div>
-    <h1>Copyright Policy</h1>
-    <hr />
-    <p>
+    <h1 tabindex="0">Copyright Policy</h1>
+    <hr aria-hidden="true" />
+    <p tabindex="0">
       This Digital Millennium Copyright Act policy ("Policy") applies to the
-      <a target="_blank" rel="nofollow" href="https://my-college.com">
+      <a
+        role="link"
+        target="_blank"
+        rel="nofollow"
+        href="https://my-college.com"
+      >
         my-college.com
       </a>
       website ("Website" or "Service") and any of its related products and
@@ -13,17 +18,20 @@
       notifications and how you ("you" or "your") may submit a copyright
       infringement complaint.
     </p>
-    <p>
+    <p tabindex="0">
       Protection of intellectual property is of utmost importance to us and we
       ask our users and their authorized agents to do the same. It is our policy
       to expeditiously respond to clear notifications of alleged copyright
       infringement that comply with the United States Digital Millennium
       Copyright Act ("DMCA") of 1998, the text of which can be found at the U.S.
       Copyright Office
-      <a target="_blank" href="https://www.copyright.gov">website</a>.
+      <a role="link" target="_blank" href="https://www.copyright.gov">website</a
+      >.
     </p>
-    <h2>What to consider before submitting a copyright complaint</h2>
-    <p>
+    <h2 tabindex="0">
+      What to consider before submitting a copyright complaint
+    </h2>
+    <p tabindex="0">
       Before submitting a copyright complaint to us, consider whether the use
       could be considered fair use. Fair use states that brief excerpts of
       copyrighted material may, under certain circumstances, be quoted verbatim
@@ -33,18 +41,19 @@
       copyright complaint, you may want to first reach out to the user in
       question to see if you can resolve the matter directly with the user.
     </p>
-    <p>
+    <p tabindex="0">
       Please note that if you are unsure whether the material you are reporting
       is in fact infringing, you may wish to contact an attorney before filing a
       notification with us.
     </p>
-    <p>
+    <p tabindex="0">
       We may, at our discretion or as required by law, share a copy of your
       notification or counter-notification with third parties. This may include
       sharing the information with the account holder engaged in the allegedly
       infringing activity or for publication. If you are concerned about your
       information being forwarded, you may wish to
       <a
+        role="link"
         target="_blank"
         href="https://www.copyrighted.com/professional-takedowns"
       >
@@ -52,14 +61,15 @@
       </a>
       to report infringing material for you.
     </p>
-    <h2>Notifications of infringement</h2>
-    <p>
+    <h2 tabindex="0">Notifications of infringement</h2>
+    <p tabindex="0">
       If you are a copyright owner or an agent thereof, and you believe that any
       material available on our Services infringes your copyrights, then you may
       submit a written copyright infringement notification ("Notification")
       using the contact details below pursuant to the DMCA. All such
       Notifications must comply with the DMCA requirements. You may refer to a
       <a
+        role="link"
         target="_blank"
         href="https://www.websitepolicies.com/create/dmca-takedown-notice"
       >
@@ -68,14 +78,14 @@
       or other similar services to avoid making mistake and ensure compliance of
       your Notification.
     </p>
-    <p>
+    <p tabindex="0">
       Filing a DMCA complaint is the start of a pre-defined legal process. Your
       complaint will be reviewed for accuracy, validity, and completeness. If
       your complaint has satisfied these requirements, our response may include
       the removal or restriction of access to allegedly infringing material as
       well as a permanent termination of repeat infringers’ accounts.
     </p>
-    <p>
+    <p tabindex="0">
       If we remove or restrict access to materials or terminate an account in
       response to a Notification of alleged infringement, we will make a good
       faith effort to contact the affected user with information concerning the
@@ -83,14 +93,14 @@
       Notification (including your name, address, phone, and email address),
       along with instructions for filing a counter-notification.
     </p>
-    <p>
+    <p tabindex="0">
       Notwithstanding anything to the contrary contained in any portion of this
       Policy, the Operator reserves the right to take no action upon receipt of
       a DMCA copyright infringement notification if it fails to comply with all
       the requirements of the DMCA for such notifications.
     </p>
-    <h2>Counter-notifications</h2>
-    <p>
+    <h2 tabindex="0">Counter-notifications</h2>
+    <p tabindex="0">
       A user who receives a copyright infringement Notification may make a
       counter-Notification pursuant to sections 512(g)(2) and (3) of the US
       Copyright Act. If you receive a copyright infringement Notification, it
@@ -101,40 +111,39 @@
       you must provide a written communication compliant with the DMCA
       requirements.
     </p>
-    <p>
+    <p tabindex="0">
       Please note that if you are not sure whether certain material infringes
       the copyrights of others or that the material or activity was removed or
       restricted by mistake or misidentification, you may wish to contact an
       attorney before filing a counter-notification.
     </p>
-    <p>
+    <p tabindex="0">
       Notwithstanding anything to the contrary contained in any portion of this
       Policy, the Operator reserves the right to take no action upon receipt of
       a counter-notification. If we receive a counter-notification that complies
       with the terms of 17 U.S.C. § 512(g), we may forward it to the person who
       filed the original Notification.
     </p>
-    <h2>Changes and amendments</h2>
-    <p>
+    <h2 tabindex="0">Changes and amendments</h2>
+    <p tabindex="0">
       We reserve the right to modify this Policy or its terms relating to the
       Website and Services at any time, effective upon posting of an updated
       version of this Policy on the Website. When we do, we will revise the
       updated date at the bottom of this page. Policy was created with
       <a
-        style="color: inherit"
+        role="link"
         target="_blank"
         href="https://www.websitepolicies.com/dmca-policy-generator"
       >
-        WebsitePolicies
-      </a>
-      .
+        WebsitePolicies </a
+      >.
     </p>
-    <h2>Reporting copyright infringement</h2>
-    <p>
+    <h2 tabindex="0">Reporting copyright infringement</h2>
+    <p tabindex="0">
       If you would like to notify us of the infringing material or activity, you
       may send an email to badillam@usf.edu.
     </p>
-    <p>This document was last updated on February 21, 2021</p>
+    <p tabindex="0">This document was last updated on February 21, 2021</p>
   </div>
 </template>
 
