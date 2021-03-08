@@ -1,22 +1,17 @@
 <template>
   <div>
-    <h2>View Profile</h2>
-    <ProfileCard :profile="profile" />
+    <h2 tabindex="0">View Profile</h2>
+    <UserProfileForm readonly />
   </div>
 </template>
 
 <script>
-import ProfileCard from "@/components/parts/ProfileCard.vue";
+import UserProfileForm from "@/components/forms/UserProfileForm.vue";
 
 export default {
-  name: "ProfileView",
+  name: "UserProfileView",
   components: {
-    ProfileCard
-  },
-  computed: {
-    profile() {
-      return this.$store.state.user.profile;
-    }
+    UserProfileForm
   }
 };
 </script>

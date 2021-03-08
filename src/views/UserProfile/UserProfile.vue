@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Profile</h1>
+    <h1 tabindex="0">Profile</h1>
     <div class="buttons">
       <b-button
         tag="router-link"
@@ -17,7 +17,7 @@
         icon-left="pencil"
       />
     </div>
-    <hr />
+    <hr aria-hidden="true" />
     <router-view />
   </div>
 </template>
