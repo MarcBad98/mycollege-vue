@@ -1,19 +1,29 @@
 <template>
   <div>
-    <b-field label="Full Name">
-      <b-input v-model="fullName" :readonly="readonly"></b-input>
-    </b-field>
-    <b-field label="Major">
-      <b-input v-model="profile.major" :readonly="readonly"></b-input>
-    </b-field>
-    <b-field label="University">
+    <b-field id="userprofileform-fullname" label="Full Name">
       <b-input
+        aria-labelledby="userprofileform-fullname"
+        v-model="fullName"
+        :readonly="readonly"
+      ></b-input>
+    </b-field>
+    <b-field id="userprofileform-major" label="Major">
+      <b-input
+        aria-labelledby="userprofileform-major"
+        v-model="profile.major"
+        :readonly="readonly"
+      ></b-input>
+    </b-field>
+    <b-field id="userprofileform-university" label="University">
+      <b-input
+        aria-labelledby="userprofileform-university"
         v-model="profile.currentUniversity"
         :readonly="readonly"
       ></b-input>
     </b-field>
-    <b-field label="About You">
+    <b-field id="userprofileform-aboutyou" label="About You">
       <b-input
+        aria-labelledby="userprofileform-aboutyou"
         v-model="profile.about"
         type="textarea"
         :readonly="readonly"
@@ -21,7 +31,9 @@
     </b-field>
     <b-field label="Education">
       <template v-if="profile.education.length === 0 && readonly">
-        This person does not have any education records listed.
+        <p tabindex="0">
+          This person does not have any education records listed.
+        </p>
       </template>
       <template v-else>
         <EducationTable :education="profile.education" :readonly="readonly" />
@@ -29,7 +41,9 @@
     </b-field>
     <b-field label="Employment History">
       <template v-if="profile.employment.length === 0 && readonly">
-        This person does not have any employment records listed.
+        <p tabindex="0">
+          This person does not have any employment records listed.
+        </p>
       </template>
       <template v-else>
         <EmploymentTable
