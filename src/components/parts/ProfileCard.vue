@@ -35,7 +35,7 @@
 
 <script>
 import EducationTable from "@/components/tables/EducationTable.vue";
-import EmploymentTable from "@/components/parts/EmploymentTable.vue";
+import EmploymentTable from "@/components/tables/EmploymentTable.vue";
 
 export default {
   name: "ProfileCard",

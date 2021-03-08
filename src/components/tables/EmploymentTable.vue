@@ -9,13 +9,13 @@
         @click="openModal('Create', {})"
       />
     </div>
-    <template v-if="education.length !== 0">
-      <b-table :data="education">
-        <b-table-column label="Degree" width="20%" v-slot="props">
-          {{ props.row.degree }}
+    <template v-if="employment.length !== 0">
+      <b-table :data="employment">
+        <b-table-column label="Title" width="20%" v-slot="props">
+          {{ props.row.title }}
         </b-table-column>
-        <b-table-column label="School" width="20%" v-slot="props">
-          {{ props.row.school }}
+        <b-table-column label="Employer" width="20%" v-slot="props">
+          {{ props.row.employer }}
         </b-table-column>
         <b-table-column label="Start Date" width="20%" v-slot="props">
           {{ props.row.dateStarted }}
@@ -23,7 +23,7 @@
         <b-table-column label="End Date" width="20%" v-slot="props">
           {{ props.row.dateEnded }}
         </b-table-column>
-        <b-table-column label="Actions" width="20%" v-slot="props">
+        <b-table-column width="20%" v-slot="props">
           <div class="buttons is-right">
             <b-button
               label="View"
@@ -52,20 +52,20 @@
         </b-table-column>
       </b-table>
     </template>
-    <EducationModalForm ref="modal" @submit="submitModal($event)" />
+    <EmploymentModalForm ref="modal" @submit="submitModal($event)" />
   </div>
 </template>
 
 <script>
-import EducationModalForm from "@/components/modals/EducationModalForm.vue";
+import EmploymentModalForm from "@/components/modals/EmploymentModalForm.vue";
 
 export default {
-  name: "EducationTable",
+  name: "EmploymentTable",
   components: {
-    EducationModalForm
+    EmploymentModalForm
   },
   props: {
-    education: {
+    employment: {
       type: Array,
       default() {
         return [];
@@ -92,18 +92,18 @@ export default {
         form
       });
     },
-    submitModal(education) {
+    submitModal(employment) {
       const fmt = "YYYY-MM-DD";
-      education.dateStarted = this.moment(education.dateStarted).format(fmt);
-      education.dateEnded = this.moment(education.dateEnded).format(fmt);
+      employment.dateStarted = this.moment(employment.dateStarted).format(fmt);
+      employment.dateEnded = this.moment(employment.dateEnded).format(fmt);
       if (this.lastOp === "Create") {
-        this.education.push(education);
+        this.employment.push(employment);
       } else if (this.lastOp === "Update") {
-        const idx = this.education.findIndex(edu => edu.id === education.id);
-        this.education.splice(idx, 1, education);
+        const idx = this.employment.findIndex(emp => emp.id === employment.id);
+        this.employment.splice(idx, 1, employment);
       } else if (this.lastOp === "Delete") {
-        const idx = this.education.findIndex(edu => edu.id === education.id);
-        this.education.splice(idx, 1);
+        const idx = this.employment.findIndex(emp => emp.id === employment.id);
+        this.employment.splice(idx, 1);
       }
     }
   }

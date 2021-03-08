@@ -1,22 +1,22 @@
 <template>
-  <GenericCardModal ref="generic" topic="Education" @submit="submit()">
-    <b-field label="Degree">
+  <GenericCardModal ref="generic" topic="Employment" @submit="submit()">
+    <b-field label="Title">
       <b-input
-        v-model="education.degree"
+        v-model="employment.title"
         :disabled="disabled"
         :readonly="readonly"
       ></b-input>
     </b-field>
-    <b-field label="School">
+    <b-field label="Employer">
       <b-input
-        v-model="education.school"
+        v-model="employment.employer"
         :disabled="disabled"
         :readonly="readonly"
       ></b-input>
     </b-field>
     <b-field label="Location">
       <b-input
-        v-model="education.location"
+        v-model="employment.location"
         :disabled="disabled"
         :readonly="readonly"
       ></b-input>
@@ -25,14 +25,14 @@
       <div class="column">
         <b-field label="Start Date">
           <b-datepicker
-            v-model="education.dateStarted"
+            v-model="employment.dateStarted"
             icon="calendar-today"
             :disabled="disabled"
             v-if="!readonly"
           >
           </b-datepicker>
           <b-input
-            :value="moment(education.dateStarted).format('YYYY-MM-DD')"
+            :value="moment(employment.dateStarted).format('YYYY-MM-DD')"
             readonly
             v-else
           ></b-input>
@@ -41,20 +41,28 @@
       <div class="column">
         <b-field label="End Date">
           <b-datepicker
-            v-model="education.dateEnded"
+            v-model="employment.dateEnded"
             icon="calendar-today"
             :disabled="disabled"
             v-if="!readonly"
           >
           </b-datepicker>
           <b-input
-            :value="moment(education.dateEnded).format('YYYY-MM-DD')"
+            :value="moment(employment.dateEnded).format('YYYY-MM-DD')"
             readonly
             v-else
           ></b-input>
         </b-field>
       </div>
     </div>
+    <b-field label="Description">
+      <b-input
+        v-model="employment.description"
+        type="textarea"
+        :disabled="disabled"
+        :readonly="readonly"
+      ></b-input>
+    </b-field>
   </GenericCardModal>
 </template>
 
@@ -63,7 +71,7 @@ import GenericCardModal from "@/components/generic/GenericCardModal.vue";
 import { v4 as uuidv4 } from "uuid";
 
 export default {
-  name: "EducationModalForm",
+  name: "EmploymentModalForm",
   components: {
     GenericCardModal
   },
@@ -71,7 +79,7 @@ export default {
     return {
       readonly: false,
       disabled: false,
-      education: {}
+      employment: {}
     };
   },
   methods: {
@@ -83,11 +91,11 @@ export default {
       const obj = JSON.parse(JSON.stringify(options.form));
       obj.dateStarted = this.moment(obj.dateStarted).toDate();
       obj.dateEnded = this.moment(obj.dateEnded).toDate();
-      this.education = obj;
+      this.employment = obj;
     },
     submit() {
-      this.$emit("submit", this.education);
-      this.education = {};
+      this.$emit("submit", this.employment);
+      this.employment = {};
     }
   }
 };
