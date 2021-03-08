@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h1>Settings</h1>
-    <hr />
+    <h1 tabindex="0">Settings</h1>
+    <hr aria-hidden="true" />
     <b-field>
       <b-checkbox v-model="settings.subscriptionEmail">
         Opt-in to Email Notifications?
@@ -71,7 +71,7 @@ export default {
         })
         .then(response => {
           this.$store.state.user = response.data.updateUser.user;
-          this.$buefy.snackbar.open("Your settings was successfully saved!");
+          this.$buefy.snackbar.open("Your settings were successfully saved!");
           EventBus.$emit("retrieved-user-data");
         });
     }
