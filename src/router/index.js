@@ -123,7 +123,6 @@ const routes = [
   },
   {
     path: "/profile",
-    name: "UserProfile",
     component: UserProfile,
     children: [
       {
