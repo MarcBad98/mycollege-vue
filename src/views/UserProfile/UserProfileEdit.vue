@@ -4,9 +4,6 @@
     <b-field label="Full Name">
       <b-input v-model="fullName"></b-input>
     </b-field>
-    <b-field label="Title">
-      <b-input v-model="profile.title"></b-input>
-    </b-field>
     <b-field label="Major">
       <b-input v-model="profile.major"></b-input>
     </b-field>
@@ -16,27 +13,27 @@
     <b-field label="About You">
       <b-input v-model="profile.about" type="textarea"></b-input>
     </b-field>
-    <b-field label="Employment">
-      <EmploymentTable :employment="profile.employment" />
-    </b-field>
     <b-field label="Education">
       <EducationTable :education="profile.education" />
+    </b-field>
+    <b-field label="Employment History">
+      <EmploymentTable :employment="profile.employment" />
     </b-field>
     <b-button label="Save" type="is-primary" @click="save()" />
   </div>
 </template>
 
 <script>
+import EducationTable from "@/components/tables/EducationTable.vue";
 import EmploymentTable from "@/components/parts/EmploymentTable.vue";
-import EducationTable from "@/components/parts/EducationTable.vue";
 import { UpdateUserProfile } from "@/graphql/User.gql";
 import { EventBus } from "@/EventBus";
 
 export default {
   name: "ProfileEdit",
   components: {
-    EmploymentTable,
-    EducationTable
+    EducationTable,
+    EmploymentTable
   },
   data() {
     return {
