@@ -1,31 +1,31 @@
-query SearchUsers ($keyword:String!) {
-  searchUsers (search:$keyword) {
+query SearchUsers ($keyword: String!) {
+  searchUsers (search: $keyword) {
     ...UserData
   }
 }
 
-query RetrieveFriends ($keycloakUserId:String!) {
-  getFriends (keycloakUserId:$keycloakUserId) {
+query RetrieveFriends ($keycloakUserId: String!) {
+  getFriends (keycloakUserId: $keycloakUserId) {
     ...UserData
   }
 }
 
-mutation CreateRetrieveUser ($keycloakUserId:String!) {
-  createRetrieveUser (inputs:{
-		keycloakUserId:$keycloakUserId
-    profile:{
-      title:""
-      major:""
-      currentUniversity:""
-      about:""
-      employment:[]
-      education:[]
+mutation CreateRetrieveUser ($keycloakUserId: String!) {
+  createRetrieveUser (inputs: {
+		keycloakUserId: $keycloakUserId
+    profile: {
+      title: ""
+      major: ""
+      currentUniversity: ""
+      about: ""
+      employment: []
+      education: []
     }
-    settings:{
-      subscriptionEmail:false
-      subscriptionSms:false
-      targetedAdvertising:false
-      language:"English"
+    settings: {
+      subscriptionEmail: false
+      subscriptionSms: false
+      targetedAdvertising: false
+      language: "English"
     }
   }) {
     user {
@@ -34,10 +34,10 @@ mutation CreateRetrieveUser ($keycloakUserId:String!) {
   }
 }
 
-mutation UpdateUserSettings ($keycloakUserId:String!, $settings:UserSettingsInputType) {
-  updateUser (inputs:{
-		keycloakUserId:$keycloakUserId
-    settings:$settings
+mutation UpdateUserSettings ($keycloakUserId: String!, $settings: UserSettingsInputType) {
+  updateUser (inputs: {
+		keycloakUserId: $keycloakUserId
+    settings: $settings
   }) {
     user {
       ...UserData
@@ -45,11 +45,11 @@ mutation UpdateUserSettings ($keycloakUserId:String!, $settings:UserSettingsInpu
   }
 }
 
-mutation UpdateUserProfile ($keycloakUserId:String!, $fullName:String, $profile:UserProfileInputType) {
-  updateUser (inputs:{
-		keycloakUserId:$keycloakUserId
-    fullName:$fullName
-    profile:$profile
+mutation UpdateUserProfile ($keycloakUserId: String!, $fullName: String, $profile: UserProfileInputType) {
+  updateUser (inputs: {
+		keycloakUserId: $keycloakUserId
+    fullName: $fullName
+    profile: $profile
   }) {
     user {
       ...UserData
