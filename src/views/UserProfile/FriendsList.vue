@@ -2,7 +2,12 @@
   <div>
     <h1 tabindex="0">Friends List</h1>
     <hr aria-hidden="true" />
-    <UserTable :users="friends" />
+    <template v-if="friends.length !== 0">
+      <UserTable :users="friends" />
+    </template>
+    <template v-else>
+      <p tabindex="0">No friends registered in our system at the moment.</p>
+    </template>
   </div>
 </template>
 
