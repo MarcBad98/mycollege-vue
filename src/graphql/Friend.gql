@@ -1,0 +1,13 @@
+query RetrieveFriends ($keycloakUserId: String!) {
+  getFriends (keycloakUserId: $keycloakUserId) {
+    ...FriendData
+  }
+}
+
+fragment FriendData on FriendType {
+  keycloakUserId
+  fullName
+  major
+  currentUniversity
+  status
+}

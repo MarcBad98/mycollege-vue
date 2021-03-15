@@ -140,6 +140,9 @@
           <b-navbar-item tag="router-link" :to="{ name: 'ProfileView' }">
             Profile
           </b-navbar-item>
+          <b-navbar-item tag="router-link" :to="{ name: 'FriendsList' }">
+            Friends
+          </b-navbar-item>
           <b-navbar-item tag="router-link" :to="{ name: 'UserSettings' }">
             Settings
           </b-navbar-item>

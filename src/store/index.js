@@ -33,6 +33,18 @@ export default new Vuex.Store({
     },
     addFriendsRequest(state, friendsRequest) {
       state.friendsRequests.push(friendsRequest);
+    },
+    updateFriendsRequest(state, friendsRequest) {
+      const idx = state.friendsRequests.findIndex(
+        request => request.pairing === friendsRequest.pairing
+      );
+      state.friendsRequests.splice(idx, 1, friendsRequest);
+    },
+    deleteFriendsRequest(state, friendsRequest) {
+      const idx = state.friendsRequests.findIndex(
+        request => request.pairing === friendsRequest.pairing
+      );
+      state.friendsRequests.splice(idx, 1);
     }
   },
   actions: {},

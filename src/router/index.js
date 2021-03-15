@@ -24,11 +24,12 @@ import CopyrightPolicy from "@/views/ImportantLinks/CopyrightPolicy.vue";
 import BrandPolicy from "@/views/ImportantLinks/BrandPolicy.vue";
 
 import SearchResults from "@/views/UserProfile/SearchResults.vue";
+import FriendsList from "@/views/UserProfile/FriendsList.vue";
 import OtherUserProfileView from "@/views/UserProfile/OtherUserProfileView.vue";
 import UserProfile from "@/views/UserProfile/UserProfile.vue";
 import UserProfileView from "@/views/UserProfile/UserProfileView.vue";
 import UserProfileEdit from "@/views/UserProfile/UserProfileEdit.vue";
-import UserSettings from "@/views/UserSettings.vue";
+import UserSettings from "@/views/UserProfile/UserSettings.vue";
 
 Vue.use(VueRouter);
 
@@ -129,6 +130,16 @@ const routes = [
     component: SearchResults
   },
   {
+    path: "/friends",
+    name: "FriendsList",
+    component: FriendsList
+  },
+  {
+    path: "/profile/:id",
+    name: "OtherUserProfileView",
+    component: OtherUserProfileView
+  },
+  {
     path: "/profile",
     component: UserProfile,
     children: [
@@ -143,11 +154,6 @@ const routes = [
         component: UserProfileEdit
       }
     ]
-  },
-  {
-    path: "/profile/:id",
-    name: "OtherUserProfileView",
-    component: OtherUserProfileView
   },
   {
     path: "/settings",

@@ -2,6 +2,12 @@
   <b-table :data="users">
     <b-table-column label="Full Name" width="25%" v-slot="props">
       {{ props.row.fullName }}
+      <b-tag type="is-success" v-if="props.row.status === 'ACCEPTED'">
+        Confirmed
+      </b-tag>
+      <b-tag type="is-warning" v-if="props.row.status === 'PENDING'">
+        Pending
+      </b-tag>
     </b-table-column>
     <b-table-column label="University" width="25%" v-slot="props">
       {{ props.row.profile.currentUniversity }}
