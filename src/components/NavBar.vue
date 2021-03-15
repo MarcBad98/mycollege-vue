@@ -174,7 +174,6 @@ export default {
       };
       if (this.$route.name === "SearchResults") this.$router.replace(route);
       else this.$router.push(route);
-      this.keyword = "";
     }
   }
 };

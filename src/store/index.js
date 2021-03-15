@@ -30,6 +30,9 @@ export default new Vuex.Store({
     },
     setFriendsRequests(state, friendsRequests) {
       state.friendsRequests = friendsRequests;
+    },
+    addFriendsRequest(state, friendsRequest) {
+      state.friendsRequests.push(friendsRequest);
     }
   },
   actions: {},

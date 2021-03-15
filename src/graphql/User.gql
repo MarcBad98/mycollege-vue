@@ -4,12 +4,6 @@ query SearchUsers ($keyword: String!) {
   }
 }
 
-query RetrieveFriends ($keycloakUserId: String!) {
-  getFriends (keycloakUserId: $keycloakUserId) {
-    ...UserData
-  }
-}
-
 mutation CreateRetrieveUser ($keycloakUserId: String!) {
   createRetrieveUser (inputs: {
 		keycloakUserId: $keycloakUserId

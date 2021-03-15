@@ -15,20 +15,12 @@
           tag="router-link"
           :to="{
             name: 'OtherUserProfileView',
-            params: { fullName: props.row.fullName, user: props.row }
+            params: { id: props.row.keycloakUserId }
           }"
           label="View"
           type="is-info"
           size="is-small"
           icon-left="eye"
-        />
-        <b-button
-          label="Send Friend Request"
-          type="is-info"
-          size="is-small"
-          icon-left="account-plus"
-          @click="sendFriendsRequest(props.row)"
-          v-if="displayFriendsRequest(props.row)"
         />
       </div>
     </b-table-column>
@@ -36,8 +28,6 @@
 </template>
 
 <script>
-import { SendFriendsRequest } from "@/graphql/FriendsRequest.gql";
-
 export default {
   name: "UserTable",
   props: {
@@ -46,36 +36,6 @@ export default {
       default() {
         return [];
       }
-    }
-  },
-  methods: {
-    sendFriendsRequest(otherUser) {
-      this.$apollo
-        .mutate({
-          mutation: SendFriendsRequest,
-          variables: {
-            pairing: [
-              this.$store.state.user.keycloakUserId,
-              otherUser.keycloakUserId
-            ]
-          }
-        })
-        .then(response => {
-          this.$store.state.friendsRequests.push(
-            response.data.createFriendsRequest.friendsRequest
-          );
-          this.$buefy.snackbar.open("Successfully sent friend request!");
-        });
-    },
-    displayFriendsRequest(otherUser) {
-      if (!this.$keycloak.authenticated) return false;
-      return (
-        this.$store.state.friendsRequests.find(
-          request =>
-            request.pairing.includes(this.$store.state.user.keycloakUserId) &&
-            request.pairing.includes(otherUser.keycloakUserId)
-        ) === undefined
-      );
     }
   }
 };

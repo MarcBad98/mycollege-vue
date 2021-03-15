@@ -1,7 +1,6 @@
 <template>
   <div>
     <h1 tabindex="0">Search Results</h1>
-    <p tabindex="0" class="subtitle">Keyword: {{ $route.query.keyword }}</p>
     <hr aria-hidden="true" />
     <template v-if="users.length !== 0">
       <UserTable :users="users" />
@@ -26,13 +25,13 @@ export default {
       users: []
     };
   },
+  mounted() {
+    this.requestSearch();
+  },
   watch: {
     "$route.query.keyword"() {
       this.requestSearch();
     }
-  },
-  mounted() {
-    this.requestSearch();
   },
   methods: {
     requestSearch() {

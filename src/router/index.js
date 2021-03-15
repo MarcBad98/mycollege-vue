@@ -145,7 +145,7 @@ const routes = [
     ]
   },
   {
-    path: "/profile/:fullName",
+    path: "/profile/:id",
     name: "OtherUserProfileView",
     component: OtherUserProfileView
   },

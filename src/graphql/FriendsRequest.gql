@@ -27,7 +27,7 @@ mutation AcceptFriendsRequest ($pairing: [String]!) {
 }
 
 mutation RejectFriendsRequest ($pairing: [String]!) {
-  updateFriendsRequest (inputs: {
+  deleteFriendsRequest (inputs: {
     pairing: $pairing
     status: "REJECTED"
   }) {
@@ -38,6 +38,7 @@ mutation RejectFriendsRequest ($pairing: [String]!) {
 }
 
 fragment FriendsRequestData on FriendsRequestType {
+  id
   pairing
   status
   seen
