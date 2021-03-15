@@ -1,3 +1,9 @@
+query SearchUsers ($keyword:String!) {
+  searchUsers (search:$keyword) {
+    ...UserData
+  }
+}
+
 mutation CreateRetrieveUser ($keycloakUserId:String!) {
   createRetrieveUser (inputs:{
 		keycloakUserId:$keycloakUserId

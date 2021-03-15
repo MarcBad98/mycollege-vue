@@ -69,6 +69,12 @@ export default {
     EmploymentTable
   },
   props: {
+    otherUser: {
+      type: Object,
+      default() {
+        return {};
+      }
+    },
     readonly: {
       type: Boolean,
       default: false
@@ -94,8 +100,15 @@ export default {
   },
   methods: {
     updateProfile() {
-      this.fullName = this.$store.state.user.fullName;
-      this.profile = JSON.parse(JSON.stringify(this.$store.state.user.profile));
+      const user = JSON.parse(
+        JSON.stringify(
+          Object.keys(this.otherUser).length !== 0
+            ? this.otherUser
+            : this.$store.state.user
+        )
+      );
+      this.fullName = user.fullName;
+      this.profile = user.profile;
       delete this.profile.__typename;
       this.profile.employment.forEach(emp => delete emp.__typename);
       this.profile.education.forEach(edu => delete edu.__typename);

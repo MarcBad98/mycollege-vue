@@ -23,6 +23,8 @@ import CookiePolicy from "@/views/ImportantLinks/CookiePolicy.vue";
 import CopyrightPolicy from "@/views/ImportantLinks/CopyrightPolicy.vue";
 import BrandPolicy from "@/views/ImportantLinks/BrandPolicy.vue";
 
+import SearchResults from "@/views/UserProfile/SearchResults.vue";
+import OtherUserProfileView from "@/views/UserProfile/OtherUserProfileView.vue";
 import UserProfile from "@/views/UserProfile/UserProfile.vue";
 import UserProfileView from "@/views/UserProfile/UserProfileView.vue";
 import UserProfileEdit from "@/views/UserProfile/UserProfileEdit.vue";
@@ -122,6 +124,11 @@ const routes = [
     component: BrandPolicy
   },
   {
+    path: "/search-results",
+    name: "SearchResults",
+    component: SearchResults
+  },
+  {
     path: "/profile",
     component: UserProfile,
     children: [
@@ -136,6 +143,11 @@ const routes = [
         component: UserProfileEdit
       }
     ]
+  },
+  {
+    path: "/profile/:fullName",
+    name: "OtherUserProfileView",
+    component: OtherUserProfileView
   },
   {
     path: "/settings",

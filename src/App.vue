@@ -35,12 +35,11 @@
       <template #end>
         <b-navbar-item tag="div">
           <b-input
-            placeholder="Search for People"
+            role="search"
             type="search"
-            icon="magnify"
-            icon-clickable
-            rounded
+            v-model="searchKeyword"
           ></b-input>
+          <b-button label="Search" icon-left="magnify" @click="search()" />
         </b-navbar-item>
         <template v-if="!$keycloak.authenticated">
           <b-navbar-dropdown label="Anonymous User">
@@ -99,21 +98,24 @@ import { EventBus } from "@/EventBus";
 
 export default {
   mounted() {
-    this.$apollo
-      .mutate({
-        mutation: CreateRetrieveUser,
-        variables: {
-          keycloakUserId: this.$keycloak.subject
-        }
-      })
-      .then(response => {
-        this.$store.state.user = response.data.createRetrieveUser.user;
-        this.$buefy.snackbar.open("Login successful. Welcome to MyCollege!");
-        EventBus.$emit("retrieved-user-data");
-      });
+    if (this.$keycloak.authenticated) {
+      this.$apollo
+        .mutate({
+          mutation: CreateRetrieveUser,
+          variables: {
+            keycloakUserId: this.$keycloak.subject
+          }
+        })
+        .then(response => {
+          this.$store.state.user = response.data.createRetrieveUser.user;
+          this.$buefy.snackbar.open("Login successful. Welcome to MyCollege!");
+          EventBus.$emit("retrieved-user-data");
+        });
+    }
   },
   data() {
     return {
+      searchKeyword: "",
       links: [
         {
           type: "item",
@@ -219,6 +221,22 @@ export default {
         }
       ]
     };
+  },
+  methods: {
+    search() {
+      if (this.$route.name === "SearchResults") {
+        this.$router.replace({
+          name: "SearchResults",
+          query: { keyword: this.searchKeyword }
+        });
+      } else {
+        this.$router.push({
+          name: "SearchResults",
+          query: { keyword: this.searchKeyword }
+        });
+      }
+      this.searchKeyword = "";
+    }
   }
 };
 </script>
