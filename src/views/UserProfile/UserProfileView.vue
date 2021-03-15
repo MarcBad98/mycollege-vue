@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2 tabindex="0">View Profile</h2>
-    <UserProfileForm readonly />
+    <UserProfileForm :user="user" readonly />
   </div>
 </template>
 
@@ -12,6 +12,11 @@ export default {
   name: "UserProfileView",
   components: {
     UserProfileForm
+  },
+  computed: {
+    user() {
+      return this.$store.state.user;
+    }
   }
 };
 </script>

@@ -60,7 +60,6 @@
 import EducationTable from "@/components/tables/EducationTable.vue";
 import EmploymentTable from "@/components/tables/EmploymentTable.vue";
 import { UpdateUserProfile } from "@/graphql/User.gql";
-import { EventBus } from "@/EventBus";
 
 export default {
   name: "UserProfileForm",
@@ -69,7 +68,7 @@ export default {
     EmploymentTable
   },
   props: {
-    otherUser: {
+    user: {
       type: Object,
       default() {
         return {};
@@ -90,25 +89,17 @@ export default {
     };
   },
   mounted() {
-    this.updateProfile();
-    EventBus.$on("retrieved-user-data", () => {
-      this.updateProfile();
-    });
+    this.setComponentData(this.user);
   },
-  destroyed() {
-    EventBus.$off("retrieved-user-data");
+  watch: {
+    user(user) {
+      this.setComponentData(user);
+    }
   },
   methods: {
-    updateProfile() {
-      const user = JSON.parse(
-        JSON.stringify(
-          Object.keys(this.otherUser).length !== 0
-            ? this.otherUser
-            : this.$store.state.user
-        )
-      );
+    setComponentData(user) {
       this.fullName = user.fullName;
-      this.profile = user.profile;
+      this.profile = JSON.parse(JSON.stringify(user.profile));
       delete this.profile.__typename;
       this.profile.employment.forEach(emp => delete emp.__typename);
       this.profile.education.forEach(edu => delete edu.__typename);
@@ -124,9 +115,9 @@ export default {
           }
         })
         .then(response => {
-          this.$store.state.user = response.data.updateUser.user;
+          const user = response.data.updateUser.user;
+          this.$store.commit("setUser", user);
           this.$buefy.snackbar.open("Your profile was successfully saved!");
-          EventBus.$emit("retrieved-user-data");
         });
     }
   }

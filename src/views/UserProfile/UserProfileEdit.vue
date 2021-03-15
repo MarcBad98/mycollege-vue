@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2 tabindex="0">Edit Profile</h2>
-    <UserProfileForm />
+    <UserProfileForm :user="user" />
   </div>
 </template>
 
@@ -12,6 +12,11 @@ export default {
   name: "UserProfileEdit",
   components: {
     UserProfileForm
+  },
+  computed: {
+    user() {
+      return this.$store.state.user;
+    }
   }
 };
 </script>
