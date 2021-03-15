@@ -9,7 +9,6 @@ export default new Vuex.Store({
       keycloakUserId: null,
       fullName: null,
       profile: {
-        title: null,
         major: null,
         currentUniversity: null,
         about: null,
@@ -25,7 +24,14 @@ export default new Vuex.Store({
     },
     friendsRequests: []
   },
-  mutations: {},
+  mutations: {
+    setUser(state, user) {
+      state.user = user;
+    },
+    setFriendsRequests(state, friendsRequests) {
+      state.friendsRequests = friendsRequests;
+    }
+  },
   actions: {},
   modules: {}
 });

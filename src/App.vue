@@ -1,89 +1,6 @@
 <template>
   <div id="app">
-    <b-navbar>
-      <template #brand>
-        <b-navbar-item tag="router-link" :to="{ name: 'Home' }">
-          MyCollege
-        </b-navbar-item>
-      </template>
-      <template #start>
-        <template v-for="link in links">
-          <template v-if="link.type === 'item'">
-            <b-navbar-item
-              v-bind:key="link.label"
-              tag="router-link"
-              :to="link.route"
-            >
-              {{ link.label }}
-            </b-navbar-item>
-          </template>
-          <template v-if="link.type === 'dropdown'">
-            <b-navbar-dropdown v-bind:key="link.label" :label="link.label">
-              <template v-for="item in link.items">
-                <b-navbar-item
-                  v-bind:key="item.label"
-                  tag="router-link"
-                  :to="item.route"
-                >
-                  {{ item.label }}
-                </b-navbar-item>
-              </template>
-            </b-navbar-dropdown>
-          </template>
-        </template>
-      </template>
-      <template #end>
-        <b-navbar-item tag="div">
-          <b-input
-            role="search"
-            type="search"
-            v-model="searchKeyword"
-          ></b-input>
-          <b-button label="Search" icon-left="magnify" @click="search()" />
-        </b-navbar-item>
-        <template v-if="!$keycloak.authenticated">
-          <b-navbar-dropdown label="Anonymous User">
-            <b-navbar-item tag="div" v-if="!$keycloak.authenticated">
-              <div class="buttons">
-                <b-button
-                  type="is-primary"
-                  expanded
-                  @click="$keycloak.keycloak.register()"
-                >
-                  Sign Up
-                </b-button>
-                <b-button
-                  type="is-light"
-                  expanded
-                  @click="$keycloak.keycloak.login()"
-                >
-                  Log In
-                </b-button>
-              </div>
-            </b-navbar-item>
-          </b-navbar-dropdown>
-        </template>
-        <template v-else>
-          <b-navbar-dropdown :label="$keycloak.userName">
-            <b-navbar-item tag="router-link" :to="{ name: 'ProfileView' }">
-              Profile
-            </b-navbar-item>
-            <b-navbar-item tag="router-link" :to="{ name: 'UserSettings' }">
-              Settings
-            </b-navbar-item>
-            <b-navbar-item tag="div">
-              <b-button
-                type="is-light"
-                expanded
-                @click="$keycloak.keycloak.logout()"
-              >
-                Log Out
-              </b-button>
-            </b-navbar-item>
-          </b-navbar-dropdown>
-        </template>
-      </template>
-    </b-navbar>
+    <NavBar />
     <main class="section container">
       <div class="content box">
         <router-view />
@@ -93,13 +10,23 @@
 </template>
 
 <script>
+import NavBar from "@/components/NavBar.vue";
 import { CreateRetrieveUser } from "@/graphql/User.gql";
 import { RetrieveFriendsRequest } from "@/graphql/FriendsRequest.gql";
-import { EventBus } from "@/EventBus";
 
 export default {
+  components: {
+    NavBar
+  },
   mounted() {
     if (this.$keycloak.authenticated) {
+      this.retrieveUser();
+      this.retrieveFriendsRequests();
+      this.$buefy.snackbar.open("Login successful. Welcome to MyCollege!");
+    }
+  },
+  methods: {
+    retrieveUser() {
       this.$apollo
         .mutate({
           mutation: CreateRetrieveUser,
@@ -108,10 +35,11 @@ export default {
           }
         })
         .then(response => {
-          this.$store.state.user = response.data.createRetrieveUser.user;
-          this.$buefy.snackbar.open("Login successful. Welcome to MyCollege!");
-          EventBus.$emit("retrieved-user-data");
+          const user = response.data.createRetrieveUser.user;
+          this.$store.commit("setUser", user);
         });
+    },
+    retrieveFriendsRequests() {
       this.$apollo
         .query({
           query: RetrieveFriendsRequest,
@@ -120,133 +48,9 @@ export default {
           }
         })
         .then(response => {
-          this.$store.state.friendsRequests = response.data.getFriendsRequests;
+          const friendsRequests = response.data.getFriendsRequests;
+          this.$store.commit("setFriendsRequests", friendsRequests);
         });
-    }
-  },
-  data() {
-    return {
-      searchKeyword: "",
-      links: [
-        {
-          type: "item",
-          label: "Jobs",
-          route: { name: "Jobs" }
-        },
-        {
-          type: "dropdown",
-          label: "Skills",
-          items: [
-            "Beginner's Guide to Web Development",
-            "JavaScript",
-            "Python",
-            "REST vs GraphQL",
-            "Productivity while Working from Home"
-          ].map(skill => {
-            return {
-              label: skill,
-              route: {
-                name: "Skills",
-                query: { skill }
-              }
-            };
-          })
-        },
-        {
-          type: "dropdown",
-          label: "General Links",
-          items: [
-            {
-              label: "About",
-              route: { name: "About" }
-            },
-            {
-              label: "Help Center",
-              route: { name: "HelpCenter" }
-            },
-            {
-              label: "Press",
-              route: { name: "Press" }
-            },
-            {
-              label: "Blog",
-              route: { name: "Blog" }
-            },
-            {
-              label: "Careers Center",
-              route: { name: "CareersCenter" }
-            },
-            {
-              label: "Developers Center",
-              route: { name: "DevelopersCenter" }
-            }
-          ]
-        },
-        {
-          type: "dropdown",
-          label: "Useful Links",
-          items: [
-            {
-              label: "Browse MyCollege",
-              route: { name: "Browse" }
-            },
-            {
-              label: "Business Solutions",
-              route: { name: "BusinessSolutions" }
-            },
-            {
-              label: "Directories",
-              route: { name: "Directories" }
-            }
-          ]
-        },
-        {
-          type: "dropdown",
-          label: "Important Links",
-          items: [
-            {
-              label: "Accessibility",
-              route: { name: "Accessibility" }
-            },
-            {
-              label: "User Agreement",
-              route: { name: "UserAgreement" }
-            },
-            {
-              label: "Privacy Policy",
-              route: { name: "PrivacyPolicy" }
-            },
-            {
-              label: "Cookie Policy",
-              route: { name: "CookiePolicy" }
-            },
-            {
-              label: "Copyright Policy",
-              route: { name: "CopyrightPolicy" }
-            },
-            {
-              label: "Brand Policy",
-              route: { name: "BrandPolicy" }
-            }
-          ]
-        }
-      ]
-    };
-  },
-  methods: {
-    search() {
-      if (this.$route.name === "SearchResults") {
-        this.$router.replace({
-          name: "SearchResults",
-          query: { keyword: this.searchKeyword }
-        });
-      } else {
-        this.$router.push({
-          name: "SearchResults",
-          query: { keyword: this.searchKeyword }
-        });
-      }
-      this.searchKeyword = "";
     }
   }
 };
