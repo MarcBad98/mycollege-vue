@@ -1,0 +1,44 @@
+query RetrieveFriendsRequest ($keycloakUserId:String!) {
+  getFriendsRequests (keycloakUserId:$keycloakUserId) {
+    ...FriendsRequestData
+  }
+}
+
+mutation SendFriendsRequest ($pairing:[String]!) {
+  createFriendsRequest (inputs:{
+    pairing:$pairing
+    status:"PENDING"
+  }) {
+    friendsRequest {
+      ...FriendsRequestData
+    }
+  }
+}
+
+mutation AcceptFriendsRequest ($pairing:[String]!) {
+  updateFriendsRequest (inputs:{
+    pairing:$pairing
+    status:"ACCEPTED"
+  }) {
+    friendsRequest {
+      ...FriendsRequestData
+    }
+  }
+}
+
+mutation RejectFriendsRequest ($pairing:[String]!) {
+  updateFriendsRequest (inputs:{
+    pairing:$pairing
+    status:"REJECTED"
+  }) {
+    friendsRequest {
+      ...FriendsRequestData
+    }
+  }
+}
+
+fragment FriendsRequestData on FriendsRequestType {
+  pairing
+  status
+  seen
+}

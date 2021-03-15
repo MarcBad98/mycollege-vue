@@ -94,6 +94,7 @@
 
 <script>
 import { CreateRetrieveUser } from "@/graphql/User.gql";
+import { RetrieveFriendsRequest } from "@/graphql/FriendsRequest.gql";
 import { EventBus } from "@/EventBus";
 
 export default {
@@ -110,6 +111,16 @@ export default {
           this.$store.state.user = response.data.createRetrieveUser.user;
           this.$buefy.snackbar.open("Login successful. Welcome to MyCollege!");
           EventBus.$emit("retrieved-user-data");
+        });
+      this.$apollo
+        .query({
+          query: RetrieveFriendsRequest,
+          variables: {
+            keycloakUserId: this.$keycloak.subject
+          }
+        })
+        .then(response => {
+          this.$store.state.friendsRequests = response.data.getFriendsRequests;
         });
     }
   },

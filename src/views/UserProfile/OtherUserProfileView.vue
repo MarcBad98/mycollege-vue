@@ -1,11 +1,6 @@
 <template>
   <div>
     <h1 tabindex="0">{{ $route.params.fullName }}'s Profile</h1>
-    <b-button
-      label="Send Friends Request"
-      type="is-info"
-      @click="sendFriendsRequest()"
-    />
     <hr aria-hidden="true" />
     <UserProfileForm :otherUser="$route.params.user" readonly />
   </div>
@@ -19,10 +14,6 @@ export default {
   components: {
     UserProfileForm
   },
-  methods: {
-    sendFriendsRequest() {
-      /* TODO: complete */
-    }
-  }
+  methods: {}
 };
 </script>

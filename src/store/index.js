@@ -22,7 +22,8 @@ export default new Vuex.Store({
         targetedAdvertising: null,
         language: null
       }
-    }
+    },
+    friendsRequests: []
   },
   mutations: {},
   actions: {},
