@@ -1,16 +1,16 @@
 <template>
   <b-table :data="users">
-    <b-table-column label="Full Name" v-slot="props">
+    <b-table-column label="Full Name" width="25%" v-slot="props">
       {{ props.row.fullName }}
     </b-table-column>
-    <b-table-column label="University" v-slot="props">
+    <b-table-column label="University" width="25%" v-slot="props">
       {{ props.row.profile.currentUniversity }}
     </b-table-column>
-    <b-table-column label="Major" v-slot="props">
+    <b-table-column label="Major" width="25%" v-slot="props">
       {{ props.row.profile.major }}
     </b-table-column>
-    <b-table-column label="Actions" v-slot="props">
-      <div class="buttons is-right">
+    <b-table-column label="Actions" width="25%" v-slot="props">
+      <div class="buttons">
         <b-button
           tag="router-link"
           :to="{

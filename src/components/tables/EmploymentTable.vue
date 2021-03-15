@@ -24,7 +24,7 @@
           {{ props.row.dateEnded }}
         </b-table-column>
         <b-table-column width="20%" v-slot="props">
-          <div class="buttons is-right">
+          <div class="buttons">
             <b-button
               label="View"
               type="is-info"
