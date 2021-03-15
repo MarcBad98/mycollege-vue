@@ -44,13 +44,19 @@ export default {
       settings: {}
     };
   },
+  mounted() {
+    this.setComponentData(this.$store.state.user.settings);
+  },
   watch: {
     "$store.state.user.settings"(settings) {
-      this.settings = JSON.parse(JSON.stringify(settings));
-      delete this.settings.__typename;
+      this.setComponentData(settings);
     }
   },
   methods: {
+    setComponentData(settings) {
+      this.settings = JSON.parse(JSON.stringify(settings));
+      delete this.settings.__typename;
+    },
     save() {
       this.$apollo
         .mutate({
