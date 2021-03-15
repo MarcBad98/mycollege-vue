@@ -30,9 +30,7 @@ export default {
       this.$apollo
         .mutate({
           mutation: CreateRetrieveUser,
-          variables: {
-            keycloakUserId: this.$keycloak.subject
-          }
+          variables: { keycloakUserId: this.$keycloak.subject }
         })
         .then(response => {
           const user = response.data.createRetrieveUser.user;
@@ -43,9 +41,7 @@ export default {
       this.$apollo
         .query({
           query: RetrieveFriendsRequest,
-          variables: {
-            keycloakUserId: this.$keycloak.subject
-          }
+          variables: { keycloakUserId: this.$keycloak.subject }
         })
         .then(response => {
           const friendsRequests = response.data.getFriendsRequests;

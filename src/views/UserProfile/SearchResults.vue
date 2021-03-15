@@ -38,9 +38,7 @@ export default {
       this.$apollo
         .mutate({
           mutation: SearchUsers,
-          variables: {
-            keyword: this.$route.query.keyword
-          }
+          variables: { keyword: this.$route.query.keyword }
         })
         .then(response => {
           this.users = response.data.searchUsers;
