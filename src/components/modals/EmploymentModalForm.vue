@@ -1,21 +1,24 @@
 <template>
   <GenericCardModal ref="generic" topic="Employment" @submit="submit()">
-    <b-field label="Title">
+    <b-field id="employmentmodalform-title" label="Title">
       <b-input
+        aria-labelledby="employmentmodalform-title"
         v-model="employment.title"
         :disabled="disabled"
         :readonly="readonly"
       ></b-input>
     </b-field>
-    <b-field label="Employer">
+    <b-field id="employmentmodalform-employer" label="Employer">
       <b-input
+        aria-labelledby="employmentmodalform-employer"
         v-model="employment.employer"
         :disabled="disabled"
         :readonly="readonly"
       ></b-input>
     </b-field>
-    <b-field label="Location">
+    <b-field id="employmentmodalform-location" label="Location">
       <b-input
+        aria-labelledby="employmentmodalform-location"
         v-model="employment.location"
         :disabled="disabled"
         :readonly="readonly"
@@ -23,8 +26,9 @@
     </b-field>
     <div class="columns">
       <div class="column">
-        <b-field label="Start Date">
+        <b-field id="employmentmodalform-startdate" label="Start Date">
           <b-datepicker
+            aria-labelledby="employmentmodalform-startdate"
             v-model="employment.dateStarted"
             icon="calendar-today"
             :disabled="disabled"
@@ -32,6 +36,7 @@
           >
           </b-datepicker>
           <b-input
+            aria-labelledby="employmentmodalform-startdate"
             :value="moment(employment.dateStarted).format('YYYY-MM-DD')"
             readonly
             v-else
@@ -39,8 +44,9 @@
         </b-field>
       </div>
       <div class="column">
-        <b-field label="End Date">
+        <b-field id="employmentmodalform-enddate" label="End Date">
           <b-datepicker
+            aria-labelledby="employmentmodalform-enddate"
             v-model="employment.dateEnded"
             icon="calendar-today"
             :disabled="disabled"
@@ -48,6 +54,7 @@
           >
           </b-datepicker>
           <b-input
+            aria-labelledby="employmentmodalform-enddate"
             :value="moment(employment.dateEnded).format('YYYY-MM-DD')"
             readonly
             v-else
@@ -55,8 +62,9 @@
         </b-field>
       </div>
     </div>
-    <b-field label="Description">
+    <b-field id="employmentmodalform-description" label="Description">
       <b-input
+        aria-labelledby="employmentmodalform-description"
         v-model="employment.description"
         type="textarea"
         :disabled="disabled"

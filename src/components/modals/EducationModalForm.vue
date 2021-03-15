@@ -1,21 +1,24 @@
 <template>
   <GenericCardModal ref="generic" topic="Education" @submit="submit()">
-    <b-field label="Degree">
+    <b-field id="educationmodalform-degree" label="Degree">
       <b-input
+        aria-labelledby="educationmodalform-degree"
         v-model="education.degree"
         :disabled="disabled"
         :readonly="readonly"
       ></b-input>
     </b-field>
-    <b-field label="School">
+    <b-field id="educationmodalform-school" label="School">
       <b-input
+        aria-labelledby="educationmodalform-school"
         v-model="education.school"
         :disabled="disabled"
         :readonly="readonly"
       ></b-input>
     </b-field>
-    <b-field label="Location">
+    <b-field id="educationmodalform-location" label="Location">
       <b-input
+        aria-labelledby="educationmodalform-location"
         v-model="education.location"
         :disabled="disabled"
         :readonly="readonly"
@@ -23,8 +26,9 @@
     </b-field>
     <div class="columns">
       <div class="column">
-        <b-field label="Start Date">
+        <b-field id="educationmodalform-startdate" label="Start Date">
           <b-datepicker
+            aria-labelledby="educationmodalform-startdate"
             v-model="education.dateStarted"
             icon="calendar-today"
             :disabled="disabled"
@@ -32,6 +36,7 @@
           >
           </b-datepicker>
           <b-input
+            aria-labelledby="educationmodalform-startdate"
             :value="moment(education.dateStarted).format('YYYY-MM-DD')"
             readonly
             v-else
@@ -39,8 +44,9 @@
         </b-field>
       </div>
       <div class="column">
-        <b-field label="End Date">
+        <b-field id="educationmodalform-enddate" label="End Date">
           <b-datepicker
+            aria-labelledby="educationmodalform-enddate"
             v-model="education.dateEnded"
             icon="calendar-today"
             :disabled="disabled"
@@ -48,6 +54,7 @@
           >
           </b-datepicker>
           <b-input
+            aria-labelledby="educationmodalform-enddate"
             :value="moment(education.dateEnded).format('YYYY-MM-DD')"
             readonly
             v-else
