@@ -22,7 +22,8 @@ export default new Vuex.Store({
         language: null
       }
     },
-    friendsRequests: []
+    friendsRequests: [],
+    jobs: []
   },
   mutations: {
     setUser(state, user) {
@@ -45,6 +46,20 @@ export default new Vuex.Store({
         request => request.pairing === friendsRequest.pairing
       );
       state.friendsRequests.splice(idx, 1);
+    },
+    setJobs(state, jobs) {
+      state.jobs = jobs;
+    },
+    createJob(state, job) {
+      state.jobs.push(job);
+    },
+    updateJob(state, job) {
+      const idx = state.jobs.findIndex(storeJob => storeJob.id === job.id);
+      state.jobs.splice(idx, 1, job);
+    },
+    deleteJob(state, job) {
+      const idx = state.jobs.findIndex(storeJob => storeJob.id === job.id);
+      state.jobs.splice(idx, 1);
     }
   },
   actions: {},
