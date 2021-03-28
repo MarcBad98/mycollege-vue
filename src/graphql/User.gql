@@ -1,6 +1,11 @@
 query SearchUsers ($keyword: String!) {
   searchUsers (search: $keyword) {
-    ...UserData
+    keycloakUserId
+    fullName
+    profile {
+      major
+      currentUniversity
+    }
   }
 }
 
