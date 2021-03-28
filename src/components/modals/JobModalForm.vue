@@ -97,16 +97,19 @@ export default {
         .then(response => {
           if (this.isCreate) {
             const job = response.data.createJob.job;
+            delete job.__typename;
             this.$store.commit("createJob", job);
             this.$buefy.snackbar.open("Your job was successfully created!");
           }
           if (this.isUpdate) {
             const job = response.data.updateJob.job;
+            delete job.__typename;
             this.$store.commit("updateJob", job);
             this.$buefy.snackbar.open("Your job was successfully updated!");
           }
           if (this.isDelete) {
             const job = response.data.deleteJob.job;
+            delete job.__typename;
             this.$store.commit("deleteJob", job);
             this.$buefy.snackbar.open("Your job was successfully deleted!");
           }
