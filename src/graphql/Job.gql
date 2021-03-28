@@ -4,24 +4,36 @@ query RetrieveJobs {
   }
 }
 
-mutation CreateJob ($inputs:JobInputType!) {
-  createJob (inputs:$inputs) {
+mutation CreateJob ($inputs: JobInputType!) {
+  createJob (inputs: $inputs) {
     job {
       ...JobData
     }
   }
 }
 
-mutation UpdateJob ($inputs:JobInputType!) {
-  updateJob (inputs:$inputs) {
+mutation UpdateJob ($inputs: JobInputType!) {
+  updateJob (inputs: $inputs) {
     job {
       ...JobData
     }
   }
 }
 
-mutation DeleteJob ($inputs:JobInputType!) {
-  deleteJob (inputs:$inputs) {
+mutation DeleteJob ($inputs: JobInputType!) {
+  deleteJob (inputs: $inputs) {
+    job {
+      ...JobData
+    }
+  }
+}
+
+mutation ToggleSaveJob ($keycloakUserId: String!, $jobId: String!, $isSave: Boolean!) {
+  toggleSaveJob (
+    keycloakUserId: $keycloakUserId
+    jobId: $jobId
+    isSave: $isSave
+  ) {
     job {
       ...JobData
     }

@@ -9,14 +9,24 @@
         @click="openModal('Create', {})"
       />
     </div>
-    <b-table :data="jobs">
-      <b-table-column label="Title" width="20%" v-slot="props">
+    <b-field grouped>
+      <b-switch v-model="filterByOwnership" :rounded="false" size="is-small">
+        Your Jobs
+      </b-switch>
+      <b-switch v-model="filterByStarred" :rounded="false" size="is-small">
+        Saved
+      </b-switch>
+    </b-field>
+    <b-table :data="filteredJobs">
+      <b-table-column label="Title" width="25%" v-slot="props">
         {{ props.row.title }}
+        <b-tag type="is-success" v-if="isPoster(props.row)"> Your Job </b-tag>
+        <b-tag type="is-warning" v-if="!isSave(props.row)"> Saved </b-tag>
       </b-table-column>
       <b-table-column label="Employer" width="20%" v-slot="props">
         {{ props.row.employer }}
       </b-table-column>
-      <b-table-column label="Location" width="20%" v-slot="props">
+      <b-table-column label="Location" width="15%" v-slot="props">
         {{ props.row.location }}
       </b-table-column>
       <b-table-column label="Salary" width="15%" v-slot="props">
@@ -51,14 +61,15 @@
             label="Star"
             type="is-info"
             size="is-small"
-            icon-left=""
+            :icon-left="isSave(props.row) ? 'star-check' : 'star-remove'"
+            @click="starJob(props.row)"
             v-if="!isPoster(props.row)"
           />
           <b-button
             label="Apply"
             type="is-info"
             size="is-small"
-            icon-left=""
+            icon-left="email"
             v-if="!isPoster(props.row)"
           />
         </div>
@@ -70,6 +81,7 @@
 
 <script>
 import JobModalForm from "@/components/modals/JobModalForm.vue";
+import { ToggleSaveJob } from "@/graphql/Job.gql";
 
 export default {
   name: "JobTable",
@@ -84,6 +96,28 @@ export default {
       }
     }
   },
+  data() {
+    return {
+      filterByOwnership: false,
+      filterByStarred: false
+    };
+  },
+  computed: {
+    filteredJobs() {
+      if (this.filterByOwnership) {
+        return this.jobs.filter(
+          job => job.poster.keycloakUserId === this.$keycloak.subject
+        );
+      } else if (this.filterByStarred) {
+        return this.jobs.filter(
+          job =>
+            job.savedBy.find(
+              user => user.keycloakUserId === this.$keycloak.subject
+            ) !== undefined
+        );
+      } else return this.jobs;
+    }
+  },
   methods: {
     openModal(op, form) {
       this.lastOp = op;
@@ -95,8 +129,35 @@ export default {
         form
       });
     },
+    starJob(form) {
+      const isSave = this.isSave(form);
+      this.$apollo
+        .mutate({
+          mutation: ToggleSaveJob,
+          variables: {
+            keycloakUserId: this.$keycloak.subject,
+            jobId: form.id,
+            isSave: isSave
+          }
+        })
+        .then(response => {
+          const job = response.data.toggleSaveJob.job;
+          delete job.__typename;
+          this.$store.commit("updateJob", job);
+          this.$buefy.snackbar.open(
+            `Job successfully ${isSave ? "starred" : "un-starred"}!`
+          );
+        });
+    },
     isPoster(form) {
       return form.poster.keycloakUserId === this.$keycloak.subject;
+    },
+    isSave(form) {
+      return (
+        form.savedBy.find(
+          user => user.keycloakUserId === this.$keycloak.subject
+        ) === undefined
+      );
     }
   }
 };
