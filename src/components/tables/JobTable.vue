@@ -9,19 +9,48 @@
         @click="openModal('Create', {})"
       />
     </div>
-    <b-field grouped>
-      <b-switch v-model="filterByOwnership" :rounded="false" size="is-small">
+    <b-field>
+      <b-radio-button
+        v-model="filter"
+        native-value="no filter"
+        type="is-light"
+        size="is-small"
+      >
+        No Filter
+      </b-radio-button>
+      <b-radio-button
+        v-model="filter"
+        native-value="ownership"
+        type="is-success"
+        size="is-small"
+      >
         Your Jobs
-      </b-switch>
-      <b-switch v-model="filterByStarred" :rounded="false" size="is-small">
+      </b-radio-button>
+      <b-radio-button
+        v-model="filter"
+        native-value="saved"
+        type="is-info"
+        size="is-small"
+      >
         Saved
-      </b-switch>
+      </b-radio-button>
+      <b-radio-button
+        v-model="filter"
+        native-value="applied"
+        type="is-info"
+        size="is-small"
+      >
+        Applied
+      </b-radio-button>
     </b-field>
     <b-table :data="filteredJobs">
       <b-table-column label="Title" width="25%" v-slot="props">
         {{ props.row.title }}
-        <b-tag type="is-success" v-if="isPoster(props.row)"> Your Job </b-tag>
-        <b-tag type="is-warning" v-if="!isSave(props.row)"> Saved </b-tag>
+        <b-taglist>
+          <b-tag type="is-success" v-if="isPoster(props.row)"> Your Job </b-tag>
+          <b-tag type="is-info" v-if="!isSave(props.row)"> Saved </b-tag>
+          <b-tag type="is-info" v-if="hasApplied(props.row)"> Applied </b-tag>
+        </b-taglist>
       </b-table-column>
       <b-table-column label="Employer" width="20%" v-slot="props">
         {{ props.row.employer }}
@@ -58,7 +87,7 @@
             v-if="isPoster(props.row)"
           />
           <b-button
-            label="Star"
+            label="Save"
             type="is-info"
             size="is-small"
             :icon-left="isSave(props.row) ? 'star-check' : 'star-remove'"
@@ -70,23 +99,28 @@
             type="is-info"
             size="is-small"
             icon-left="email"
+            @click="openApplication(props.row)"
             v-if="!isPoster(props.row)"
+            :disabled="hasApplied(props.row)"
           />
         </div>
       </b-table-column>
     </b-table>
     <JobModalForm ref="modal" />
+    <JobApplicationModalForm ref="application" />
   </div>
 </template>
 
 <script>
 import JobModalForm from "@/components/modals/JobModalForm.vue";
+import JobApplicationModalForm from "@/components/modals/JobApplicationModalForm.vue";
 import { ToggleSaveJob } from "@/graphql/Job.gql";
 
 export default {
   name: "JobTable",
   components: {
-    JobModalForm
+    JobModalForm,
+    JobApplicationModalForm
   },
   props: {
     jobs: {
@@ -98,21 +132,28 @@ export default {
   },
   data() {
     return {
-      filterByOwnership: false,
-      filterByStarred: false
+      filter: "no filter"
     };
   },
   computed: {
     filteredJobs() {
-      if (this.filterByOwnership) {
+      if (this.filter === "ownership") {
         return this.jobs.filter(
           job => job.poster.keycloakUserId === this.$keycloak.subject
         );
-      } else if (this.filterByStarred) {
+      } else if (this.filter === "saved") {
         return this.jobs.filter(
           job =>
             job.savedBy.find(
               user => user.keycloakUserId === this.$keycloak.subject
+            ) !== undefined
+        );
+      } else if (this.filter === "applied") {
+        return this.jobs.filter(
+          job =>
+            job.applications.find(
+              application =>
+                application.applicant.keycloakUserId === this.$keycloak.subject
             ) !== undefined
         );
       } else return this.jobs;
@@ -120,13 +161,19 @@ export default {
   },
   methods: {
     openModal(op, form) {
-      this.lastOp = op;
       this.$refs.modal.open({
         isCreate: op === "Create",
         isRead: op === "Read",
         isUpdate: op === "Update",
         isDelete: op === "Delete",
         form
+      });
+    },
+    openApplication(form) {
+      const hasApplied = this.hasApplied(form);
+      this.$refs.application.open({
+        isCreate: !hasApplied,
+        jobId: form.id
       });
     },
     starJob(form) {
@@ -157,6 +204,14 @@ export default {
         form.savedBy.find(
           user => user.keycloakUserId === this.$keycloak.subject
         ) === undefined
+      );
+    },
+    hasApplied(form) {
+      return (
+        form.applications.find(
+          application =>
+            application.applicant.keycloakUserId === this.$keycloak.subject
+        ) !== undefined
       );
     }
   }

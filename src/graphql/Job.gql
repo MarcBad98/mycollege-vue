@@ -40,6 +40,17 @@ mutation ToggleSaveJob ($keycloakUserId: String!, $jobId: String!, $isSave: Bool
   }
 }
 
+mutation SendJobApplication ($jobId: String!, $inputs: JobApplicationInputType!) {
+  sendJobApplication (
+    jobId: $jobId
+    inputs: $inputs
+  ) {
+    job {
+      ...JobData
+    }
+  }
+}
+
 fragment JobData on JobType {
   id
   poster {
@@ -54,11 +65,15 @@ fragment JobData on JobType {
     keycloakUserId
   }
   applications {
-    applicant {
-      keycloakUserId
-    }
-    dateGraduated
-    dateStart
-    reason
+    ...JobApplicationData
   }
+}
+
+fragment JobApplicationData on JobApplicationType {
+  applicant {
+    keycloakUserId
+  }
+  dateGraduated
+  dateStart
+  reason
 }
