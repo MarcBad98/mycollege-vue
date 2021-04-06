@@ -7,10 +7,11 @@ export default new Vuex.Store({
   state: {
     user: {
       keycloakUserId: null,
-      fullName: null,
+      isPlusUser: null,
       profile: {
+        fullName: null,
+        university: null,
         major: null,
-        currentUniversity: null,
         about: null,
         employment: [],
         education: []
@@ -20,32 +21,15 @@ export default new Vuex.Store({
         subscriptionsSms: null,
         targetedAdvertising: null,
         language: null
-      }
+      },
+      friends: [],
+      jobsSaved: []
     },
-    friendsRequests: [],
     jobs: []
   },
   mutations: {
     setUser(state, user) {
       state.user = user;
-    },
-    setFriendsRequests(state, friendsRequests) {
-      state.friendsRequests = friendsRequests;
-    },
-    addFriendsRequest(state, friendsRequest) {
-      state.friendsRequests.push(friendsRequest);
-    },
-    updateFriendsRequest(state, friendsRequest) {
-      const idx = state.friendsRequests.findIndex(
-        request => request.pairing === friendsRequest.pairing
-      );
-      state.friendsRequests.splice(idx, 1, friendsRequest);
-    },
-    deleteFriendsRequest(state, friendsRequest) {
-      const idx = state.friendsRequests.findIndex(
-        request => request.pairing === friendsRequest.pairing
-      );
-      state.friendsRequests.splice(idx, 1);
     },
     setJobs(state, jobs) {
       state.jobs = jobs;

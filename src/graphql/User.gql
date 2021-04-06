@@ -1,10 +1,10 @@
 query SearchUsers ($keyword: String!) {
   searchUsers (search: $keyword) {
     keycloakUserId
-    fullName
     profile {
+      fullName
+      university
       major
-      currentUniversity
     }
   }
 }
@@ -12,23 +12,20 @@ query SearchUsers ($keyword: String!) {
 mutation CreateRetrieveUser ($keycloakUserId: String!) {
   createRetrieveUser (inputs: {
 		keycloakUserId: $keycloakUserId
-    profile: {
-      title: ""
-      major: ""
-      currentUniversity: ""
-      about: ""
-      employment: []
-      education: []
-    }
-    settings: {
-      subscriptionEmail: false
-      subscriptionSms: false
-      targetedAdvertising: false
-      language: "English"
-    }
   }) {
     user {
 			...UserData
+    }
+  }
+}
+
+mutation UpdateUserProfile ($keycloakUserId: String!, $profile: UserProfileInputType) {
+  updateUser (inputs: {
+		keycloakUserId: $keycloakUserId
+    profile: $profile
+  }) {
+    user {
+      ...UserData
     }
   }
 }
@@ -44,25 +41,13 @@ mutation UpdateUserSettings ($keycloakUserId: String!, $settings: UserSettingsIn
   }
 }
 
-mutation UpdateUserProfile ($keycloakUserId: String!, $fullName: String, $profile: UserProfileInputType) {
-  updateUser (inputs: {
-		keycloakUserId: $keycloakUserId
-    fullName: $fullName
-    profile: $profile
-  }) {
-    user {
-      ...UserData
-    }
-  }
-}
-
 fragment UserData on UserType {
   keycloakUserId
-  fullName
+  isPlusUser
   profile {
-    title
+    fullName
+    university
     major
-    currentUniversity
     about
     employment {
       id
@@ -80,6 +65,7 @@ fragment UserData on UserType {
       dateStarted
       dateEnded
       location
+      description
     }
   }
   settings {
@@ -88,4 +74,6 @@ fragment UserData on UserType {
     targetedAdvertising
     language
   }
+  friends
+  jobsSaved
 }

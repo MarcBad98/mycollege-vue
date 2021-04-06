@@ -3,7 +3,7 @@
     <NavBar />
     <main class="section container">
       <div class="content box">
-        <router-view />
+        <router-view></router-view>
       </div>
     </main>
   </div>
@@ -12,7 +12,6 @@
 <script>
 import NavBar from "@/components/NavBar.vue";
 import { CreateRetrieveUser } from "@/graphql/User.gql";
-import { RetrieveFriendsRequest } from "@/graphql/FriendsRequest.gql";
 
 export default {
   components: {
@@ -21,7 +20,6 @@ export default {
   mounted() {
     if (this.$keycloak.authenticated) {
       this.retrieveUser();
-      this.retrieveFriendsRequests();
       this.$buefy.snackbar.open("Login successful. Welcome to MyCollege!");
     }
   },
@@ -30,22 +28,13 @@ export default {
       this.$apollo
         .mutate({
           mutation: CreateRetrieveUser,
-          variables: { keycloakUserId: this.$keycloak.subject }
+          variables: {
+            keycloakUserId: this.$keycloak.subject
+          }
         })
         .then(response => {
           const user = response.data.createRetrieveUser.user;
           this.$store.commit("setUser", user);
-        });
-    },
-    retrieveFriendsRequests() {
-      this.$apollo
-        .query({
-          query: RetrieveFriendsRequest,
-          variables: { keycloakUserId: this.$keycloak.subject }
-        })
-        .then(response => {
-          const friendsRequests = response.data.getFriendsRequests;
-          this.$store.commit("setFriendsRequests", friendsRequests);
         });
     }
   }
