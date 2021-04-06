@@ -91,7 +91,6 @@ export default {
           mutation: UpdateUserProfile,
           variables: {
             keycloakUserId: this.$keycloak.subject,
-            fullName: this.fullName,
             profile: this.profile
           }
         })

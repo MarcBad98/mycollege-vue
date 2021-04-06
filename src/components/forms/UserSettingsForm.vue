@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <form>
     <b-field>
       <b-checkbox v-model="settings.subscriptionEmail">
         Opt-in to Email Notifications?
@@ -15,11 +15,8 @@
         Opt-in to Targeted Advertisement?
       </b-checkbox>
     </b-field>
-    <b-field id="usersettingsform-language" label="Language">
-      <b-select
-        aria-labelledby="usersettingsform-language"
-        v-model="settings.language"
-      >
+    <b-field label="Language" label-for="usersettingsform-language">
+      <b-select id="usersettingsform-language" v-model="settings.language">
         <option value="English">English</option>
         <option value="French">French</option>
         <option value="Spanish">Spanish</option>
@@ -31,7 +28,7 @@
       </b-select>
     </b-field>
     <b-button label="Save" type="is-primary" @click="save()" />
-  </div>
+  </form>
 </template>
 
 <script>
@@ -39,22 +36,30 @@ import { UpdateUserSettings } from "@/graphql/User.gql";
 
 export default {
   name: "UserSettingsForm",
+  props: {
+    user: {
+      type: Object,
+      default() {
+        return {};
+      }
+    }
+  },
   data() {
     return {
       settings: {}
     };
   },
   mounted() {
-    this.setComponentData(this.$store.state.user.settings);
+    this.setComponentData(this.user);
   },
   watch: {
-    "$store.state.user.settings"(settings) {
-      this.setComponentData(settings);
+    user(user) {
+      this.setComponentData(user);
     }
   },
   methods: {
-    setComponentData(settings) {
-      this.settings = JSON.parse(JSON.stringify(settings));
+    setComponentData(user) {
+      this.settings = JSON.parse(JSON.stringify(user.settings));
       delete this.settings.__typename;
     },
     save() {

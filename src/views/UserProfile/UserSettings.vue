@@ -1,8 +1,7 @@
 <template>
   <div>
-    <h1 tabindex="0">Settings</h1>
-    <hr aria-hidden="true" />
-    <UserSettingsForm />
+    <h2 class="title is-4" tabindex="0">Settings</h2>
+    <UserSettingsForm :user="user" />
   </div>
 </template>
 
@@ -13,6 +12,11 @@ export default {
   name: "UserSettings",
   components: {
     UserSettingsForm
+  },
+  computed: {
+    user() {
+      return this.$store.state.user;
+    }
   }
 };
 </script>

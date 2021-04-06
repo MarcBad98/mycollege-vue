@@ -26,7 +26,7 @@ import BrandPolicy from "@/views/ImportantLinks/BrandPolicy.vue";
 import SearchResults from "@/views/UserProfile/SearchResults.vue";
 import FriendsList from "@/views/UserProfile/FriendsList.vue";
 import OtherUserProfileView from "@/views/UserProfile/OtherUserProfileView.vue";
-import UserProfile from "@/views/UserProfile/UserProfile.vue";
+import UserAccount from "@/views/UserProfile/UserAccount.vue";
 import UserProfileView from "@/views/UserProfile/UserProfileView.vue";
 import UserProfileEdit from "@/views/UserProfile/UserProfileEdit.vue";
 import UserSettings from "@/views/UserProfile/UserSettings.vue";
@@ -140,25 +140,25 @@ const routes = [
     component: OtherUserProfileView
   },
   {
-    path: "/profile",
-    component: UserProfile,
+    path: "/account",
+    component: UserAccount,
     children: [
       {
-        path: "",
+        path: "profile/view",
         name: "ProfileView",
         component: UserProfileView
       },
       {
-        path: "edit",
+        path: "profile/edit",
         name: "ProfileEdit",
         component: UserProfileEdit
+      },
+      {
+        path: "settings",
+        name: "UserSettings",
+        component: UserSettings
       }
     ]
-  },
-  {
-    path: "/settings",
-    name: "UserSettings",
-    component: UserSettings
   }
 ];
 

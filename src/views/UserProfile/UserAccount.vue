@@ -1,26 +1,37 @@
 <template>
   <div>
-    <h1 class="title" tabindex="0">Profile</h1>
+    <h1 class="title" tabindex="0">Account</h1>
     <hr aria-hidden="true" />
     <div class="columns">
-      <div class="column is-one-quarter box has-background-light">
-        <b-menu role="menu" aria-label="User Account Management">
+      <div class="column is-one-quarter">
+        <b-menu
+          role="menu"
+          aria-label="User Account Management"
+          class="box has-background-light"
+        >
           <b-menu-list label="Profile">
             <b-menu-item
               tag="router-link"
               :to="{ name: 'ProfileView' }"
               label="View Profile"
-              type="is-info"
-              icon="eye"
+              icon="account"
               :active="$route.name === 'ProfileView'"
             ></b-menu-item>
             <b-menu-item
               tag="router-link"
               :to="{ name: 'ProfileEdit' }"
               label="Edit Profile"
-              type="is-warning"
-              icon="pencil"
+              icon="account-edit"
               :active="$route.name === 'ProfileEdit'"
+            ></b-menu-item>
+          </b-menu-list>
+          <b-menu-list label="Settings">
+            <b-menu-item
+              tag="router-link"
+              :to="{ name: 'UserSettings' }"
+              label="Settings"
+              icon="account-cog"
+              :active="$route.name === 'UserSettings'"
             ></b-menu-item>
           </b-menu-list>
         </b-menu>

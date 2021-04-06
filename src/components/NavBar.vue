@@ -212,23 +212,9 @@
         <b-navbar-item
           tag="router-link"
           :to="{ name: 'ProfileView' }"
-          :active="$route.name === 'ProfileView'"
+          :active="$route.path.match(/^\/account*/) !== null"
         >
-          Profile
-        </b-navbar-item>
-        <b-navbar-item
-          tag="router-link"
-          :to="{ name: 'FriendsList' }"
-          :active="$route.name === 'FriendsList'"
-        >
-          Friends
-        </b-navbar-item>
-        <b-navbar-item
-          tag="router-link"
-          :to="{ name: 'UserSettings' }"
-          :active="$route.name === 'UserSettings'"
-        >
-          Settings
+          Account Management
         </b-navbar-item>
         <b-navbar-item tag="div">
           <b-button
