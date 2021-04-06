@@ -243,6 +243,7 @@ export default {
       const route = { name: "SearchResults", query: { keyword: this.keyword } };
       if (this.$route.name === route.name) this.$router.replace(route);
       else this.$router.push(route);
+      this.keyword = "";
     }
   }
 };
