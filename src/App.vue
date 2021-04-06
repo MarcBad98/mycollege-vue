@@ -2,7 +2,7 @@
   <div id="app">
     <NavBar />
     <main class="section container">
-      <div class="content box">
+      <div class="box">
         <router-view></router-view>
       </div>
     </main>

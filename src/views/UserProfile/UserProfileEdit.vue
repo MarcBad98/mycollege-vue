@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2 tabindex="0">Edit Profile</h2>
+    <h2 class="title is-4" tabindex="0">Edit Profile</h2>
     <UserProfileForm :user="user" />
   </div>
 </template>

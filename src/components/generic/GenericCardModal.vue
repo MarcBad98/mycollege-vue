@@ -1,5 +1,5 @@
 <template>
-  <b-modal :active="isActive" has-modal-card full-screen>
+  <b-modal :active="isActive" has-modal-card full-screen @close="close()">
     <div class="modal-card">
       <header class="modal-card-head">
         <p class="modal-card-title">{{ operation }} {{ topic }}</p>

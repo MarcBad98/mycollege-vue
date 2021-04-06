@@ -1,67 +1,80 @@
 <template>
   <GenericCardModal ref="generic" topic="Education" @submit="submit()">
-    <b-field id="educationmodalform-degree" label="Degree">
+    <b-field label="Degree" label-for="educationmodalform-degree">
       <b-input
-        aria-labelledby="educationmodalform-degree"
+        id="educationmodalform-degree"
         v-model="education.degree"
-        :disabled="disabled"
-        :readonly="readonly"
-      ></b-input>
-    </b-field>
-    <b-field id="educationmodalform-school" label="School">
-      <b-input
-        aria-labelledby="educationmodalform-school"
-        v-model="education.school"
-        :disabled="disabled"
-        :readonly="readonly"
-      ></b-input>
-    </b-field>
-    <b-field id="educationmodalform-location" label="Location">
-      <b-input
-        aria-labelledby="educationmodalform-location"
-        v-model="education.location"
         :disabled="disabled"
         :readonly="readonly"
       ></b-input>
     </b-field>
     <div class="columns">
       <div class="column">
-        <b-field id="educationmodalform-startdate" label="Start Date">
+        <b-field label="School" label-for="educationmodalform-school">
+          <b-input
+            id="educationmodalform-school"
+            v-model="education.school"
+            :disabled="disabled"
+            :readonly="readonly"
+          ></b-input>
+        </b-field>
+      </div>
+      <div class="column">
+        <b-field label="Location" label-for="educationmodalform-location">
+          <b-input
+            id="educationmodalform-location"
+            v-model="education.location"
+            :disabled="disabled"
+            :readonly="readonly"
+          ></b-input>
+        </b-field>
+      </div>
+    </div>
+    <div class="columns">
+      <div class="column">
+        <b-field label="Start Date" label-for="educationmodalform-startdate">
           <b-datepicker
-            aria-labelledby="educationmodalform-startdate"
+            id="educationmodalform-startdate"
             v-model="education.dateStarted"
             icon="calendar-today"
             :disabled="disabled"
             v-if="!readonly"
-          >
-          </b-datepicker>
+          ></b-datepicker>
           <b-input
-            aria-labelledby="educationmodalform-startdate"
+            id="educationmodalform-startdate"
             :value="moment(education.dateStarted).format('YYYY-MM-DD')"
-            readonly
+            :readonly="readonly"
             v-else
           ></b-input>
         </b-field>
       </div>
       <div class="column">
-        <b-field id="educationmodalform-enddate" label="End Date">
+        <b-field label="End Date" label-for="educationmodalform-enddate">
           <b-datepicker
-            aria-labelledby="educationmodalform-enddate"
+            id="educationmodalform-enddate"
             v-model="education.dateEnded"
             icon="calendar-today"
             :disabled="disabled"
             v-if="!readonly"
-          >
-          </b-datepicker>
+          ></b-datepicker>
           <b-input
-            aria-labelledby="educationmodalform-enddate"
-            :value="moment(education.dateEnded).format('YYYY-MM-DD')"
-            readonly
+            id="educationmodalform-enddate"
+            :value="moment(education.dateStarted).format('YYYY-MM-DD')"
+            :readonly="readonly"
             v-else
           ></b-input>
         </b-field>
       </div>
     </div>
+    <b-field label="Description" label-for="educationmodalform-description">
+      <b-input
+        id="educationmodalform-description"
+        v-model="education.description"
+        type="textarea"
+        :disabled="disabled"
+        :readonly="readonly"
+      ></b-input>
+    </b-field>
   </GenericCardModal>
 </template>
 

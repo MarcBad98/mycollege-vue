@@ -1,59 +1,42 @@
 <template>
-  <div>
-    <b-field id="userprofileform-fullname" label="Full Name">
+  <form>
+    <b-field label="Full Name" label-for="userprofileform-fullname">
       <b-input
-        aria-labelledby="userprofileform-fullname"
-        v-model="fullName"
+        id="userprofileform-fullname"
+        v-model="profile.fullName"
         :readonly="readonly"
       ></b-input>
     </b-field>
-    <b-field id="userprofileform-major" label="Major">
+    <b-field label="University" label-for="userprofileform-university">
       <b-input
-        aria-labelledby="userprofileform-major"
+        id="userprofileform-university"
+        v-model="profile.university"
+        :readonly="readonly"
+      ></b-input>
+    </b-field>
+    <b-field label="Major" label-for="userprofileform-major">
+      <b-input
+        id="userprofileform-major"
         v-model="profile.major"
         :readonly="readonly"
       ></b-input>
     </b-field>
-    <b-field id="userprofileform-university" label="University">
+    <b-field label="About You" label-for="userprofileform-about">
       <b-input
-        aria-labelledby="userprofileform-university"
-        v-model="profile.currentUniversity"
-        :readonly="readonly"
-      ></b-input>
-    </b-field>
-    <b-field id="userprofileform-aboutyou" label="About You">
-      <b-input
-        aria-labelledby="userprofileform-aboutyou"
+        id="userprofileform-about"
         v-model="profile.about"
         type="textarea"
         :readonly="readonly"
       ></b-input>
     </b-field>
     <b-field label="Education">
-      <template v-if="profile.education.length === 0 && readonly">
-        <p tabindex="0">
-          This person does not have any education records listed.
-        </p>
-      </template>
-      <template v-else>
-        <EducationTable :education="profile.education" :readonly="readonly" />
-      </template>
+      <EducationTable :education="profile.education" :readonly="readonly" />
     </b-field>
     <b-field label="Employment History">
-      <template v-if="profile.employment.length === 0 && readonly">
-        <p tabindex="0">
-          This person does not have any employment records listed.
-        </p>
-      </template>
-      <template v-else>
-        <EmploymentTable
-          :employment="profile.employment"
-          :readonly="readonly"
-        />
-      </template>
+      <EmploymentTable :employment="profile.employment" :readonly="readonly" />
     </b-field>
     <b-button label="Save" type="is-primary" @click="save()" v-if="!readonly" />
-  </div>
+  </form>
 </template>
 
 <script>
@@ -81,7 +64,6 @@ export default {
   },
   data() {
     return {
-      fullName: null,
       profile: {
         employment: [],
         education: []
@@ -98,7 +80,6 @@ export default {
   },
   methods: {
     setComponentData(user) {
-      this.fullName = user.fullName;
       this.profile = JSON.parse(JSON.stringify(user.profile));
       delete this.profile.__typename;
       this.profile.employment.forEach(emp => delete emp.__typename);
