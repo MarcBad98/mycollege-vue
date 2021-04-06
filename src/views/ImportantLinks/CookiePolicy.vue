@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h1 tabindex="0">Cookie Policy</h1>
+  <div class="content">
+    <h1 tabindex="0" class="title">Cookie Policy</h1>
     <hr aria-hidden="true" />
     <p tabindex="0">
       This cookie policy ("Policy") describes what cookies are and how and
@@ -31,7 +31,7 @@
         Privacy Policy </a
       >.
     </p>
-    <h2 tabindex="0">What are cookies?</h2>
+    <h2 tabindex="0" class="title is-4">What are cookies?</h2>
     <p tabindex="0">
       Cookies are small pieces of data stored in text files that are saved on
       your computer or other devices when websites are loaded in a browser. They
@@ -56,15 +56,15 @@
       parties can recognize you when you visit our website and also when you
       visit certain other websites.
     </p>
-    <h2 tabindex="0">What type of cookies do we use?</h2>
-    <h3 tabindex="0">Necessary cookies</h3>
+    <h2 tabindex="0" class="title is-4">What type of cookies do we use?</h2>
+    <h3 tabindex="0" class="title is-6">Necessary cookies</h3>
     <p tabindex="0">
       Necessary cookies allow us to offer you the best possible experience when
       accessing and navigating through our Website and using its features. For
       example, these cookies let us recognize that you have created an account
       and have logged into that account to access the content.
     </p>
-    <h2 tabindex="0">What are your cookie options?</h2>
+    <h2 tabindex="0" class="title is-4">What are your cookie options?</h2>
     <p tabindex="0">
       If you don't like the idea of cookies or certain types of cookies, you can
       change your browser's settings to delete cookies that have already been
@@ -79,7 +79,7 @@
       you might not be able to use all of the features the Website and Services
       offer.
     </p>
-    <h2 tabindex="0">Changes and amendments</h2>
+    <h2 tabindex="0" class="title is-4">Changes and amendments</h2>
     <p tabindex="0">
       We reserve the right to modify this Policy or its terms relating to the
       Website and Services at any time, effective upon posting of an updated
@@ -95,7 +95,7 @@
         WebsitePolicies </a
       >.
     </p>
-    <h2 tabindex="0">Acceptance of this policy</h2>
+    <h2 tabindex="0" class="title is-4">Acceptance of this policy</h2>
     <p tabindex="0">
       You acknowledge that you have read this Policy and agree to all its terms
       and conditions. By accessing and using the Website and Services you agree
@@ -103,7 +103,7 @@
       this Policy, you are not authorized to access or use the Website and
       Services.
     </p>
-    <h2 tabindex="0">Contacting us</h2>
+    <h2 tabindex="0" class="title is-4">Contacting us</h2>
     <p tabindex="0">
       If you have any questions about this Policy, please contact us.
     </p>

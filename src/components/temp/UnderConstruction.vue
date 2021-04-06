@@ -1,8 +1,8 @@
 <template>
   <b-notification
+    tabindex="0"
     role="region"
     aria-label="Feature Under Construction"
-    tabindex="0"
     type="is-warning is-light"
     :closable="false"
   >
@@ -16,6 +16,12 @@
   </b-notification>
 </template>
 
+<style scoped>
+.announcement {
+  text-align: center;
+}
+</style>
+
 <script>
 export default {
   name: "UnderConstruction",
@@ -27,9 +33,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-.announcement {
-  text-align: center;
-}
-</style>

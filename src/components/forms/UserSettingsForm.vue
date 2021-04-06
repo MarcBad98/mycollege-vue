@@ -33,7 +33,6 @@
 
 <script>
 import { UpdateUserSettings } from "@/graphql/User.gql";
-
 export default {
   name: "UserSettingsForm",
   props: {

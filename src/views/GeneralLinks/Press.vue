@@ -1,10 +1,10 @@
 <template>
   <div>
-    <h1 tabindex="0">Press</h1>
+    <h1 tabindex="0" class="title">Press</h1>
     <hr aria-hidden="true" />
     <div
       tabindex="0"
-      class="box has-background-light"
+      class="box has-background-primary-light"
       role="region"
       aria-label="Page Summary"
     >
@@ -24,7 +24,6 @@
 
 <script>
 import UnderConstruction from "@/components/temp/UnderConstruction.vue";
-
 export default {
   name: "Press",
   components: {

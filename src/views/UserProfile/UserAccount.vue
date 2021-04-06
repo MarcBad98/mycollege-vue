@@ -1,10 +1,11 @@
 <template>
   <div>
-    <h1 class="title" tabindex="0">Account</h1>
+    <h1 tabindex="0" class="title">Account</h1>
     <hr aria-hidden="true" />
     <div class="columns">
       <div class="column is-one-quarter">
         <b-menu
+          tabindex="0"
           role="menu"
           aria-label="User Account Management"
           class="box has-background-light"

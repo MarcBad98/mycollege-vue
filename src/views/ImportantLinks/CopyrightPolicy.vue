@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h1 tabindex="0">Copyright Policy</h1>
+  <div class="content">
+    <h1 tabindex="0" class="title">Copyright Policy</h1>
     <hr aria-hidden="true" />
     <p tabindex="0">
       This Digital Millennium Copyright Act policy ("Policy") applies to the
@@ -28,7 +28,7 @@
       <a role="link" target="_blank" href="https://www.copyright.gov">website</a
       >.
     </p>
-    <h2 tabindex="0">
+    <h2 tabindex="0" class="title is-4">
       What to consider before submitting a copyright complaint
     </h2>
     <p tabindex="0">
@@ -61,7 +61,7 @@
       </a>
       to report infringing material for you.
     </p>
-    <h2 tabindex="0">Notifications of infringement</h2>
+    <h2 tabindex="0" class="title is-4">Notifications of infringement</h2>
     <p tabindex="0">
       If you are a copyright owner or an agent thereof, and you believe that any
       material available on our Services infringes your copyrights, then you may
@@ -99,7 +99,7 @@
       a DMCA copyright infringement notification if it fails to comply with all
       the requirements of the DMCA for such notifications.
     </p>
-    <h2 tabindex="0">Counter-notifications</h2>
+    <h2 tabindex="0" class="title is-4">Counter-notifications</h2>
     <p tabindex="0">
       A user who receives a copyright infringement Notification may make a
       counter-Notification pursuant to sections 512(g)(2) and (3) of the US
@@ -124,7 +124,7 @@
       with the terms of 17 U.S.C. § 512(g), we may forward it to the person who
       filed the original Notification.
     </p>
-    <h2 tabindex="0">Changes and amendments</h2>
+    <h2 tabindex="0" class="title is-4">Changes and amendments</h2>
     <p tabindex="0">
       We reserve the right to modify this Policy or its terms relating to the
       Website and Services at any time, effective upon posting of an updated
@@ -138,7 +138,7 @@
         WebsitePolicies </a
       >.
     </p>
-    <h2 tabindex="0">Reporting copyright infringement</h2>
+    <h2 tabindex="0" class="title is-4">Reporting copyright infringement</h2>
     <p tabindex="0">
       If you would like to notify us of the infringing material or activity, you
       may send an email to badillam@usf.edu.

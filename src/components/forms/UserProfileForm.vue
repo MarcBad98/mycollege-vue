@@ -43,7 +43,6 @@
 import EducationTable from "@/components/tables/EducationTable.vue";
 import EmploymentTable from "@/components/tables/EmploymentTable.vue";
 import { UpdateUserProfile } from "@/graphql/User.gql";
-
 export default {
   name: "UserProfileForm",
   components: {

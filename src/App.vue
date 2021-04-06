@@ -12,19 +12,12 @@
 <script>
 import NavBar from "@/components/NavBar.vue";
 import { CreateRetrieveUser } from "@/graphql/User.gql";
-
 export default {
   components: {
     NavBar
   },
   mounted() {
     if (this.$keycloak.authenticated) {
-      this.retrieveUser();
-      this.$buefy.snackbar.open("Login successful. Welcome to MyCollege!");
-    }
-  },
-  methods: {
-    retrieveUser() {
       this.$apollo
         .mutate({
           mutation: CreateRetrieveUser,
@@ -35,6 +28,7 @@ export default {
         .then(response => {
           const user = response.data.createRetrieveUser.user;
           this.$store.commit("setUser", user);
+          this.$buefy.snackbar.open("Login successful. Welcome to MyCollege!");
         });
     }
   }

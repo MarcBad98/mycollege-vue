@@ -1,14 +1,16 @@
 <template>
-  <div>
-    <h1 tabindex="0">Accessibility</h1>
+  <div class="content">
+    <h1 tabindex="0" class="title">Accessibility</h1>
     <hr aria-hidden="0" />
-    <h2 tabindex="0">Accessibility Statement for MyCollege</h2>
+    <h2 tabindex="0" class="title is-4">
+      Accessibility Statement for MyCollege
+    </h2>
     <p tabindex="0">
       MyCollege, Inc. is committed to ensuring digital accessibility for people
       with disabilities. We are continually improving the user experience for
       everyone, and applying the relevant accessibility standards.
     </p>
-    <h3 tabindex="0">Conformance status</h3>
+    <h3 tabindex="0" class="title is-6">Conformance status</h3>
     <p tabindex="0">
       The
       <a role="link" href="https://www.w3.org/WAI/standards-guidelines/wcag/">

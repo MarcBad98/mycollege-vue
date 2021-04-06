@@ -81,7 +81,6 @@
 
 <script>
 import EducationModalForm from "@/components/modals/EducationModalForm.vue";
-
 export default {
   name: "EducationTable",
   components: {

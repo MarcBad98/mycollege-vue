@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h1 tabindex="0">Privacy Policy</h1>
+  <div class="content">
+    <h1 tabindex="0" class="title">Privacy Policy</h1>
     <hr aria-hidden="true" />
     <p tabindex="0">
       This privacy policy ("Policy") describes how the personally identifiable
@@ -25,7 +25,7 @@
       we do not own or control, or to individuals that we do not employ or
       manage.
     </p>
-    <h2 tabindex="0">Automatic collection of information</h2>
+    <h2 tabindex="0" class="title is-4">Automatic collection of information</h2>
     <p tabindex="0">
       Our top priority is customer data security and, as such, we exercise the
       no logs policy. We may process only minimal user data, only as much as it
@@ -36,7 +36,7 @@
       aggregated in such a way that would identify any particular user of the
       system.
     </p>
-    <h2 tabindex="0">Collection of personal information</h2>
+    <h2 tabindex="0" class="title is-4">Collection of personal information</h2>
     <p tabindex="0">
       You can access and use the Website and Services without telling us who you
       are or revealing any information by which someone could identify you as a
@@ -65,7 +65,9 @@
       the Website. Users who are uncertain about what information is mandatory
       are welcome to contact us.
     </p>
-    <h2 tabindex="0">Use and processing of collected information</h2>
+    <h2 tabindex="0" class="title is-4">
+      Use and processing of collected information
+    </h2>
     <p tabindex="0">
       In order to make the Website and Services available to you, or to meet a
       legal obligation, we need to collect and use certain Personal Information.
@@ -105,7 +107,7 @@
       Information is a statutory or contractual requirement, or a requirement
       necessary to enter into a contract.
     </p>
-    <h2 tabindex="0">Managing information</h2>
+    <h2 tabindex="0" class="title is-4">Managing information</h2>
     <p tabindex="0">
       You are able to delete certain Personal Information we have about you. The
       Personal Information you can delete may change as the Website and Services
@@ -116,7 +118,7 @@
       Personal Information or permanently delete your account, you can do so by
       contacting us.
     </p>
-    <h2 tabindex="0">Disclosure of information</h2>
+    <h2 tabindex="0" class="title is-4">Disclosure of information</h2>
     <p tabindex="0">
       Depending on the requested Services or as necessary to complete any
       transaction or provide any service you have requested, we may share your
@@ -141,7 +143,7 @@
       is necessary to protect our rights, protect your safety or the safety of
       others, investigate fraud, or respond to a government request.
     </p>
-    <h2 tabindex="0">Retention of information</h2>
+    <h2 tabindex="0" class="title is-4">Retention of information</h2>
     <p tabindex="0">
       We will retain and use your Personal Information for the period necessary
       to comply with our legal obligations, resolve disputes, and enforce our
@@ -154,7 +156,7 @@
       portability cannot be enforced after the expiration of the retention
       period.
     </p>
-    <h2 tabindex="0">Transfer of information</h2>
+    <h2 tabindex="0" class="title is-4">Transfer of information</h2>
     <p tabindex="0">
       Depending on your location, data transfers may involve transferring and
       storing your information in a country other than your own. You are
@@ -166,7 +168,7 @@
       by checking the relevant sections of this Policy or inquire with us using
       the information provided in the contact section.
     </p>
-    <h2 tabindex="0">The rights of users</h2>
+    <h2 tabindex="0" class="title is-4">The rights of users</h2>
     <p tabindex="0">
       You may exercise certain rights regarding your information processed by
       us. In particular, you have the right to do the following: (i) you have
@@ -189,7 +191,7 @@
       automated means and that the processing is based on your consent, on a
       contract which you are part of or on pre-contractual obligations thereof.
     </p>
-    <h2 tabindex="0">The right to object to processing</h2>
+    <h2 tabindex="0" class="title is-4">The right to object to processing</h2>
     <p tabindex="0">
       Where Personal Information is processed for the public interest, in the
       exercise of an official authority vested in us or for the purposes of the
@@ -197,7 +199,7 @@
       providing a ground related to your particular situation to justify the
       objection.
     </p>
-    <h2 tabindex="0">Data protection rights under GDPR</h2>
+    <h2 tabindex="0" class="title is-4">Data protection rights under GDPR</h2>
     <p tabindex="0">
       If you are a resident of the European Economic Area (EEA), you have
       certain data protection rights and the Operator aims to take reasonable
@@ -245,7 +247,7 @@
       please contact your local data protection authority in the European
       Economic Area (EEA).
     </p>
-    <h2 tabindex="0">California privacy rights</h2>
+    <h2 tabindex="0" class="title is-4">California privacy rights</h2>
     <p tabindex="0">
       In addition to the rights as explained in this Policy, California
       residents who provide Personal Information (as defined in the statute) to
@@ -259,7 +261,7 @@
       will receive information about the prior year). To obtain this information
       please contact us.
     </p>
-    <h2 tabindex="0">How to exercise these rights</h2>
+    <h2 tabindex="0" class="title is-4">How to exercise these rights</h2>
     <p tabindex="0">
       Any requests to exercise your rights can be directed to the Operator
       through the contact details provided in this document. Please note that we
@@ -272,7 +274,7 @@
       unless we first verify your identity or authority to make such a request
       and confirm that the Personal Information relates to you.
     </p>
-    <h2 tabindex="0">Privacy of children</h2>
+    <h2 tabindex="0" class="title is-4">Privacy of children</h2>
     <p tabindex="0">
       We do not knowingly collect any Personal Information from children under
       the age of 18. If you are under the age of 18, please do not submit any
@@ -286,7 +288,7 @@
       the processing of your Personal Information in your country (in some
       countries we may allow your parent or guardian to do so on your behalf).
     </p>
-    <h2 tabindex="0">Cookies</h2>
+    <h2 tabindex="0" class="title is-4">Cookies</h2>
     <p tabindex="0">
       The Website and Services use "cookies" to help personalize your online
       experience. A cookie is a text file that is placed on your hard disk by a
@@ -306,7 +308,7 @@
         internetcookies.org
       </a>
     </p>
-    <h2 tabindex="0">Do Not Track signals</h2>
+    <h2 tabindex="0" class="title is-4">Do Not Track signals</h2>
     <p tabindex="0">
       Some browsers incorporate a Do Not Track feature that signals to websites
       you visit that you do not want to have your online activity tracked.
@@ -320,7 +322,7 @@
       described in more detail throughout this Policy, we limit our use and
       collection of your personal information.
     </p>
-    <h2 tabindex="0">Links to other resources</h2>
+    <h2 tabindex="0" class="title is-4">Links to other resources</h2>
     <p tabindex="0">
       The Website and Services contain links to other resources that are not
       owned or controlled by us. Please be aware that we are not responsible for
@@ -329,7 +331,7 @@
       read the privacy statements of each and every resource that may collect
       Personal Information.
     </p>
-    <h2 tabindex="0">Information security</h2>
+    <h2 tabindex="0" class="title is-4">Information security</h2>
     <p tabindex="0">
       We secure information you provide on computer servers in a controlled,
       secure environment, protected from unauthorized access, use, or
@@ -345,7 +347,7 @@
       and (iii) any such information and data may be viewed or tampered with in
       transit by a third party, despite best efforts.
     </p>
-    <h2 tabindex="0">Data breach</h2>
+    <h2 tabindex="0" class="title is-4">Data breach</h2>
     <p tabindex="0">
       In the event we become aware that the security of the Website and Services
       has been compromised or users Personal Information has been disclosed to
@@ -359,7 +361,7 @@
       or if notice is otherwise required by law. When we do, we will post a
       notice on the Website, send you an email.
     </p>
-    <h2 tabindex="0">Changes and amendments</h2>
+    <h2 tabindex="0" class="title is-4">Changes and amendments</h2>
     <p tabindex="0">
       We reserve the right to modify this Policy or its terms relating to the
       Website and Services from time to time in our discretion and will notify
@@ -383,7 +385,7 @@
         WebsitePolicies</a
       >.
     </p>
-    <h2 tabindex="0">Acceptance of this policy</h2>
+    <h2 tabindex="0" class="title is-4">Acceptance of this policy</h2>
     <p tabindex="0">
       You acknowledge that you have read this Policy and agree to all its terms
       and conditions. By accessing and using the Website and Services you agree
@@ -391,7 +393,7 @@
       this Policy, you are not authorized to access or use the Website and
       Services.
     </p>
-    <h2 tabindex="0">Contacting us</h2>
+    <h2 tabindex="0" class="title is-4">Contacting us</h2>
     <p tabindex="0">
       If you have any questions about this Policy, please contact us.
     </p>

@@ -81,7 +81,6 @@
 
 <script>
 import EmploymentModalForm from "@/components/modals/EmploymentModalForm.vue";
-
 export default {
   name: "EmploymentTable",
   components: {

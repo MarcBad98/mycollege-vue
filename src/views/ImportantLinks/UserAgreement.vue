@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h1 tabindex="0">User Agreement</h1>
+  <div class="content">
+    <h1 tabindex="0" class="title">User Agreement</h1>
     <hr aria-hidden="true" />
     <p tabindex="0">
       These terms and conditions ("Agreement") set forth the general terms and
@@ -29,7 +29,7 @@
       not physically signed by you, and it governs your use of the Website and
       Services.
     </p>
-    <h2 tabindex="0">Accounts and membership</h2>
+    <h2 tabindex="0" class="title is-4">Accounts and membership</h2>
     <p tabindex="0">
       If you create an account on the Website, you are responsible for
       maintaining the security of your account and you are fully responsible for
@@ -48,7 +48,7 @@
       re-register for our Services. We may block your email address and Internet
       protocol address to prevent further registration.
     </p>
-    <h2 tabindex="0">User content</h2>
+    <h2 tabindex="0" class="title is-4">User content</h2>
     <p tabindex="0">
       We do not own any data, information or material (collectively, "Content")
       that you submit on the Website in the course of using the Service. You
@@ -68,7 +68,7 @@
       or stored in your user account for commercial, marketing or any similar
       purpose.
     </p>
-    <h2 tabindex="0">Backups</h2>
+    <h2 tabindex="0" class="title is-4">Backups</h2>
     <p tabindex="0">
       We are not responsible for the Content residing on the Website. In no
       event shall we be held liable for any loss of any Content. It is your sole
@@ -79,7 +79,7 @@
       time when we may have backed up data for our own purposes. We make no
       guarantee that the data you need will be available.
     </p>
-    <h2 tabindex="0">Links to other resources</h2>
+    <h2 tabindex="0" class="title is-4">Links to other resources</h2>
     <p tabindex="0">
       Although the Website and Services may link to other resources (such as
       websites, mobile applications, etc.), we are not, directly or indirectly,
@@ -94,7 +94,7 @@
       Services. Your linking to any other off-site resources is at your own
       risk.
     </p>
-    <h2 tabindex="0">Changes and amendments</h2>
+    <h2 tabindex="0" class="title is-4">Changes and amendments</h2>
     <p tabindex="0">
       We reserve the right to modify this Agreement or its terms relating to the
       Website and Services at any time, effective upon posting of an updated
@@ -110,7 +110,7 @@
         WebsitePolicies</a
       >.
     </p>
-    <h2 tabindex="0">Acceptance of these terms</h2>
+    <h2 tabindex="0" class="title is-4">Acceptance of these terms</h2>
     <p tabindex="0">
       You acknowledge that you have read this Agreement and agree to all its
       terms and conditions. By accessing and using the Website and Services you
@@ -118,7 +118,7 @@
       terms of this Agreement, you are not authorized to access or use the
       Website and Services.
     </p>
-    <h2 tabindex="0">Contacting us</h2>
+    <h2 tabindex="0" class="title is-4">Contacting us</h2>
     <p tabindex="0">
       If you have any questions about this Agreement, please contact us.
     </p>

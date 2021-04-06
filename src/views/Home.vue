@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h1 tabindex="0">Welcome to MyCollege!</h1>
+  <div class="content">
+    <h1 tabindex="0" class="title">Welcome to MyCollege!</h1>
     <hr aria-hidden="true" />
     <p tabindex="0">
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec et eros
@@ -16,7 +16,7 @@
     </p>
     <div
       tabindex="0"
-      class="box has-background-light"
+      class="box has-background-primary-light"
       role="region"
       aria-label="Success Story"
     >
@@ -48,21 +48,26 @@
       </p>
       <p class="author-name">
         <i>
-          Marc Gabriel N. Badilla
+          Nulla id odio vitae
           <br />
-          2021 undergraduate recently hired as an application developer
+          Mauris viverra risus eget urna imperdiet lobortis.
         </i>
       </p>
     </div>
-    <h2 tabindex="0">Why Use MyCollege?</h2>
+    <h2 tabindex="0" class="title is-4">Why Use MyCollege?</h2>
     <hr aria-hidden="true" />
     <UnderConstruction feature="Video: Why Use MyCollege?" />
   </div>
 </template>
 
+<style scoped>
+.author-name {
+  text-align: right;
+}
+</style>
+
 <script>
 import UnderConstruction from "@/components/temp/UnderConstruction.vue";
-
 export default {
   name: "Home",
   components: {
@@ -70,9 +75,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-.author-name {
-  text-align: right;
-}
-</style>
