@@ -1,13 +1,15 @@
 <template>
   <div>
     <div class="buttons" v-if="!readonly">
-      <b-button
-        label="Add Employment"
-        type="is-primary"
-        size="is-small"
-        icon-left="plus"
-        @click="openModal('Create', {})"
-      ></b-button>
+      <b-tooltip label="Add Employment" type="is-primary">
+        <b-button
+          aria-label="Add Employment"
+          type="is-primary"
+          size="is-small"
+          icon-left="plus"
+          @click="openModal('Create', {})"
+        ></b-button>
+      </b-tooltip>
     </div>
     <b-table :data="employment" :selected.sync="selected" focusable>
       <b-table-column label="Title" width="20%" v-slot="props">
