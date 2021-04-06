@@ -180,7 +180,11 @@
           </p>
         </b-field>
       </b-navbar-item>
-      <b-navbar-dropdown label="Anonymous User" v-if="!$keycloak.authenticated">
+      <b-navbar-dropdown
+        label="Anonymous User"
+        hoverable
+        v-if="!$keycloak.authenticated"
+      >
         <b-navbar-item tag="div">
           <div class="buttons">
             <b-button
@@ -200,7 +204,11 @@
           </div>
         </b-navbar-item>
       </b-navbar-dropdown>
-      <b-navbar-dropdown :label="$keycloak.userName" v-else>
+      <b-navbar-dropdown
+        :label="$keycloak.userName"
+        hoverable
+        v-else-if="$keycloak.authenticated"
+      >
         <b-navbar-item
           tag="router-link"
           :to="{ name: 'ProfileView' }"
