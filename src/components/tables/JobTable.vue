@@ -52,7 +52,7 @@
         </b-radio-button>
       </b-field>
     </b-field>
-    <b-table :data="filteredJobs">
+    <b-table :data="filteredJobs" :selected.sync="selected" focusable>
       <b-table-column label="Title" width="25%" v-slot="props">
         {{ props.row.title }}
         <b-taglist>
@@ -80,6 +80,7 @@
         <div class="b-tooltips">
           <b-tooltip label="View Job" type="is-info">
             <b-button
+              :tabindex="tabindex(props.row)"
               aria-label="View Job"
               type="is-info"
               size="is-small"
@@ -93,6 +94,7 @@
             v-if="props.row.metadata.userIsPoster"
           >
             <b-button
+              :tabindex="tabindex(props.row)"
               aria-label="Update Job"
               type="is-warning"
               size="is-small"
@@ -106,6 +108,7 @@
             v-if="props.row.metadata.userIsPoster"
           >
             <b-button
+              :tabindex="tabindex(props.row)"
               aria-label="Delete Job"
               type="is-danger"
               size="is-small"
@@ -119,6 +122,7 @@
             v-if="!props.row.metadata.userIsPoster && $keycloak.authenticated"
           >
             <b-button
+              :tabindex="tabindex(props.row)"
               aria-label="Save Job"
               type="is-warning"
               size="is-small"
@@ -134,6 +138,7 @@
             v-if="!props.row.metadata.userIsPoster && $keycloak.authenticated"
           >
             <b-button
+              :tabindex="tabindex(props.row)"
               aria-label="Apply"
               type="is-info"
               size="is-small"
@@ -181,7 +186,8 @@ export default {
   },
   data() {
     return {
-      filter: "no-filter"
+      filter: "no-filter",
+      selected: {}
     };
   },
   computed: {
@@ -233,6 +239,9 @@ export default {
             `Job successfully ${isSave ? "starred" : "un-starred"}!`
           );
         });
+    },
+    tabindex(job) {
+      return job.id === this.selected.id ? "0" : "-1";
     }
   }
 };
