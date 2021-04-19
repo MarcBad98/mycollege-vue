@@ -2,29 +2,33 @@
   <GenericCardModal ref="generic" topic="Job Application" @submit="submit()">
     <div class="columns">
       <div class="column">
-        <b-field id="jobapplicationmodalform-graddate" label="Graduation Date">
+        <b-field
+          label="Graduation Date"
+          label-for="jobapplicationmodalform-graddate"
+        >
           <b-datepicker
-            aria-labelledby="jobapplicationmodalform-graddate"
+            id="jobapplicationmodalform-graddate"
             v-model="application.dateGraduated"
             icon="calendar-today"
-          >
-          </b-datepicker>
+          ></b-datepicker>
         </b-field>
       </div>
       <div class="column">
-        <b-field id="jobapplicationmodalform-startdate" label="Start Date">
+        <b-field
+          label="Start Date"
+          label-for="jobapplicationmodalform-startdate"
+        >
           <b-datepicker
-            aria-labelledby="jobapplicationmodalform-startdate"
+            id="jobapplicationmodalform-startdate"
             v-model="application.dateStart"
             icon="calendar-today"
-          >
-          </b-datepicker>
+          ></b-datepicker>
         </b-field>
       </div>
     </div>
-    <b-field id="jobapplicationmodalform-reason" label="Reason">
+    <b-field label="Reason" label-for="jobapplicationmodalform-reason">
       <b-input
-        aria-labelledby="jobapplicationmodalform-reason"
+        id="jobapplicationmodalform-reason"
         v-model="application.reason"
         type="textarea"
       ></b-input>
@@ -34,8 +38,7 @@
 
 <script>
 import GenericCardModal from "@/components/generic/GenericCardModal.vue";
-import { SendJobApplication } from "@/graphql/Job.gql";
-
+import { UpdateJob } from "@/graphql/Job.gql";
 export default {
   name: "JobModalForm",
   components: {
@@ -43,8 +46,8 @@ export default {
   },
   data() {
     return {
-      disabled: false,
       jobId: null,
+      jobPoster: null,
       application: {}
     };
   },
@@ -52,30 +55,33 @@ export default {
     open(options) {
       this.$refs.generic.open(options);
       this.jobId = options.jobId;
+      this.jobPoster = options.jobPoster;
     },
     submit() {
+      const fmt = "YYYY-MM-DD";
       this.application.applicant = this.$keycloak.subject;
       this.application.dateGraduated = this.moment(
         this.application.dateGraduated
-      ).format("YYYY-MM-DD");
+      ).format(fmt);
       this.application.dateStart = this.moment(
         this.application.dateStart
-      ).format("YYYY-MM-DD");
+      ).format(fmt);
       this.$apollo
         .mutate({
-          mutation: SendJobApplication,
+          mutation: UpdateJob,
           variables: {
-            jobId: this.jobId,
-            inputs: this.application
+            keycloakUserId: this.$keycloak.subject,
+            inputs: {
+              id: this.jobId,
+              poster: this.jobPoster,
+              addJobApplication: this.application
+            }
           }
         })
         .then(response => {
-          const job = response.data.sendJobApplication.job;
-          delete job.__typename;
+          const job = response.data.updateJob.job;
           this.$store.commit("updateJob", job);
-          this.$buefy.snackbar.open(
-            "Your job application was successfully saved!"
-          );
+          this.$buefy.snackbar.open("Your application was successfully sent!");
         });
       this.application = {};
     }

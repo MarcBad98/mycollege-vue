@@ -1,5 +1,5 @@
-query SearchUsers ($keyword: String!) {
-  searchUsers (search: $keyword) {
+query SearchUsers($keyword: String!) {
+  searchUsers(search: $keyword) {
     keycloakUserId
     profile {
       fullName
@@ -9,32 +9,48 @@ query SearchUsers ($keyword: String!) {
   }
 }
 
-mutation CreateRetrieveUser ($keycloakUserId: String!) {
-  createRetrieveUser (inputs: {
-		keycloakUserId: $keycloakUserId
-  }) {
-    user {
-			...UserData
-    }
-  }
-}
-
-mutation UpdateUserProfile ($keycloakUserId: String!, $profile: UserProfileInputType) {
-  updateUser (inputs: {
-		keycloakUserId: $keycloakUserId
-    profile: $profile
-  }) {
+mutation CreateRetrieveUser($keycloakUserId: String!) {
+  createRetrieveUser(inputs: { keycloakUserId: $keycloakUserId }) {
     user {
       ...UserData
     }
   }
 }
 
-mutation UpdateUserSettings ($keycloakUserId: String!, $settings: UserSettingsInputType) {
-  updateUser (inputs: {
-		keycloakUserId: $keycloakUserId
-    settings: $settings
-  }) {
+mutation UpdateUserProfile(
+  $keycloakUserId: String!
+  $profile: UserProfileInputType
+) {
+  updateUser(inputs: { keycloakUserId: $keycloakUserId, profile: $profile }) {
+    user {
+      ...UserData
+    }
+  }
+}
+
+mutation UpdateUserSettings(
+  $keycloakUserId: String!
+  $settings: UserSettingsInputType
+) {
+  updateUser(inputs: { keycloakUserId: $keycloakUserId, settings: $settings }) {
+    user {
+      ...UserData
+    }
+  }
+}
+
+mutation UpdateUserSaveJob($keycloakUserId: String!, $saveJob: String!) {
+  updateUser(inputs: { keycloakUserId: $keycloakUserId, saveJob: $saveJob }) {
+    user {
+      ...UserData
+    }
+  }
+}
+
+mutation UpdateUserUnsaveJob($keycloakUserId: String!, $unsaveJob: String) {
+  updateUser(
+    inputs: { keycloakUserId: $keycloakUserId, unsaveJob: $unsaveJob }
+  ) {
     user {
       ...UserData
     }

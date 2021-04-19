@@ -44,6 +44,10 @@ export default new Vuex.Store({
     deleteJob(state, job) {
       const idx = state.jobs.findIndex(storeJob => storeJob.id === job.id);
       state.jobs.splice(idx, 1);
+    },
+    starJob(state, jobId) {
+      const job = state.jobs.find(storeJob => storeJob.id === jobId);
+      job.metadata.userHasSaved = !job.metadata.userHasSaved;
     }
   },
   actions: {},

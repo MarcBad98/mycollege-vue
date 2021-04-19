@@ -1,55 +1,70 @@
 <template>
   <div>
-    <div class="buttons">
-      <b-button
-        label="Add"
-        type="is-primary"
-        size="is-small"
-        icon-left="plus"
-        @click="openModal('Create', {})"
-      />
-    </div>
-    <b-field>
-      <b-radio-button
-        v-model="filter"
-        native-value="no filter"
-        type="is-light"
-        size="is-small"
-      >
-        No Filter
-      </b-radio-button>
-      <b-radio-button
-        v-model="filter"
-        native-value="ownership"
-        type="is-success"
-        size="is-small"
-      >
-        Your Jobs
-      </b-radio-button>
-      <b-radio-button
-        v-model="filter"
-        native-value="saved"
-        type="is-info"
-        size="is-small"
-      >
-        Saved
-      </b-radio-button>
-      <b-radio-button
-        v-model="filter"
-        native-value="applied"
-        type="is-info"
-        size="is-small"
-      >
-        Applied
-      </b-radio-button>
+    <b-field grouped>
+      <b-field>
+        <b-tooltip label="Add Job" type="is-primary">
+          <b-button
+            aria-label="Add Job"
+            type="is-primary"
+            size="is-small"
+            icon-left="plus"
+            @click="openModal('Create', {})"
+            :disabled="!$keycloak.authenticated"
+          ></b-button>
+        </b-tooltip>
+      </b-field>
+      <b-field expanded>
+        <b-radio-button
+          v-model="filter"
+          native-value="no-filter"
+          type="is-light"
+          size="is-small"
+          expanded
+        >
+          No Filter
+        </b-radio-button>
+        <b-radio-button
+          v-model="filter"
+          native-value="ownership"
+          type="is-success"
+          size="is-small"
+          expanded
+        >
+          Your Jobs
+        </b-radio-button>
+        <b-radio-button
+          v-model="filter"
+          native-value="applied"
+          type="is-info"
+          size="is-small"
+          expanded
+        >
+          Applied
+        </b-radio-button>
+        <b-radio-button
+          v-model="filter"
+          native-value="saved"
+          type="is-warning"
+          size="is-small"
+          expanded
+        >
+          Saved
+        </b-radio-button>
+      </b-field>
     </b-field>
     <b-table :data="filteredJobs">
       <b-table-column label="Title" width="25%" v-slot="props">
         {{ props.row.title }}
         <b-taglist>
-          <b-tag type="is-success" v-if="isPoster(props.row)"> Your Job </b-tag>
-          <b-tag type="is-info" v-if="!isSave(props.row)"> Saved </b-tag>
-          <b-tag type="is-info" v-if="hasApplied(props.row)"> Applied </b-tag>
+          <b-tag type="is-success" v-if="props.row.metadata.userIsPoster">
+            Your Job
+          </b-tag>
+          <b-tag type="is-info" v-if="props.row.metadata.userIsApplicant">
+            Applied
+          </b-tag>
+          <b-tag type="is-warning" v-if="props.row.metadata.userHasSaved">
+            Saved
+          </b-tag>
         </b-taglist>
       </b-table-column>
       <b-table-column label="Employer" width="20%" v-slot="props">
@@ -62,47 +77,71 @@
         {{ props.row.salary }}
       </b-table-column>
       <b-table-column label="Actions" width="25%" v-slot="props">
-        <div class="buttons">
-          <b-button
-            label="View"
-            type="is-info"
-            size="is-small"
-            icon-left="eye"
-            @click="openModal('Read', props.row)"
-          />
-          <b-button
-            label="Update"
+        <div class="b-tooltips">
+          <b-tooltip label="View Job" type="is-info">
+            <b-button
+              aria-label="View Job"
+              type="is-info"
+              size="is-small"
+              icon-left="eye"
+              @click="openModal('Read', props.row)"
+            ></b-button>
+          </b-tooltip>
+          <b-tooltip
+            label="Update Job"
             type="is-warning"
-            size="is-small"
-            icon-left="pencil"
-            @click="openModal('Update', props.row)"
-            v-if="isPoster(props.row)"
-          />
-          <b-button
-            label="Delete"
+            v-if="props.row.metadata.userIsPoster"
+          >
+            <b-button
+              aria-label="Update Job"
+              type="is-warning"
+              size="is-small"
+              icon-left="pencil"
+              @click="openModal('Update', props.row)"
+            ></b-button>
+          </b-tooltip>
+          <b-tooltip
+            label="Delete Job"
             type="is-danger"
-            size="is-small"
-            icon-left="delete"
-            @click="openModal('Delete', props.row)"
-            v-if="isPoster(props.row)"
-          />
-          <b-button
-            label="Save"
-            type="is-info"
-            size="is-small"
-            :icon-left="isSave(props.row) ? 'star-check' : 'star-remove'"
-            @click="starJob(props.row)"
-            v-if="!isPoster(props.row)"
-          />
-          <b-button
+            v-if="props.row.metadata.userIsPoster"
+          >
+            <b-button
+              aria-label="Delete Job"
+              type="is-danger"
+              size="is-small"
+              icon-left="delete"
+              @click="openModal('Delete', props.row)"
+            ></b-button>
+          </b-tooltip>
+          <b-tooltip
+            label="Star Job"
+            type="is-warning"
+            v-if="!props.row.metadata.userIsPoster && $keycloak.authenticated"
+          >
+            <b-button
+              aria-label="Save Job"
+              type="is-warning"
+              size="is-small"
+              :icon-left="
+                props.row.metadata.userHasSaved ? 'star-check' : 'star-remove'
+              "
+              @click="starJob(props.row)"
+            ></b-button>
+          </b-tooltip>
+          <b-tooltip
             label="Apply"
             type="is-info"
-            size="is-small"
-            icon-left="email"
-            @click="openApplication(props.row)"
-            v-if="!isPoster(props.row)"
-            :disabled="hasApplied(props.row)"
-          />
+            v-if="!props.row.metadata.userIsPoster && $keycloak.authenticated"
+          >
+            <b-button
+              aria-label="Apply"
+              type="is-info"
+              size="is-small"
+              icon-left="email"
+              @click="openApplication(props.row)"
+              :disabled="props.row.metadata.userIsApplicant"
+            ></b-button>
+          </b-tooltip>
         </div>
       </b-table-column>
     </b-table>
@@ -111,11 +150,21 @@
   </div>
 </template>
 
+<style lang="scss" scoped>
+.b-tooltips {
+  .b-tooltip:not(:last-child) {
+    margin-right: 0.5em;
+  }
+  .b-tooltip {
+    margin-bottom: 0.5em;
+  }
+}
+</style>
+
 <script>
 import JobModalForm from "@/components/modals/JobModalForm.vue";
 import JobApplicationModalForm from "@/components/modals/JobApplicationModalForm.vue";
-import { ToggleSaveJob } from "@/graphql/Job.gql";
-
+import { UpdateUserSaveJob, UpdateUserUnsaveJob } from "@/graphql/User.gql";
 export default {
   name: "JobTable",
   components: {
@@ -132,30 +181,17 @@ export default {
   },
   data() {
     return {
-      filter: "no filter"
+      filter: "no-filter"
     };
   },
   computed: {
     filteredJobs() {
       if (this.filter === "ownership") {
-        return this.jobs.filter(
-          job => job.poster.keycloakUserId === this.$keycloak.subject
-        );
-      } else if (this.filter === "saved") {
-        return this.jobs.filter(
-          job =>
-            job.savedBy.find(
-              user => user.keycloakUserId === this.$keycloak.subject
-            ) !== undefined
-        );
+        return this.jobs.filter(job => job.metadata.userIsPoster);
       } else if (this.filter === "applied") {
-        return this.jobs.filter(
-          job =>
-            job.applications.find(
-              application =>
-                application.applicant.keycloakUserId === this.$keycloak.subject
-            ) !== undefined
-        );
+        return this.jobs.filter(job => job.metadata.userIsApplicant);
+      } else if (this.filter === "saved") {
+        return this.jobs.filter(job => job.metadata.userHasSaved);
       } else return this.jobs;
     }
   },
@@ -170,49 +206,33 @@ export default {
       });
     },
     openApplication(form) {
-      const hasApplied = this.hasApplied(form);
       this.$refs.application.open({
-        isCreate: !hasApplied,
-        jobId: form.id
+        isCreate: true,
+        jobId: form.id,
+        jobPoster: form.poster
       });
     },
     starJob(form) {
-      const isSave = this.isSave(form);
+      const isSave = !form.metadata.userHasSaved;
+      const variables = { keycloakUserId: this.$keycloak.subject };
+      if (isSave) {
+        variables.saveJob = form.id;
+      } else {
+        variables.unsaveJob = form.id;
+      }
       this.$apollo
         .mutate({
-          mutation: ToggleSaveJob,
-          variables: {
-            keycloakUserId: this.$keycloak.subject,
-            jobId: form.id,
-            isSave: isSave
-          }
+          mutation: isSave ? UpdateUserSaveJob : UpdateUserUnsaveJob,
+          variables: variables
         })
         .then(response => {
-          const job = response.data.toggleSaveJob.job;
-          delete job.__typename;
-          this.$store.commit("updateJob", job);
+          const user = response.data.updateUser.user;
+          this.$store.commit("setUser", user);
+          this.$store.commit("starJob", form.id);
           this.$buefy.snackbar.open(
             `Job successfully ${isSave ? "starred" : "un-starred"}!`
           );
         });
-    },
-    isPoster(form) {
-      return form.poster.keycloakUserId === this.$keycloak.subject;
-    },
-    isSave(form) {
-      return (
-        form.savedBy.find(
-          user => user.keycloakUserId === this.$keycloak.subject
-        ) === undefined
-      );
-    },
-    hasApplied(form) {
-      return (
-        form.applications.find(
-          application =>
-            application.applicant.keycloakUserId === this.$keycloak.subject
-        ) !== undefined
-      );
     }
   }
 };

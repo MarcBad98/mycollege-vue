@@ -17,7 +17,10 @@ export default {
   mounted() {
     this.$apollo
       .mutate({
-        mutation: RetrieveJobs
+        mutation: RetrieveJobs,
+        variables: {
+          keycloakUserId: this.keycloakUserId
+        }
       })
       .then(response => {
         const jobs = response.data.getJobs;
@@ -27,6 +30,9 @@ export default {
   computed: {
     jobs() {
       return this.$store.state.jobs;
+    },
+    keycloakUserId() {
+      return this.$keycloak.authenticated ? this.$keycloak.subject : "";
     }
   }
 };

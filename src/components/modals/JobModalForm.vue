@@ -1,40 +1,46 @@
 <template>
   <GenericCardModal ref="generic" topic="Job" @submit="submit()">
-    <b-field id="jobmodalform-title" label="Title">
+    <b-field label="Title" label-for="jobmodalform-title">
       <b-input
-        aria-labelledby="jobmodalform-title"
+        id="jobmodalform-title"
         v-model="job.title"
         :disabled="disabled"
         :readonly="readonly"
       ></b-input>
     </b-field>
-    <b-field id="jobmodalform-employer" label="Employer">
+    <div class="columns">
+      <div class="column">
+        <b-field label="Employer" label-for="jobmodalform-employer">
+          <b-input
+            id="jobmodalform-employer"
+            v-model="job.employer"
+            :disabled="disabled"
+            :readonly="readonly"
+          ></b-input>
+        </b-field>
+      </div>
+      <div class="column">
+        <b-field label="Location" label-for="jobmodalform-location">
+          <b-input
+            id="jobmodalform-location"
+            v-model="job.location"
+            :disabled="disabled"
+            :readonly="readonly"
+          ></b-input>
+        </b-field>
+      </div>
+    </div>
+    <b-field label="Salary" label-for="jobmodalform-salary">
       <b-input
-        aria-labelledby="jobmodalform-employer"
-        v-model="job.employer"
-        :disabled="disabled"
-        :readonly="readonly"
-      ></b-input>
-    </b-field>
-    <b-field id="jobmodalform-location" label="Location">
-      <b-input
-        aria-labelledby="jobmodalform-location"
-        v-model="job.location"
-        :disabled="disabled"
-        :readonly="readonly"
-      ></b-input>
-    </b-field>
-    <b-field id="jobmodalform-salary" label="Salary">
-      <b-input
-        aria-labelledby="jobmodalform-salary"
+        id="jobmodalform-salary"
         v-model="job.salary"
         :disabled="disabled"
         :readonly="readonly"
       ></b-input>
     </b-field>
-    <b-field id="jobmodalform-description" label="Description">
+    <b-field label="Description" label-for="jobmodalform-description">
       <b-input
-        aria-labelledby="jobmodalform-description"
+        id="jobmodalform-description"
         v-model="job.description"
         type="textarea"
         :disabled="disabled"
@@ -47,7 +53,6 @@
 <script>
 import GenericCardModal from "@/components/generic/GenericCardModal.vue";
 import { CreateJob, UpdateJob, DeleteJob } from "@/graphql/Job.gql";
-
 export default {
   name: "JobModalForm",
   components: {
@@ -80,36 +85,32 @@ export default {
       this.readonly = options.isRead === true;
       this.disabled = options.isDelete === true;
       const obj = JSON.parse(JSON.stringify(options.form));
-      delete obj.poster;
-      delete obj.savedBy;
-      delete obj.applications;
+      delete obj.__typename;
+      delete obj.postedOn;
+      delete obj.metadata;
+      if (this.isCreate) obj.poster = this.$keycloak.subject;
       this.job = obj;
     },
     submit() {
-      if (this.isCreate) this.job.poster = this.$keycloak.subject;
       this.$apollo
         .mutate({
           mutation: this.op,
           variables: {
+            keycloakUserId: this.$keycloak.subject,
             inputs: this.job
           }
         })
         .then(response => {
           if (this.isCreate) {
             const job = response.data.createJob.job;
-            delete job.__typename;
             this.$store.commit("createJob", job);
             this.$buefy.snackbar.open("Your job was successfully created!");
-          }
-          if (this.isUpdate) {
+          } else if (this.isUpdate) {
             const job = response.data.updateJob.job;
-            delete job.__typename;
             this.$store.commit("updateJob", job);
             this.$buefy.snackbar.open("Your job was successfully updated!");
-          }
-          if (this.isDelete) {
+          } else if (this.isDelete) {
             const job = response.data.deleteJob.job;
-            delete job.__typename;
             this.$store.commit("deleteJob", job);
             this.$buefy.snackbar.open("Your job was successfully deleted!");
           }

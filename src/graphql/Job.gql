@@ -1,50 +1,27 @@
-query RetrieveJobs {
+query RetrieveJobs($keycloakUserId: String!) {
   getJobs {
     ...JobData
   }
 }
 
-mutation CreateJob ($inputs: JobInputType!) {
-  createJob (inputs: $inputs) {
+mutation CreateJob($keycloakUserId: String!, $inputs: JobInputType!) {
+  createJob(inputs: $inputs) {
     job {
       ...JobData
     }
   }
 }
 
-mutation UpdateJob ($inputs: JobInputType!) {
-  updateJob (inputs: $inputs) {
+mutation UpdateJob($keycloakUserId: String!, $inputs: JobInputType!) {
+  updateJob(inputs: $inputs) {
     job {
       ...JobData
     }
   }
 }
 
-mutation DeleteJob ($inputs: JobInputType!) {
-  deleteJob (inputs: $inputs) {
-    job {
-      ...JobData
-    }
-  }
-}
-
-mutation ToggleSaveJob ($keycloakUserId: String!, $jobId: String!, $isSave: Boolean!) {
-  toggleSaveJob (
-    keycloakUserId: $keycloakUserId
-    jobId: $jobId
-    isSave: $isSave
-  ) {
-    job {
-      ...JobData
-    }
-  }
-}
-
-mutation SendJobApplication ($jobId: String!, $inputs: JobApplicationInputType!) {
-  sendJobApplication (
-    jobId: $jobId
-    inputs: $inputs
-  ) {
+mutation DeleteJob($keycloakUserId: String!, $inputs: JobInputType!) {
+  deleteJob(inputs: $inputs) {
     job {
       ...JobData
     }
@@ -53,27 +30,23 @@ mutation SendJobApplication ($jobId: String!, $inputs: JobApplicationInputType!)
 
 fragment JobData on JobType {
   id
-  poster {
-    keycloakUserId
-  }
+  postedOn
+  poster
   title
   employer
   location
   salary
   description
-  savedBy {
-    keycloakUserId
+  # applications {
+  #   appliedOn
+  #   applicant
+  #   dateGraduated
+  #   dateStart
+  #   reason
+  # }
+  metadata(keycloakUserId: $keycloakUserId) {
+    userIsPoster
+    userIsApplicant
+    userHasSaved
   }
-  applications {
-    ...JobApplicationData
-  }
-}
-
-fragment JobApplicationData on JobApplicationType {
-  applicant {
-    keycloakUserId
-  }
-  dateGraduated
-  dateStart
-  reason
 }
