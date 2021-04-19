@@ -61,6 +61,20 @@
             "
           ></b-button>
         </b-tooltip>
+        <b-tooltip
+          label="Revoke Friendship"
+          type="is-danger"
+          v-if="props.row.metadata.userIsConfirmedFriend"
+        >
+          <b-button
+            :tabindex="tabindex(props.row)"
+            aria-label="Revoke Friendship"
+            type="is-danger"
+            size="is-small"
+            icon-left="cancel"
+            @click="revokeFriendship(props.row)"
+          ></b-button>
+        </b-tooltip>
       </div>
     </b-table-column>
     <template #empty>
@@ -83,6 +97,7 @@
 </style>
 
 <script>
+import { RevokeFriendship } from "@/graphql/User.gql";
 import { CreateMessage } from "@/graphql/Message.gql";
 export default {
   name: "UserTable",
@@ -127,6 +142,25 @@ export default {
             user => user.keycloakUserId === message.recipient
           );
           user.metadata.userIsPendingFriend = true;
+        });
+    },
+    revokeFriendship(form) {
+      this.$apollo
+        .mutate({
+          mutation: RevokeFriendship,
+          variables: {
+            friend1: this.$keycloak.subject,
+            friend2: form.keycloakUserId
+          }
+        })
+        .then(response => {
+          const user = response.data.friend1.user;
+          this.$store.commit("setUser", user);
+          this.$buefy.snackbar.open("Friendship successfully revoked!");
+          const idx = this.users.findIndex(
+            user => user.keycloakUserId === form.keycloakUserId
+          );
+          this.users.splice(idx, 1);
         });
     },
     tabindex(user) {

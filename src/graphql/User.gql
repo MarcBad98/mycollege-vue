@@ -94,6 +94,24 @@ mutation RejectFriendRequest($messageId: String!) {
   }
 }
 
+mutation RevokeFriendship($friend1: String!, $friend2: String!) {
+  friend1: updateUser(
+    inputs: { keycloakUserId: $friend1, removeFriend: $friend2 }
+  ) {
+    # user who revoked the friends request
+    user {
+      ...UserData
+    }
+  }
+  friend2: updateUser(
+    inputs: { keycloakUserId: $friend2, removeFriend: $friend1 }
+  ) {
+    user {
+      keycloakUserId
+    }
+  }
+}
+
 fragment UserData on UserType {
   keycloakUserId
   isPlusUser
