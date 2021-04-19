@@ -99,6 +99,11 @@ export default {
       selected: {}
     };
   },
+  computed: {
+    user() {
+      return this.$store.state.user;
+    }
+  },
   methods: {
     sendFriendsRequest(form) {
       this.$apollo
@@ -108,14 +113,20 @@ export default {
             inputs: {
               sender: this.$keycloak.subject,
               recipient: form.keycloakUserId,
-              category: "friends-request"
+              category: "friends-request",
+              title: `Friend Request: ${this.user.profile.fullName}`,
+              message: `${this.user.profile.fullName} wants to be friends.`
             }
           }
         })
         .then(response => {
           const message = response.data.createMessage.message;
-          this.$store.commit("createMessage", message);
+          // this.$store.commit("createMessage", message);
           this.$buefy.snackbar.open("Friend request successfully sent!");
+          const user = this.users.find(
+            user => user.keycloakUserId === message.recipient
+          );
+          user.metadata.userIsPendingFriend = true;
         });
     },
     tabindex(user) {

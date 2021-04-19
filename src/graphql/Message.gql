@@ -34,6 +34,7 @@ fragment MessageData on MessageType {
   sender
   recipient
   category
+  title
   message
   resolved
 }

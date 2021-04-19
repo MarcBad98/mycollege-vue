@@ -60,13 +60,13 @@ export default new Vuex.Store({
       const idx = state.messages.findIndex(
         storeMessage => storeMessage.id === message.id
       );
-      state.jobs.splice(idx, 1, message);
+      state.messages.splice(idx, 1, message);
     },
     deleteMessage(state, message) {
       const idx = state.messages.findIndex(
         storeMessage => storeMessage.id === message.id
       );
-      state.jobs.splice(idx, 1);
+      state.messages.splice(idx, 1);
     }
   },
   actions: {},

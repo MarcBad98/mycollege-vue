@@ -58,6 +58,42 @@ mutation UpdateUserUnsaveJob($keycloakUserId: String!, $unsaveJob: String) {
   }
 }
 
+mutation AcceptFriendRequest(
+  $friend1: String!
+  $friend2: String!
+  $messageId: String!
+) {
+  friend1: updateUser(
+    inputs: { keycloakUserId: $friend1, addFriend: $friend2 }
+  ) {
+    # user who approved the friends request
+    user {
+      ...UserData
+    }
+  }
+  friend2: updateUser(
+    inputs: { keycloakUserId: $friend2, addFriend: $friend1 }
+  ) {
+    # user who sent the friends request
+    user {
+      keycloakUserId
+    }
+  }
+  deleteMessage(inputs: { id: $messageId }) {
+    message {
+      id
+    }
+  }
+}
+
+mutation RejectFriendRequest($messageId: String!) {
+  deleteMessage(inputs: { id: $messageId }) {
+    message {
+      id
+    }
+  }
+}
+
 fragment UserData on UserType {
   keycloakUserId
   isPlusUser

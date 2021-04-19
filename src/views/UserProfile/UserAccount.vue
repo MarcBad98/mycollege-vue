@@ -35,6 +35,15 @@
               :active="$route.name === 'FriendsList'"
             ></b-menu-item>
           </b-menu-list>
+          <b-menu-list label="Messages">
+            <b-menu-item
+              tag="router-link"
+              :to="{ name: 'MessagesList' }"
+              label="View Messages"
+              icon="chat"
+              :active="$route.name === 'MessagesList'"
+            ></b-menu-item>
+          </b-menu-list>
           <b-menu-list label="Settings">
             <b-menu-item
               tag="router-link"

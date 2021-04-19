@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 tabindex="0" class="title">Friends List</h1>
+    <h1 tabindex="0" class="title is-4">Friends List</h1>
     <hr aria-hidden="true" />
     <UserTable :users="friends" />
   </div>

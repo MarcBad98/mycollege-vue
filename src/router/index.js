@@ -27,6 +27,7 @@ import UserAccount from "@/views/UserProfile/UserAccount.vue";
 import UserProfileView from "@/views/UserProfile/UserProfileView.vue";
 import UserProfileEdit from "@/views/UserProfile/UserProfileEdit.vue";
 import FriendsList from "@/views/UserProfile/FriendsList.vue";
+import MessagesList from "@/views/UserProfile/MessagesList.vue";
 import UserSettings from "@/views/UserProfile/UserSettings.vue";
 import SearchResults from "@/views/UserProfile/SearchResults.vue";
 import OtherUserProfileView from "@/views/UserProfile/OtherUserProfileView.vue";
@@ -142,6 +143,11 @@ const routes = [
         path: "friends",
         name: "FriendsList",
         component: FriendsList
+      },
+      {
+        path: "messages",
+        name: "MessagesList",
+        component: MessagesList
       },
       {
         path: "settings",
