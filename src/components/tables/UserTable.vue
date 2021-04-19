@@ -63,6 +63,11 @@
         </b-tooltip>
       </div>
     </b-table-column>
+    <template #empty>
+      <p tabindex="0" class="has-text-centered">
+        No users listed.
+      </p>
+    </template>
   </b-table>
 </template>
 

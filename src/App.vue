@@ -32,8 +32,8 @@ export default {
           this.$buefy.snackbar.open("Login successful. Welcome to MyCollege!");
         });
       this.$apollo
-        .mutate({
-          mutation: RetrieveMessages,
+        .query({
+          query: RetrieveMessages,
           variables: {
             keycloakUserId: this.$keycloak.subject
           }

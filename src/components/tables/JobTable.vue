@@ -149,6 +149,11 @@
           </b-tooltip>
         </div>
       </b-table-column>
+      <template #empty>
+        <p tabindex="0" class="has-text-centered">
+          No jobs listed.
+        </p>
+      </template>
     </b-table>
     <JobModalForm ref="modal" />
     <JobApplicationModalForm ref="application" />
@@ -214,8 +219,7 @@ export default {
     openApplication(form) {
       this.$refs.application.open({
         isCreate: true,
-        jobId: form.id,
-        jobPoster: form.poster
+        jobId: form.id
       });
     },
     starJob(form) {

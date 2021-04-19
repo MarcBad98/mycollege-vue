@@ -1,16 +1,12 @@
 query SearchUsers($keycloakUserId: String!, $keyword: String!) {
   searchUsers(search: $keyword) {
-    keycloakUserId
-    profile {
-      fullName
-      university
-      major
-    }
-    metadata(keycloakUserId: $keycloakUserId) {
-      userIsConfirmedFriend
-      userIsPendingFriend
-      userSentFriendsRequest
-    }
+    ...OtherUserData
+  }
+}
+
+query RetrieveUsers($keycloakUserId: String!, $filters: UserInputType) {
+  getUsers(inputs: $filters) {
+    ...OtherUserData
   }
 }
 
@@ -97,4 +93,18 @@ fragment UserData on UserType {
   }
   friends
   jobsSaved
+}
+
+fragment OtherUserData on UserType {
+  keycloakUserId
+  profile {
+    fullName
+    university
+    major
+  }
+  metadata(keycloakUserId: $keycloakUserId) {
+    userIsConfirmedFriend
+    userIsPendingFriend
+    userSentFriendsRequest
+  }
 }

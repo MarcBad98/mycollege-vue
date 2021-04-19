@@ -47,7 +47,6 @@ export default {
   data() {
     return {
       jobId: null,
-      jobPoster: null,
       application: {}
     };
   },
@@ -55,7 +54,6 @@ export default {
     open(options) {
       this.$refs.generic.open(options);
       this.jobId = options.jobId;
-      this.jobPoster = options.jobPoster;
     },
     submit() {
       const fmt = "YYYY-MM-DD";
@@ -73,7 +71,6 @@ export default {
             keycloakUserId: this.$keycloak.subject,
             inputs: {
               id: this.jobId,
-              poster: this.jobPoster,
               addJobApplication: this.application
             }
           }

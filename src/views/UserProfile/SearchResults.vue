@@ -3,12 +3,7 @@
     <h1 tabindex="0" class="title">Search Results</h1>
     <p tabindex="0" class="subtitle">Based On: {{ $route.query.keyword }}</p>
     <hr aria-hidden="true" />
-    <template v-if="users.length !== 0">
-      <UserTable :users="users" />
-    </template>
-    <template v-else>
-      <p tabindex="0">No search results to display.</p>
-    </template>
+    <UserTable :users="users" />
   </div>
 </template>
 
@@ -41,8 +36,8 @@ export default {
   methods: {
     requestSearch() {
       this.$apollo
-        .mutate({
-          mutation: SearchUsers,
+        .query({
+          query: SearchUsers,
           variables: {
             keycloakUserId: this.keycloakUserId,
             keyword: this.$route.query.keyword

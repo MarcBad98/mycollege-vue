@@ -26,6 +26,15 @@
               :active="$route.name === 'ProfileEdit'"
             ></b-menu-item>
           </b-menu-list>
+          <b-menu-list label="Friends">
+            <b-menu-item
+              tag="router-link"
+              :to="{ name: 'FriendsList' }"
+              label="View Friends"
+              icon="account-group"
+              :active="$route.name === 'FriendsList'"
+            ></b-menu-item>
+          </b-menu-list>
           <b-menu-list label="Settings">
             <b-menu-item
               tag="router-link"
