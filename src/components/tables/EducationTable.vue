@@ -36,7 +36,7 @@
               @click="openModal('Read', props.row)"
             ></b-button>
           </b-tooltip>
-          <b-tooltip label="Edit Education" type="is-warning">
+          <b-tooltip label="Edit Education" type="is-warning" v-if="!readonly">
             <b-button
               :tabindex="tabindex(props.row)"
               aria-label="Edit Education"
@@ -44,10 +44,9 @@
               size="is-small"
               icon-left="pencil"
               @click="openModal('Update', props.row)"
-              v-if="!readonly"
             ></b-button>
           </b-tooltip>
-          <b-tooltip label="Delete Education" type="is-danger">
+          <b-tooltip label="Delete Education" type="is-danger" v-if="!readonly">
             <b-button
               :tabindex="tabindex(props.row)"
               aria-label="Delete Education"
@@ -55,7 +54,6 @@
               size="is-small"
               icon-left="delete"
               @click="openModal('Delete', props.row)"
-              v-if="!readonly"
             ></b-button>
           </b-tooltip>
         </div>
