@@ -50,6 +50,20 @@
             ></b-button>
           </b-tooltip>
           <b-tooltip
+            label="Send Reply"
+            type="is-info"
+            v-if="props.row.category === 'message'"
+          >
+            <b-button
+              :tabindex="tabindex(props.row)"
+              aria-label="Send Reply"
+              type="is-info"
+              size="is-small"
+              icon-left="reply"
+              @click="sendMessage(props.row)"
+            ></b-button>
+          </b-tooltip>
+          <b-tooltip
             label="Accept Friends Request"
             type="is-success"
             v-if="props.row.category === 'friends-request'"
@@ -90,6 +104,7 @@
         </p>
       </template>
     </b-table>
+    <MessageModalForm ref="modal" />
   </div>
 </template>
 
@@ -105,9 +120,13 @@
 </style>
 
 <script>
+import MessageModalForm from "@/components/modals/MessageModalForm.vue";
 import { AcceptFriendRequest, RejectFriendRequest } from "@/graphql/User.gql";
 export default {
   name: "MessageTable",
+  components: {
+    MessageModalForm
+  },
   props: {
     messages: {
       type: Array,
@@ -122,6 +141,12 @@ export default {
     };
   },
   methods: {
+    sendMessage(form) {
+      this.$refs.modal.open({
+        isCreate: true,
+        keycloakUserId: form.sender
+      });
+    },
     acceptFriendRequest(form) {
       this.$apollo
         .mutate({

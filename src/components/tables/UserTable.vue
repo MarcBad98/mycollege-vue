@@ -1,88 +1,111 @@
 <template>
-  <b-table :data="users" :selected.sync="selected" focusable>
-    <b-table-column label="Full Name" width="25%" v-slot="props">
-      {{ props.row.profile.fullName }}
-      <b-taglist>
-        <b-tag
-          type="is-info"
-          v-if="props.row.keycloakUserId === $keycloak.subject"
-        >
-          You
-        </b-tag>
-        <b-tag
-          type="is-success"
-          v-if="props.row.metadata.userIsConfirmedFriend"
-        >
-          Confirmed Friend
-        </b-tag>
-        <b-tag type="is-warning" v-if="props.row.metadata.userIsPendingFriend">
-          Pending Friend
-        </b-tag>
-      </b-taglist>
-    </b-table-column>
-    <b-table-column label="University" width="25%" v-slot="props">
-      {{ props.row.profile.university }}
-    </b-table-column>
-    <b-table-column label="Major" width="25%" v-slot="props">
-      {{ props.row.profile.major }}
-    </b-table-column>
-    <b-table-column label="Actions" width="25%" v-slot="props">
-      <div class="b-tooltips">
-        <b-tooltip label="View Profile" type="is-info">
-          <b-button
-            :tabindex="tabindex(props.row)"
-            tag="router-link"
-            :to="{
-              name: 'OtherUserProfileView',
-              params: { id: props.row.keycloakUserId }
-            }"
-            aria-label="View Profile"
+  <div>
+    <b-table :data="users" :selected.sync="selected" focusable>
+      <b-table-column label="Full Name" width="25%" v-slot="props">
+        {{ props.row.profile.fullName }}
+        <b-taglist>
+          <b-tag
             type="is-info"
-            size="is-small"
-            icon-left="eye"
-          ></b-button>
-        </b-tooltip>
-        <b-tooltip
-          label="Send Friends Request"
-          type="is-info"
-          v-if="props.row.keycloakUserId !== $keycloak.subject"
-        >
-          <b-button
-            :tabindex="tabindex(props.row)"
-            aria-label="Send Friends Request"
+            v-if="props.row.keycloakUserId === $keycloak.subject"
+          >
+            You
+          </b-tag>
+          <b-tag
+            type="is-success"
+            v-if="props.row.metadata.userIsConfirmedFriend"
+          >
+            Confirmed Friend
+          </b-tag>
+          <b-tag
+            type="is-warning"
+            v-if="props.row.metadata.userIsPendingFriend"
+          >
+            Pending Friend
+          </b-tag>
+        </b-taglist>
+      </b-table-column>
+      <b-table-column label="University" width="25%" v-slot="props">
+        {{ props.row.profile.university }}
+      </b-table-column>
+      <b-table-column label="Major" width="25%" v-slot="props">
+        {{ props.row.profile.major }}
+      </b-table-column>
+      <b-table-column label="Actions" width="25%" v-slot="props">
+        <div class="b-tooltips">
+          <b-tooltip label="View Profile" type="is-info">
+            <b-button
+              :tabindex="tabindex(props.row)"
+              tag="router-link"
+              :to="{
+                name: 'OtherUserProfileView',
+                params: { id: props.row.keycloakUserId }
+              }"
+              aria-label="View Profile"
+              type="is-info"
+              size="is-small"
+              icon-left="eye"
+            ></b-button>
+          </b-tooltip>
+          <b-tooltip
+            label="Send Message"
             type="is-info"
-            size="is-small"
-            icon-left="email-alert"
-            @click="sendFriendsRequest(props.row)"
-            :disabled="
-              props.row.metadata.userIsConfirmedFriend ||
-                props.row.metadata.userIsPendingFriend ||
-                props.row.metadata.userSentFriendsRequest
-            "
-          ></b-button>
-        </b-tooltip>
-        <b-tooltip
-          label="Revoke Friendship"
-          type="is-danger"
-          v-if="props.row.metadata.userIsConfirmedFriend"
-        >
-          <b-button
-            :tabindex="tabindex(props.row)"
-            aria-label="Revoke Friendship"
+            v-if="props.row.keycloakUserId !== $keycloak.subject"
+          >
+            <b-button
+              :tabindex="tabindex(props.row)"
+              aria-label="Send Message"
+              type="is-info"
+              size="is-small"
+              icon-left="chat"
+              :disabled="
+                !user.isPlusUser && !props.row.metadata.userIsConfirmedFriend
+              "
+              @click="sendMessage(props.row)"
+            ></b-button>
+          </b-tooltip>
+          <b-tooltip
+            label="Send Friends Request"
+            type="is-info"
+            v-if="props.row.keycloakUserId !== $keycloak.subject"
+          >
+            <b-button
+              :tabindex="tabindex(props.row)"
+              aria-label="Send Friends Request"
+              type="is-info"
+              size="is-small"
+              icon-left="email-alert"
+              @click="sendFriendsRequest(props.row)"
+              :disabled="
+                props.row.metadata.userIsConfirmedFriend ||
+                  props.row.metadata.userIsPendingFriend ||
+                  props.row.metadata.userSentFriendsRequest
+              "
+            ></b-button>
+          </b-tooltip>
+          <b-tooltip
+            label="Revoke Friendship"
             type="is-danger"
-            size="is-small"
-            icon-left="cancel"
-            @click="revokeFriendship(props.row)"
-          ></b-button>
-        </b-tooltip>
-      </div>
-    </b-table-column>
-    <template #empty>
-      <p tabindex="0" class="has-text-centered">
-        No users listed.
-      </p>
-    </template>
-  </b-table>
+            v-if="props.row.metadata.userIsConfirmedFriend"
+          >
+            <b-button
+              :tabindex="tabindex(props.row)"
+              aria-label="Revoke Friendship"
+              type="is-danger"
+              size="is-small"
+              icon-left="cancel"
+              @click="revokeFriendship(props.row)"
+            ></b-button>
+          </b-tooltip>
+        </div>
+      </b-table-column>
+      <template #empty>
+        <p tabindex="0" class="has-text-centered">
+          No users listed.
+        </p>
+      </template>
+    </b-table>
+    <MessageModalForm ref="modal" />
+  </div>
 </template>
 
 <style lang="scss" scoped>
@@ -97,10 +120,14 @@
 </style>
 
 <script>
+import MessageModalForm from "@/components/modals/MessageModalForm.vue";
 import { RevokeFriendship } from "@/graphql/User.gql";
 import { CreateMessage } from "@/graphql/Message.gql";
 export default {
   name: "UserTable",
+  components: {
+    MessageModalForm
+  },
   props: {
     users: {
       type: Array,
@@ -120,6 +147,12 @@ export default {
     }
   },
   methods: {
+    sendMessage(form) {
+      this.$refs.modal.open({
+        isCreate: true,
+        keycloakUserId: form.keycloakUserId
+      });
+    },
     sendFriendsRequest(form) {
       this.$apollo
         .mutate({
@@ -136,6 +169,7 @@ export default {
         })
         .then(response => {
           const message = response.data.createMessage.message;
+          // TODO: Separate sent and received messages.
           // this.$store.commit("createMessage", message);
           this.$buefy.snackbar.open("Friend request successfully sent!");
           const user = this.users.find(
