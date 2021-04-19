@@ -31,9 +31,16 @@ mutation UpdateUserProfile(
 
 mutation UpdateUserSettings(
   $keycloakUserId: String!
+  $isPlusUser: Boolean!
   $settings: UserSettingsInputType!
 ) {
-  updateUser(inputs: { keycloakUserId: $keycloakUserId, settings: $settings }) {
+  updateUser(
+    inputs: {
+      keycloakUserId: $keycloakUserId
+      isPlusUser: $isPlusUser
+      settings: $settings
+    }
+  ) {
     user {
       ...UserData
     }

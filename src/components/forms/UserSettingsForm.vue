@@ -15,6 +15,11 @@
         Opt-in to Targeted Advertisement?
       </b-checkbox>
     </b-field>
+    <b-field>
+      <b-checkbox v-model="isPlusUser">
+        Subscribe to MyCollege+ ($30/month)?
+      </b-checkbox>
+    </b-field>
     <b-field label="Language" label-for="usersettingsform-language">
       <b-select id="usersettingsform-language" v-model="settings.language">
         <option value="English">English</option>
@@ -45,6 +50,7 @@ export default {
   },
   data() {
     return {
+      isPlusUser: false,
       settings: {}
     };
   },
@@ -58,6 +64,7 @@ export default {
   },
   methods: {
     setComponentData(user) {
+      this.isPlusUser = user.isPlusUser;
       this.settings = JSON.parse(JSON.stringify(user.settings));
       delete this.settings.__typename;
     },
@@ -67,6 +74,7 @@ export default {
           mutation: UpdateUserSettings,
           variables: {
             keycloakUserId: this.$keycloak.subject,
+            isPlusUser: this.isPlusUser,
             settings: this.settings
           }
         })
