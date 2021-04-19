@@ -1,6 +1,7 @@
 <template>
   <div>
-    <h1 tabindex="0">Search Results</h1>
+    <h1 tabindex="0" class="title">Search Results</h1>
+    <p tabindex="0" class="subtitle">Based On: {{ $route.query.keyword }}</p>
     <hr aria-hidden="true" />
     <template v-if="users.length !== 0">
       <UserTable :users="users" />
@@ -14,7 +15,6 @@
 <script>
 import UserTable from "@/components/tables/UserTable.vue";
 import { SearchUsers } from "@/graphql/User.gql";
-
 export default {
   name: "SearchResults",
   components: {
@@ -33,12 +33,20 @@ export default {
       this.requestSearch();
     }
   },
+  computed: {
+    keycloakUserId() {
+      return this.$keycloak.authenticated ? this.$keycloak.subject : "";
+    }
+  },
   methods: {
     requestSearch() {
       this.$apollo
         .mutate({
           mutation: SearchUsers,
-          variables: { keyword: this.$route.query.keyword }
+          variables: {
+            keycloakUserId: this.keycloakUserId,
+            keyword: this.$route.query.keyword
+          }
         })
         .then(response => {
           this.users = response.data.searchUsers;

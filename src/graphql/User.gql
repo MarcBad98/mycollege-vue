@@ -1,10 +1,15 @@
-query SearchUsers($keyword: String!) {
+query SearchUsers($keycloakUserId: String!, $keyword: String!) {
   searchUsers(search: $keyword) {
     keycloakUserId
     profile {
       fullName
       university
       major
+    }
+    metadata(keycloakUserId: $keycloakUserId) {
+      userIsConfirmedFriend
+      userIsPendingFriend
+      userSentFriendsRequest
     }
   }
 }
@@ -19,7 +24,7 @@ mutation CreateRetrieveUser($keycloakUserId: String!) {
 
 mutation UpdateUserProfile(
   $keycloakUserId: String!
-  $profile: UserProfileInputType
+  $profile: UserProfileInputType!
 ) {
   updateUser(inputs: { keycloakUserId: $keycloakUserId, profile: $profile }) {
     user {
@@ -30,7 +35,7 @@ mutation UpdateUserProfile(
 
 mutation UpdateUserSettings(
   $keycloakUserId: String!
-  $settings: UserSettingsInputType
+  $settings: UserSettingsInputType!
 ) {
   updateUser(inputs: { keycloakUserId: $keycloakUserId, settings: $settings }) {
     user {

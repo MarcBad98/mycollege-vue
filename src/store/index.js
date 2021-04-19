@@ -25,7 +25,8 @@ export default new Vuex.Store({
       friends: [],
       jobsSaved: []
     },
-    jobs: []
+    jobs: [],
+    messages: []
   },
   mutations: {
     setUser(state, user) {
@@ -33,6 +34,9 @@ export default new Vuex.Store({
     },
     setJobs(state, jobs) {
       state.jobs = jobs;
+    },
+    setMessages(state, messages) {
+      state.messages = messages;
     },
     createJob(state, job) {
       state.jobs.push(job);
@@ -48,6 +52,21 @@ export default new Vuex.Store({
     starJob(state, jobId) {
       const job = state.jobs.find(storeJob => storeJob.id === jobId);
       job.metadata.userHasSaved = !job.metadata.userHasSaved;
+    },
+    createMessage(state, message) {
+      state.messages.push(message);
+    },
+    updateMessage(state, message) {
+      const idx = state.messages.findIndex(
+        storeMessage => storeMessage.id === message.id
+      );
+      state.jobs.splice(idx, 1, message);
+    },
+    deleteMessage(state, message) {
+      const idx = state.messages.findIndex(
+        storeMessage => storeMessage.id === message.id
+      );
+      state.jobs.splice(idx, 1);
     }
   },
   actions: {},

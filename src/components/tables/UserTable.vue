@@ -1,39 +1,84 @@
 <template>
-  <b-table :data="users">
+  <b-table :data="users" :selected.sync="selected" focusable>
     <b-table-column label="Full Name" width="25%" v-slot="props">
-      {{ props.row.fullName }}
-      <b-tag type="is-success" v-if="props.row.status === 'ACCEPTED'">
-        Confirmed
-      </b-tag>
-      <b-tag type="is-warning" v-if="props.row.status === 'PENDING'">
-        Pending
-      </b-tag>
+      {{ props.row.profile.fullName }}
+      <b-taglist>
+        <b-tag
+          type="is-info"
+          v-if="props.row.keycloakUserId === $keycloak.subject"
+        >
+          You
+        </b-tag>
+        <b-tag
+          type="is-success"
+          v-if="props.row.metadata.userIsConfirmedFriend"
+        >
+          Confirmed Friend
+        </b-tag>
+        <b-tag type="is-warning" v-if="props.row.metadata.userIsPendingFriend">
+          Pending Friend
+        </b-tag>
+      </b-taglist>
     </b-table-column>
     <b-table-column label="University" width="25%" v-slot="props">
-      {{ props.row.profile.currentUniversity }}
+      {{ props.row.profile.university }}
     </b-table-column>
     <b-table-column label="Major" width="25%" v-slot="props">
       {{ props.row.profile.major }}
     </b-table-column>
     <b-table-column label="Actions" width="25%" v-slot="props">
-      <div class="buttons">
-        <b-button
-          tag="router-link"
-          :to="{
-            name: 'OtherUserProfileView',
-            params: { id: props.row.keycloakUserId }
-          }"
-          label="View"
+      <div class="b-tooltips">
+        <b-tooltip label="View Profile" type="is-info">
+          <b-button
+            :tabindex="tabindex(props.row)"
+            tag="router-link"
+            :to="{
+              name: 'OtherUserProfileView',
+              params: { id: props.row.keycloakUserId }
+            }"
+            aria-label="View Profile"
+            type="is-info"
+            size="is-small"
+            icon-left="eye"
+          ></b-button>
+        </b-tooltip>
+        <b-tooltip
+          label="Send Friends Request"
           type="is-info"
-          size="is-small"
-          icon-left="eye"
-        />
+          v-if="props.row.keycloakUserId !== $keycloak.subject"
+        >
+          <b-button
+            :tabindex="tabindex(props.row)"
+            aria-label="Send Friends Request"
+            type="is-info"
+            size="is-small"
+            icon-left="email-alert"
+            @click="sendFriendsRequest(props.row)"
+            :disabled="
+              props.row.metadata.userIsConfirmedFriend ||
+                props.row.metadata.userIsPendingFriend ||
+                props.row.metadata.userSentFriendsRequest
+            "
+          ></b-button>
+        </b-tooltip>
       </div>
     </b-table-column>
   </b-table>
 </template>
 
+<style lang="scss" scoped>
+.b-tooltips {
+  .b-tooltip:not(:last-child) {
+    margin-right: 0.5em;
+  }
+  .b-tooltip {
+    margin-bottom: 0.5em;
+  }
+}
+</style>
+
 <script>
+import { CreateMessage } from "@/graphql/Message.gql";
 export default {
   name: "UserTable",
   props: {
@@ -42,6 +87,34 @@ export default {
       default() {
         return [];
       }
+    }
+  },
+  data() {
+    return {
+      selected: {}
+    };
+  },
+  methods: {
+    sendFriendsRequest(form) {
+      this.$apollo
+        .mutate({
+          mutation: CreateMessage,
+          variables: {
+            inputs: {
+              sender: this.$keycloak.subject,
+              recipient: form.keycloakUserId,
+              category: "friends-request"
+            }
+          }
+        })
+        .then(response => {
+          const message = response.data.createMessage.message;
+          this.$store.commit("createMessage", message);
+          this.$buefy.snackbar.open("Friend request successfully sent!");
+        });
+    },
+    tabindex(user) {
+      return user.keycloakUserId === this.selected.keycloakUserId ? "0" : "-1";
     }
   }
 };

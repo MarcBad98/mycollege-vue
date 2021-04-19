@@ -1,0 +1,39 @@
+query RetrieveMessages($keycloakUserId: String!) {
+  getMessages(inputs: { recipient: $keycloakUserId }) {
+    ...MessageData
+  }
+}
+
+mutation CreateMessage($inputs: MessageInputType!) {
+  createMessage(inputs: $inputs) {
+    message {
+      ...MessageData
+    }
+  }
+}
+
+mutation UpdateMessage($inputs: MessageInputType!) {
+  updateMessage(inputs: $inputs) {
+    message {
+      ...MessageData
+    }
+  }
+}
+
+mutation DeleteMessage($inputs: MessageInputType!) {
+  deleteMessage(inputs: $inputs) {
+    message {
+      ...MessageData
+    }
+  }
+}
+
+fragment MessageData on MessageType {
+  id
+  sentOn
+  sender
+  recipient
+  category
+  message
+  resolved
+}
