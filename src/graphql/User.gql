@@ -126,6 +126,14 @@ mutation RevokeFriendship($friend1: String!, $friend2: String!) {
   }
 }
 
+mutation UpdateUserCourses($keycloakUserId: String!, $course: String!) {
+  updateUser(inputs: { keycloakUserId: $keycloakUserId, takeCourse: $course }) {
+    user {
+      ...UserData
+    }
+  }
+}
+
 fragment UserData on UserType {
   keycloakUserId
   isPlusUser
@@ -161,6 +169,7 @@ fragment UserData on UserType {
   }
   friends
   jobsSaved
+  courses
 }
 
 fragment OtherUserData on UserType {

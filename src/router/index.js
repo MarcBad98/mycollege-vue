@@ -5,6 +5,15 @@ import Home from "@/views/Home.vue";
 import Jobs from "@/views/Jobs.vue";
 import Skills from "@/views/Skills.vue";
 
+import TrainingEducation from "@/views/Training/TrainingEducation.vue";
+import AccessibilityTraining from "@/views/Training/AccessibilityTraining.vue";
+import DiversityTraining from "@/views/Training/DiversityTraining.vue";
+import SensitivityTraining from "@/views/Training/SensitivityTraining.vue";
+import AwarenessTraining from "@/views/Training/AwarenessTraining.vue";
+import ITHelpDesk from "@/views/Training/ITHelpDesk.vue";
+import BusinessAnalysis from "@/views/Training/BusinessAnalysis.vue";
+import Security from "@/views/Training/Security.vue";
+
 import About from "@/views/GeneralLinks/About.vue";
 import HelpCenter from "@/views/GeneralLinks/HelpCenter.vue";
 import Press from "@/views/GeneralLinks/Press.vue";
@@ -49,6 +58,47 @@ const routes = [
     path: "/skills",
     name: "Skills",
     component: Skills
+  },
+  {
+    path: "/training-education",
+    component: TrainingEducation,
+    children: [
+      {
+        path: "accessibility",
+        name: "AccessibilityTraining",
+        component: AccessibilityTraining
+      },
+      {
+        path: "diversity",
+        name: "DiversityTraining",
+        component: DiversityTraining
+      },
+      {
+        path: "sensitivity",
+        name: "SensitivityTraining",
+        component: SensitivityTraining
+      },
+      {
+        path: "awareness",
+        name: "AwarenessTraining",
+        component: AwarenessTraining
+      }
+    ]
+  },
+  {
+    path: "/it-help-desk",
+    name: "ITHelpDesk",
+    component: ITHelpDesk
+  },
+  {
+    path: "/business-analysis",
+    name: "BusinessAnalysis",
+    component: BusinessAnalysis
+  },
+  {
+    path: "/security",
+    name: "Security",
+    component: Security
   },
   {
     path: "/about",

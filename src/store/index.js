@@ -23,7 +23,8 @@ export default new Vuex.Store({
         language: null
       },
       friends: [],
-      jobsSaved: []
+      jobsSaved: [],
+      courses: []
     },
     jobs: [],
     messages: []

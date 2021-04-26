@@ -1,0 +1,11 @@
+query RetrieveCourses($inputs: CourseInputType) {
+  getCourses(inputs: $inputs) {
+    ...CourseData
+  }
+}
+
+fragment CourseData on CourseType {
+  id
+  title
+  authRequired
+}

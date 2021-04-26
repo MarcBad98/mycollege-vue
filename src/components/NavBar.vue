@@ -54,6 +54,45 @@
           Tips for Remote Work
         </b-navbar-item>
       </b-navbar-dropdown>
+      <b-navbar-dropdown label="Training" hoverable>
+        <b-navbar-item
+          tag="router-link"
+          :to="{ name: 'AccessibilityTraining' }"
+          :active="$route.path.match(/^\/training-education*/) !== null"
+        >
+          Training and Education
+        </b-navbar-item>
+        <b-navbar-item
+          tag="router-link"
+          :to="{ name: 'ITHelpDesk' }"
+          :active="$route.name === 'ITHelpDesk'"
+        >
+          IT Help Desk
+        </b-navbar-item>
+        <b-navbar-item
+          tag="router-link"
+          :to="{ name: 'BusinessAnalysis' }"
+          :active="$route.name === 'BusinessAnalysis'"
+          v-if="!$keycloak.authenticated"
+        >
+          Business Analysis and Strategy
+        </b-navbar-item>
+        <b-navbar-item
+          tag="router-link"
+          :to="{ name: 'BusinessAnalysis' }"
+          :active="$route.name === 'BusinessAnalysis'"
+          v-if="$keycloak.authenticated"
+        >
+          MyCollege Learning
+        </b-navbar-item>
+        <b-navbar-item
+          tag="router-link"
+          :to="{ name: 'Security' }"
+          :active="$route.name === 'Security'"
+        >
+          Security
+        </b-navbar-item>
+      </b-navbar-dropdown>
       <b-navbar-dropdown label="General Links" hoverable>
         <b-navbar-item
           tag="router-link"
