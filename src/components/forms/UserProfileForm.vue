@@ -85,18 +85,27 @@ export default {
       this.profile.education.forEach(edu => delete edu.__typename);
     },
     save() {
+      const notification = this.$store.state.messages.find(message => {
+        const matchSender = message.sender === "SYSTEM";
+        const matchTitle =
+          message.title === "Don't forget to update your profile!";
+        return matchSender && matchTitle;
+      });
       this.$apollo
         .mutate({
           mutation: UpdateUserProfile,
           variables: {
             keycloakUserId: this.$keycloak.subject,
-            profile: this.profile
+            profile: this.profile,
+            messageId: notification.id
           }
         })
         .then(response => {
           const user = response.data.updateUser.user;
           this.$store.commit("setUser", user);
           this.$buefy.snackbar.open("Your profile was successfully saved!");
+          const message = response.data.deleteMessage.message;
+          this.$store.commit("deleteMessage", message);
         });
     }
   }

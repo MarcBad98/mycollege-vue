@@ -15,7 +15,9 @@ export default {
   },
   computed: {
     messages() {
-      return this.$store.state.messages;
+      return this.$store.state.messages.filter(
+        message => message.category !== "notification"
+      );
     }
   }
 };
