@@ -97,15 +97,18 @@ export default {
           variables: {
             keycloakUserId: this.$keycloak.subject,
             profile: this.profile,
-            messageId: notification.id
+            deleteMessage: notification !== undefined,
+            messageId: notification !== undefined ? notification.id : null
           }
         })
         .then(response => {
           const user = response.data.updateUser.user;
           this.$store.commit("setUser", user);
           this.$buefy.snackbar.open("Your profile was successfully saved!");
-          const message = response.data.deleteMessage.message;
-          this.$store.commit("deleteMessage", message);
+          if (response.data.deleteMessage !== undefined) {
+            const message = response.data.deleteMessage.message;
+            this.$store.commit("deleteMessage", message);
+          }
         });
     }
   }

@@ -21,14 +21,15 @@ mutation CreateRetrieveUser($keycloakUserId: String!) {
 mutation UpdateUserProfile(
   $keycloakUserId: String!
   $profile: UserProfileInputType!
-  $messageId: String!
+  $deleteMessage: Boolean!
+  $messageId: String
 ) {
   updateUser(inputs: { keycloakUserId: $keycloakUserId, profile: $profile }) {
     user {
       ...UserData
     }
   }
-  deleteMessage(inputs: { id: $messageId }) {
+  deleteMessage(inputs: { id: $messageId }) @include(if: $deleteMessage) {
     message {
       id
     }
