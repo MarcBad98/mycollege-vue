@@ -1,6 +1,13 @@
 <template>
   <div>
-    <h1 tabindex="0" class="title">Business Analysis and Strategy</h1>
+    <h1 tabindex="0" class="title">
+      <template v-if="!$keycloak.authenticated">
+        Business Analysis and Strategy
+      </template>
+      <template v-else>
+        MyCollege Learning
+      </template>
+    </h1>
     <hr aria-hidden="true" />
     <CourseTable :courses="courses" :isAuth="$keycloak.authenticated" />
   </div>
