@@ -4,6 +4,15 @@ query RetrieveJobs($keycloakUserId: String!) {
   }
 }
 
+query RetrieveAppliedJobs($keycloakUserId: String!) {
+  getJobs(inputs: { matchJobApplication: { applicant: $keycloakUserId } }) {
+    applications {
+      appliedOn
+      applicant
+    }
+  }
+}
+
 mutation CreateJob($keycloakUserId: String!, $inputs: JobInputType!) {
   createJob(inputs: $inputs) {
     job {
