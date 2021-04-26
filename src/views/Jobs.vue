@@ -85,6 +85,7 @@ export default {
           jobs.forEach(job => {
             applications.push(job.applications[0]);
           });
+          var days = 0;
           if (applications.length !== 0) {
             applications.sort((app1, app2) => {
               const d1 = new Date(app1.appliedOn);
@@ -96,14 +97,14 @@ export default {
             const ms =
               new Date().getTime() -
               new Date(applications[0].appliedOn).getTime();
-            const days = ms / (1000 * 60 * 60 * 24);
-            if (days >= 7) {
-              this.$store.state.messages.push({
-                id: "notification-jobs-2",
-                category: "notification",
-                title: "Make sure that you start applying for jobs today!"
-              });
-            }
+            days = ms / (1000 * 60 * 60 * 24);
+          }
+          if (applications.length === 0 || days >= 7) {
+            this.$store.state.messages.push({
+              id: "notification-jobs-2",
+              category: "notification",
+              title: "Make sure that you start applying for jobs today!"
+            });
           }
         });
     },
